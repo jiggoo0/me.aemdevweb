@@ -1,0 +1,63 @@
+# 🛠 บริการของเรา (Services)
+
+เราพร้อมดูแลคุณในทุกมิติของโลกดิจิทัล ตั้งแต่การสร้างตัวตนที่แข็งแกร่ง ไปจนถึงการปกป้องชื่อเสียงออนไลน์ของคุณ
+
+---
+
+### เลือกบริการที่ตอบโจทย์คุณ
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-10">
+  
+  {/* บริการที่ 1: AEM Dev Web */}
+  <Card className="flex flex-col border-2 transition-all hover:border-blue-500 hover:shadow-md">
+    <CardHeader>
+      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-blue-600">
+        <Layout size={28} />
+      </div>
+      <CardTitle className="text-2xl font-black">AEM Dev Web</CardTitle>
+      <CardDescription>บริการพัฒนาเว็บไซต์และระบบจัดการข้อมูล</CardDescription>
+    </CardHeader>
+    <CardContent className="flex-1">
+      <ul className="list-none p-0 m-0 space-y-3 text-sm text-muted-foreground font-medium">
+        <li className="flex items-center gap-2">
+          <Rocket size={16} className="text-blue-500" /> รับทำเว็บไซต์ Next.js 15 ความเร็วสูง
+        </li>
+        <li className="flex items-center gap-2">
+          <Rocket size={16} className="text-blue-500" /> ระบบ Marketplace สำหรับ SMEs
+        </li>
+      </ul>
+      <Button className="w-full mt-8 bg-blue-600 hover:bg-blue-700" asChild>
+        <a href="/services/aem-dev">
+          รายละเอียดบริการ <ArrowRight className="ml-2 h-4 w-4" />
+        </a>
+      </Button>
+    </CardContent>
+  </Card>
+
+  {/* บริการที่ 2: Unlink-th */}
+  <Card className="flex flex-col border-2 transition-all hover:border-red-500 hover:shadow-md">
+    <CardHeader>
+      <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 text-red-600">
+        <SearchSlash size={28} />
+      </div>
+      <CardTitle className="text-2xl font-black">Unlink-th</CardTitle>
+      <CardDescription>จัดการภาพลักษณ์และลบประวัติออนไลน์</CardDescription>
+    </CardHeader>
+    <CardContent className="flex-1">
+      <ul className="list-none p-0 m-0 space-y-3 text-sm text-muted-foreground font-medium">
+        <li className="flex items-center gap-2">
+          <ShieldCheck size={16} className="text-red-500" /> ลบข้อมูลส่วนตัวและประวัติเสียหาย
+        </li>
+        <li className="flex items-center gap-2">
+          <ShieldCheck size={16} className="text-red-500" /> บริการจัดการชื่อเสียงออนไลน์
+        </li>
+      </ul>
+      <Button className="w-full mt-8 bg-neutral-900 hover:bg-neutral-800" asChild>
+        <a href="/services/unlink-th">
+          รายละเอียดบริการ <ArrowRight className="ml-2 h-4 w-4" />
+        </a>
+      </Button>
+    </CardContent>
+  </Card>
+
+</div>
