@@ -11,6 +11,7 @@ Disallow: /*.json$
 
 User-Agent: GPTBot
 User-Agent: CCBot
+User-Agent: ClaudeBot
 Disallow: /
 
 Sitemap: https://me.aemdevweb.com/sitemap.xml

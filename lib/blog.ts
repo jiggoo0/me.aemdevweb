@@ -1,76 +1,81 @@
 /** @format */
+
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-export interface PostData {
-  id: string;
+// 1. กำหนด Path ไปที่ content/blog โดยตรง
+const BLOG_DIR = path.join(process.cwd(), "content/blog");
+
+export interface BlogPost {
+  slug: string;
   title: string;
-  date: string;
   description: string;
+  date: string;
+  author: string;
   image: string;
-  author?: string;
-  tags?: string[];
-  content?: string; // ✅ เพิ่มเผื่อไว้สำหรับหน้า Single Post
-  [key: string]: string | string[] | undefined | unknown; 
+  tags: string[];
+  content: string;
 }
 
-const blogDirectory = path.join(process.cwd(), "content/blog");
-
 /**
- * ดึงข้อมูลบทความทั้งหมดและเรียงลำดับตามวันที่ (ล่าสุดขึ้นก่อน)
+ * getAllPosts - ดึงข้อมูลบทความทั้งหมดใน content/blog
  */
-export function getSortedPostsData(): PostData[] {
-  // ตรวจสอบความมีอยู่ของโฟลเดอร์เพื่อป้องกัน Runtime Error
-  if (!fs.existsSync(blogDirectory)) {
-    console.warn("⚠️ Blog directory not found at:", blogDirectory);
+export function getAllPosts(): BlogPost[] {
+  if (!fs.existsSync(BLOG_DIR)) {
     return [];
   }
 
-  const fileNames = fs.readdirSync(blogDirectory);
-  
+  const fileNames = fs.readdirSync(BLOG_DIR);
+
   const allPostsData = fileNames
     .filter((fileName) => fileName.endsWith(".mdx"))
     .map((fileName) => {
-      const id = fileName.replace(/\.mdx$/, "");
-      const fullPath = path.join(blogDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, "utf8");
-      
-      // ดึงข้อมูล Metadata ออกจากเนื้อหา
-      const { data } = matter(fileContents);
+      const slug = fileName.replace(/\.mdx$/, "");
+      const filePath = path.join(BLOG_DIR, fileName);
+      const fileContents = fs.readFileSync(filePath, "utf8");
+
+      const { data, content } = matter(fileContents);
 
       return {
-        id,
-        title: data.title || "Untitled",
-        date: data.date || new Date().toISOString(), // ✅ ใส่ Default Date ป้องกัน Error การ Sort
+        slug,
+        content,
+        title: data.title || "Untitled Post",
         description: data.description || "",
-        image: data.image || "/images/service/aemdevweb.webp",
-        ...data,
-      } as PostData;
+        date: data.date || "",
+        author: data.author || "Alongkorl Yomkerd",
+        image: data.image || "/images/blog/og-image.png",
+        tags: data.tags || [],
+      } as BlogPost;
     });
 
-  // เรียงลำดับจากวันที่ใหม่ที่สุดไปเก่าที่สุด
   return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 /**
- * ดึงข้อมูลบทความเดี่ยวตาม ID (Slug)
+ * getPostBySlug - ดึงข้อมูลบทความรายชิ้นตาม Slug
+ * ✅ แก้ไข Lint Warning: 'error' is defined but never used
  */
-export async function getPostData(id: string): Promise<PostData | null> {
-  const fullPath = path.join(blogDirectory, `${id}.mdx`);
-  
-  if (!fs.existsSync(fullPath)) return null;
+export function getPostBySlug(slug: string): BlogPost | null {
+  try {
+    const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
+    if (!fs.existsSync(filePath)) return null;
 
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
+    const fileContents = fs.readFileSync(filePath, "utf8");
+    const { data, content } = matter(fileContents);
 
-  return {
-    id,
-    content, // เนื้อหาบทความสำหรับนำไป Render
-    title: data.title || "Untitled",
-    date: data.date || "",
-    description: data.description || "",
-    image: data.image || "/images/service/aemdevweb.webp",
-    ...data,
-  } as PostData;
+    return {
+      slug,
+      content,
+      title: data.title,
+      description: data.description,
+      date: data.date,
+      author: data.author,
+      image: data.image,
+      tags: data.tags,
+    } as BlogPost;
+  } catch { 
+    // ✅ ลบ (error) ออก เพราะเราแค่ต้องการส่งค่า null กลับเมื่อเกิดปัญหา
+    return null;
+  }
 }

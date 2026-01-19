@@ -226,7 +226,7 @@
       "browserDebugInfoInTerminal": false,
       "optimizeRouterScrolling": false,
       "middlewareClientMaxBodySize": 10485760,
-      "mdxRs": true,
+      "mdxRs": false,
       "optimizePackageImports": [
         "lucide-react",
         "framer-motion",

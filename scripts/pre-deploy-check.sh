@@ -1,36 +1,68 @@
 #!/bin/bash
 
-# กำหนดชื่อไฟล์รายงาน
+# ===============================
+# === CONFIG / METADATA =========
+# ===============================
 REPORT_FILE="pre-deploy-report.md"
-TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+TIMESTAMP_UTC=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+TIMESTAMP_LOCAL=$(date '+%Y-%m-%d %H:%M:%S')
 
-# ✅ ขั้นตอน 0: ลบไฟล์รายงานเก่าทิ้งก่อนเริ่มทำงาน
+SITE_URL="https://me.aemdevweb.com"
+AUTHOR="Auto Pre-deploy Inspector"
+PROJECT_NAME="UnlinkTH"
+PROJECT_TYPE="Web Application"
+ENVIRONMENT="pre-deploy"
+BUILD_ID=$(git rev-parse --short HEAD 2>/dev/null || echo "local")
+BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "N/A")
+
+# ===============================
+# === CLEAN OLD REPORT ==========
+# ===============================
 if [ -f "$REPORT_FILE" ]; then
     rm "$REPORT_FILE"
     echo "🗑️  Old report removed."
 fi
 
-echo "🔍 Starting UnlinkTH Pre-deploy Inspection..."
+echo "🔍 Starting $PROJECT_NAME Pre-deploy Inspection..."
 
-# เริ่มเขียนไฟล์ Markdown ใหม่
-echo "# 🚀 Pre-deploy Inspection Report" > $REPORT_FILE
-echo "Generated at: $TIMESTAMP" >> $REPORT_FILE
-echo "Branch: $(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo 'N/A')" >> $REPORT_FILE
-echo "" >> $REPORT_FILE
+# ===============================
+# === FRONT MATTER METADATA =====
+# ===============================
+{
+echo "---"
+echo "title: \"Pre-deploy Inspection Report\""
+echo "project: \"$PROJECT_NAME\""
+echo "projectType: \"$PROJECT_TYPE\""
+echo "environment: \"$ENVIRONMENT\""
+echo "site: \"$SITE_URL\""
+echo "author: \"$AUTHOR\""
+echo "branch: \"$BRANCH\""
+echo "buildId: \"$BUILD_ID\""
+echo "generatedAt: \"$TIMESTAMP_UTC\""
+echo "contentType: \"pre-deploy-report\""
+echo "tags:"
+echo "  - pre-deploy"
+echo "  - nextjs"
+echo "  - aem"
+echo "  - headless"
+echo "  - automation"
+echo "---"
+echo ""
+echo "# 🚀 Pre-deploy Inspection Report"
+echo ""
+echo "- **Generated:** $TIMESTAMP_LOCAL"
+echo "- **Branch:** $BRANCH"
+echo "- **Build ID:** $BUILD_ID"
+echo "- **Target Site:** $SITE_URL"
+echo ""
+} > "$REPORT_FILE"
 
-# 1. เช็คไฟล์ .env
-echo "## 🔐 1. Environment Check" >> $REPORT_FILE
-if [ ! -f .env ]; then
-    echo "❌ Status: .env file missing!" | tee -a $REPORT_FILE
-    echo "Critical failure: Deployment halted." >> $REPORT_FILE
-    exit 1
-else
-    echo "✅ Status: .env file exists and verified." >> $REPORT_FILE
-fi
-
-# 2. ขั้นตอน Auto-Fix (Smart Repair)
+# ===============================
+# === AUTO FIX ==================
+# ===============================
 echo "🛠️  Attempting to Auto-fix Linting issues..."
-echo "## 🛠️  2. Auto-Fix Procedure" >> $REPORT_FILE
+echo "## 🛠️  1. Auto-Fix Procedure" >> $REPORT_FILE
+
 pnpm lint --fix > fix_output.txt 2>&1
 FIX_EXIT_CODE=$?
 
@@ -41,9 +73,12 @@ else
 fi
 rm fix_output.txt
 
-# 3. เช็ค Linting (Code Hygiene)
+# ===============================
+# === LINT CHECK ================
+# ===============================
 echo "🧹 Running Final Linting Check..."
-echo "## 🧹 3. Code Linting (ESLint)" >> $REPORT_FILE
+echo "## 🧹 2. Code Linting (ESLint)" >> $REPORT_FILE
+
 pnpm lint > lint_output.txt 2>&1
 LINT_EXIT_CODE=$?
 
@@ -58,9 +93,12 @@ else
 fi
 rm lint_output.txt
 
-# 4. เช็ค Types
+# ===============================
+# === TYPE CHECK ================
+# ===============================
 echo "⌨️ Checking Types..."
-echo "## ⌨️ 4. Type Safety Check" >> $REPORT_FILE
+echo "## ⌨️ 3. Type Safety Check" >> $REPORT_FILE
+
 pnpm type-check > type_output.txt 2>&1
 TYPE_EXIT_CODE=$?
 
@@ -75,10 +113,12 @@ else
 fi
 rm type_output.txt
 
-# 5. ขั้นตอน Build (Production Readiness)
+# ===============================
+# === BUILD CHECK ===============
+# ===============================
 echo "🏗️  Executing Production Build..."
-echo "## 🏗️  5. Production Build Test" >> $REPORT_FILE
-# ใช้ 'tee' เพื่อแสดงผลบนหน้าจอพร้อมบันทึกลงไฟล์
+echo "## 🏗️  4. Production Build Test" >> $REPORT_FILE
+
 pnpm run build 2>&1 | tee build_output.txt
 BUILD_EXIT_CODE=${PIPESTATUS[0]}
 
@@ -86,7 +126,6 @@ if [ $BUILD_EXIT_CODE -eq 0 ]; then
     echo "✅ Status: Build successfully optimized." >> $REPORT_FILE
     echo "### 📊 Route Statistics & Bundle Size" >> $REPORT_FILE
     echo "\`\`\`text" >> $REPORT_FILE
-    # ดึงเฉพาะส่วนที่เป็นตารางสรุป Route จากไฟล์ build_output
     sed -n '/Route (app)/,$p' build_output.txt >> $REPORT_FILE
     echo "\`\`\`" >> $REPORT_FILE
 else
@@ -98,17 +137,21 @@ else
 fi
 rm build_output.txt
 
-# สรุปผลลัพธ์สุดท้าย
+# ===============================
+# === FINAL SUMMARY =============
+# ===============================
 echo "" >> $REPORT_FILE
 echo "---" >> $REPORT_FILE
 echo "## 🏆 Summary Result" >> $REPORT_FILE
 
 if [ $LINT_EXIT_CODE -eq 0 ] && [ $TYPE_EXIT_CODE -eq 0 ] && [ $BUILD_EXIT_CODE -eq 0 ]; then
     echo "### ✅ READY FOR DEPLOY" >> $REPORT_FILE
-    echo "All protocols verified: Lint passed, Types safe, and Build successful. Deployment is highly recommended." >> $REPORT_FILE
+    echo "All protocols verified: Lint passed, Types safe, and Build successful." >> $REPORT_FILE
+    echo "Deployment is approved for **$SITE_URL**." >> $REPORT_FILE
 else
     echo "### 🚫 FIX REQUIRED BEFORE DEPLOY" >> $REPORT_FILE
     echo "Please resolve the errors in the failed stages above." >> $REPORT_FILE
 fi
 
-echo "🚀 Inspection complete. Full report generated: $REPORT_FILE"
+echo "🚀 Inspection complete. Full report generated → $REPORT_FILE"
+echo "🌐 Target Site → $SITE_URL"

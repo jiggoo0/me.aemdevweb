@@ -1,15 +1,16 @@
 /** @format */
+
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import SocialLinks from "@/components/shared/SocialLinks";
 import Container from "@/components/layout/Container";
 import Link from "next/link";
-import { Sparkles } from "lucide-react";
+import { Sparkles, ShieldCheck, Search } from "lucide-react";
 
 /**
- * Hero Component
- * ส่วนหน้าแรกของเว็บไซต์ แสดงชื่อและอัตลักษณ์ของ Alongkorl Yomkerd (นายเอ็มซ่ามากส์)
- * ออกแบบให้มีความพรีเมียมและดึงดูดความสนใจ (First Impression)
+ * Hero Component - ฉบับพาร์ทเนอร์ดูแลระบบและ SEO Organic
+ * นำเสนออัตลักษณ์ของ อลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์)
+ * เน้นความน่าเชื่อถือในฐานะผู้อยู่เบื้องหลังระบบ Unlink-th และผู้เชี่ยวชาญ Next.js
  */
 export default function Hero() {
   const profile = {
@@ -20,42 +21,47 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative w-full py-16 md:py-24 overflow-hidden bg-white">
-      {/* Background Decor - เพิ่มมิติให้กับหน้า Hero */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[500px] h-[500px] bg-blue-50 rounded-full blur-3xl opacity-50 -z-10" />
+    <section className="relative w-full overflow-hidden bg-white py-16 md:py-24 lg:py-32">
+      {/* 🌌 Background Elements - เพิ่มมิติและความพรีเมียม */}
+      <div className="absolute right-0 top-0 -z-10 h-[600px] w-[600px] translate-x-1/3 translate-y-[-20%] rounded-full bg-blue-50/50 blur-3xl opacity-60" />
+      <div className="absolute left-0 bottom-0 -z-10 h-[300px] w-[300px] translate-x-[-20%] translate-y-[20%] rounded-full bg-slate-50 blur-3xl opacity-40" />
 
       <Container>
-        <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-          {/* ส่วนข้อมูลตัวอักษร */}
-          <div className="flex-1 space-y-6 text-center md:text-left animate-in fade-in slide-in-from-left duration-700">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-widest">
-              <Sparkles className="w-3.5 h-3.5" /> {profile.title}
+        <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-20">
+          
+          {/* 📝 Text Content Section */}
+          <div className="flex-1 space-y-8 text-center md:text-left animate-in fade-in slide-in-from-left duration-1000">
+            <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-blue-600 shadow-sm">
+              <Sparkles className="h-3.5 w-3.5" /> {profile.title}
             </div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-tight">
-              {profile.name} <br />
-              <span className="text-blue-600 italic">"{profile.nickname}"</span>
-            </h1>
+            <div className="space-y-4">
+              <h1 className="text-5xl font-black leading-[1.1] text-slate-900 md:text-7xl lg:text-8xl">
+                {profile.name} <br />
+                <span className="text-blue-600 italic">"{profile.nickname}"</span>
+              </h1>
+            </div>
 
-            <p className="text-lg md:text-xl text-slate-600 max-w-xl mx-auto md:mx-0 leading-relaxed font-medium">
+            <p className="mx-auto max-w-xl text-lg font-medium leading-relaxed text-slate-600 md:mx-0 md:text-xl">
               ผู้อยู่เบื้องหลังโครงสร้างทางเทคนิคของ{" "}
-              <span className="text-slate-900 font-bold border-b-2 border-blue-600">
+              <span className="font-black text-slate-900 border-b-2 border-blue-600/30 hover:border-blue-600 transition-colors">
                 Unlink-th
               </span>{" "}
-              และผู้เชี่ยวชาญการพัฒนาเว็บไซต์ด้วย Next.js 15 ที่รองรับ SEO
-              ระดับลึก
+              และที่ปรึกษาการพัฒนาเว็บไซต์ด้วย Next.js ที่เน้นผลลัพธ์จาก{" "}
+              <span className="font-bold text-blue-600">SEO Organic</span> ระดับลึก
             </p>
 
-            <div className="pt-4 flex justify-center md:justify-start">
-              {/* ตรวจสอบให้แน่ใจว่า SocialLinks รองรับพารามิเตอร์ที่ส่งไป */}
-              <SocialLinks className="pt-2" />
+            {/* Social Links Integration */}
+            <div className="flex justify-center pt-2 md:justify-start">
+              <SocialLinks variant="aemdevweb" />
             </div>
 
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-6">
+            {/* Call to Action Buttons */}
+            <div className="flex flex-wrap justify-center gap-4 pt-6 md:justify-start">
               <Button
                 asChild
                 size="lg"
-                className="rounded-full px-10 h-14 text-base font-bold shadow-lg shadow-blue-100 hover:scale-105 transition-all bg-blue-600 hover:bg-blue-700"
+                className="h-16 rounded-full bg-blue-600 px-10 text-lg font-black shadow-xl shadow-blue-600/20 transition-all hover:scale-105 hover:bg-blue-700"
               >
                 <Link href="/contact">เริ่มโปรเจกต์กับเรา</Link>
               </Button>
@@ -63,40 +69,44 @@ export default function Hero() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="rounded-full px-10 h-14 text-base font-bold border-2 hover:bg-slate-50 transition-all border-slate-200"
+                className="h-16 rounded-full border-2 border-slate-200 px-10 text-lg font-black transition-all hover:bg-slate-50"
               >
                 <Link href="/about">ดูประวัติและผลงาน</Link>
               </Button>
             </div>
           </div>
 
-          {/* ส่วนรูปภาพโปรไฟล์ */}
-          <div className="flex-1 relative w-full max-w-[480px] aspect-square animate-in fade-in zoom-in duration-1000">
-            {/* กรอบรูปดีไซน์ซ้อนทับ */}
-            <div className="absolute inset-0 bg-blue-600/5 rounded-[3rem] rotate-6 -z-10" />
-            <div className="absolute inset-0 bg-slate-100 rounded-[3rem] -rotate-3 -z-20" />
+          {/* 🖼️ Profile Image Section */}
+          <div className="relative flex-1 w-full max-w-[500px] aspect-square animate-in fade-in zoom-in duration-1000">
+            {/* Decorative Frames */}
+            <div className="absolute inset-0 -z-10 rotate-6 rounded-[3.5rem] bg-blue-600/5" />
+            <div className="absolute inset-0 -z-20 -rotate-3 rounded-[3.5rem] bg-slate-100" />
 
-            <div className="relative w-full h-full overflow-hidden rounded-[3rem] shadow-2xl border-4 border-white">
+            <div className="relative h-full w-full overflow-hidden rounded-[3.5rem] border-4 border-white shadow-2xl">
               <Image
                 src="/images/aemdevweb-hero.webp"
                 alt={`${profile.name} - ${profile.nickname}`}
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
                 priority
-                sizes="(max-w-768px) 100vw, 50vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
 
-            {/* Floating Tag - แอบขายความเก่ง */}
-            <div className="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-xl border border-slate-100 hidden sm:block">
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
-                Success Case
-              </p>
-              <p className="text-sm font-black text-slate-900 flex items-center gap-2">
+            {/* 🏆 Trust Badge: Unlink-th Architect */}
+            <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-slate-100 bg-white p-6 shadow-2xl sm:block transition-transform hover:-translate-y-2 duration-500">
+              <div className="mb-2 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-blue-600">
+                <ShieldCheck className="h-4 w-4" /> Success Case
+              </div>
+              <p className="text-base font-black text-slate-900">
                 Unlink-th Platform Architect
               </p>
+              <div className="mt-2 flex items-center gap-1 text-[10px] font-bold text-slate-400">
+                <Search className="h-3 w-3" /> Technical SEO Mastered
+              </div>
             </div>
           </div>
+
         </div>
       </Container>
     </section>
