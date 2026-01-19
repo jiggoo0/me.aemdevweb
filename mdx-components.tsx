@@ -4,7 +4,11 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-// --- [UI & Icons Components] ---
+// --- [Profile & Shared Components] ---
+import Hero from "@/components/profile/Hero"; // ✅ ลงทะเบียนให้ MDX ทุกหน้าเข้าถึงได้
+import ProjectCard from "@/components/shared/ProjectCard";
+
+// --- [UI Components] ---
 import {
   Card,
   CardHeader,
@@ -15,7 +19,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import ProjectCard from "@/components/shared/ProjectCard";
+
+// --- [Lucide Icons] ---
 import {
   Layout,
   Rocket,
@@ -42,9 +47,10 @@ import {
   Globe,
   LayoutGrid,
   Store,
-  MapPin,    // ✅ สำหรับปักหมุดทำเลทอง
-  PiggyBank, // ✅ สำหรับการลงทุนและประหยัดงบ
-  Users,     // ✅ สำหรับกลุ่มเป้าหมายและ SME
+  MapPin,
+  PiggyBank,
+  Users,
+  PenTool, // ✅ เพิ่มไว้สำหรับหน้า About ที่พี่เพิ่งแก้
 } from "lucide-react";
 
 interface MdxImageProps {
@@ -55,13 +61,12 @@ interface MdxImageProps {
 
 /**
  * useMDXComponents - ฉบับพาร์ทเนอร์ดูแลระบบและ SEO Organic
- * ปรับปรุง: ลงทะเบียนคอมโพเนนต์และไอคอนครบวงจร เพื่อป้องกัน ReferenceError
- * และแก้ไข Hydration Error ด้วยการใช้ span block แทน p สำหรับเนื้อหา MDX
+ * จัดการเรื่อง Registry คอมโพเนนต์เพื่อให้ไฟล์ .mdx เรียกใช้ Tag ได้โดยไม่ต้อง Import ซ้ำ
  */
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
-    // 1. Typography Standard - เน้นความพรีเมียมสไตล์ Architect
+    // 1. Typography & Layout Standard
     h1: ({ className, ...props }) => (
       <h1
         className={cn(
@@ -90,8 +95,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
 
-    // ✅ ป้องกัน Hydration Error: ใช้ <span> display: block แทน <p> 
-    // เพื่อให้สามารถวาง Component บล็อกภายใน MDX ได้โดยไม่ผิดกฎ HTML
+    // ✅ ป้องกัน Hydration Error ใน Next.js 15
     p: ({ className, ...props }) => (
       <span
         className={cn(
@@ -126,7 +130,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </div>
     ),
 
-    // 2. Optimized Image Management - รองรับ Image Optimization
+    // 2. Media Optimization
     img: ({ alt, src, ...props }: MdxImageProps) => (
       <span className="relative my-10 block aspect-video w-full overflow-hidden rounded-[2rem] border-2 border-slate-100 shadow-xl transition-transform hover:scale-[1.01]">
         <Image
@@ -140,7 +144,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </span>
     ),
 
-    // 3. Navigation & Registry
+    // 3. Navigation
     Link,
     a: ({ href, className, ...props }) => (
       <Link
@@ -153,7 +157,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
 
-    // 4. Custom Components & UI Registry
+    // 4. Custom Registry (พาร์ทสำคัญที่แก้ Error)
+    Hero, // ✅ ลงทะเบียนเรียบร้อย เรียกใช้ <Hero /> ใน MDX ได้เลย
+    ProjectCard,
     Card,
     CardHeader,
     CardTitle,
@@ -162,9 +168,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     CardFooter,
     Button,
     Badge,
-    ProjectCard,
 
-    // 5. Icons Mapping - ลงทะเบียนให้ MDX เรียกใช้งานได้โดยตรงตามชื่อคอมโพเนนต์
+    // 5. Lucide Icons Registry
     Layout,
     Rocket,
     ArrowRight,
@@ -193,5 +198,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     MapPin,
     PiggyBank,
     Users,
+    PenTool,
   };
 }

@@ -2,9 +2,8 @@
 
 /**
  * Schema Component (JSON-LD) - ฉบับนายเอ็มซ่ามากส์ (Alongkorl Yomkerd)
- * วัตถุประสงค์: สร้าง Technical Authority บน Google Search
- * ปรับปรุง: ชูจุดเด่นเรื่อง SEO Organic และการเป็นพาร์ทเนอร์ดูแลระบบระยะยาว
- * นำเสนอในฐานะ "ผู้อยู่เบื้องหลัง" ความสำเร็จของ Unlink-th เพื่อสร้างความเชื่อมั่นสูงสุด
+ * วัตถุประสงค์: สร้าง Technical Authority ในฐานะผู้เชี่ยวชาญ "รับทำ SEO"
+ * ปรับปรุง: ชูจุดเด่นเรื่องการทำ SEO Organic และการเป็นที่ปรึกษาด้านการเขียนคอนเทนต์
  */
 export default function Schema() {
   const personSchema = {
@@ -27,8 +26,9 @@ export default function Schema() {
           "width": "800",
           "height": "800"
         },
-        "jobTitle": "ที่ปรึกษาดูแลระบบเว็บไซต์และผู้เชี่ยวชาญ SEO Organic",
-        "description": "ที่ปรึกษาและผู้อยู่เบื้องหลังการวางระบบเว็บไซต์ที่เน้นผลลัพธ์ทางธุรกิจ ผู้สร้างและดูแลระบบทั้งหมดของ Unlink-th ให้ปลอดภัยและทรงพลัง มุ่งเน้นการดูแล SEO Organic (สายออร์แกนิค) เพื่อช่วยให้ธุรกิจ SME ติดหน้าแรก Google ได้อย่างยั่งยืนโดยไม่พึ่งพาแค่ค่าโฆษณา",
+        // ✅ อัปเดต Job Title ให้ครอบคลุมการ "รับทำ SEO" และ "ปรึกษาการเขียน"
+        "jobTitle": "ผู้เชี่ยวชาญรับทำ SEO Organic และที่ปรึกษาการเขียนคอนเทนต์เชิงกลยุทธ์",
+        "description": "ผู้เชี่ยวชาญรับทำ SEO Organic และที่ปรึกษาการเขียนเนื้อหาเพื่อปั้นอันดับ Google ผู้อยู่เบื้องหลังการวางระบบเทคนิคัลของ Unlink-th มุ่งเน้นการเปลี่ยนเว็บไซต์ให้เป็นสินทรัพย์ทำเงินด้วยกลยุทธ์สายขาว 100% สำหรับ SME ไทย",
         "gender": "Male",
         "email": "me@aemdevweb.com",
         "nationality": {
@@ -49,12 +49,12 @@ export default function Schema() {
         ],
         "worksFor": { "@id": "https://www.aemdevweb.com/#organization" },
         "knowsAbout": [
-          "การปั้นอันดับด้วย SEO Organic (สายออร์แกนิค)",
-          "การดูแลระบบเว็บไซต์ให้โหลดไวระดับเสี้ยววินาที (ลื่นหัวแตก)",
-          "กลยุทธ์การปั้นยอดขายด้วย Organic Search",
-          "การจัดการและปกป้องชื่อเสียงออนไลน์ (Digital Reputation Management)",
-          "การออกแบบเว็บไซต์ที่เน้นการปิดการขาย (Conversion Rate Optimization)",
-          "การวางโครงสร้างระบบด้วย Next.js และ React"
+          "รับทำ SEO Organic (สายออร์แกนิค)",
+          "การรับปรึกษาการเขียน SEO เพื่อเพิ่มยอดขาย",
+          "การวางโครงสร้างเว็บไซต์ด้วย Next.js ที่รองรับ SEO ระดับลึก",
+          "กลยุทธ์การทำ Organic Search สำหรับธุรกิจครอบครัวและ SME",
+          "การจัดการชื่อเสียงออนไลน์ (Online Reputation Management)",
+          "Technical SEO Auditing และการปรับแต่งความเร็วเว็บ (Performance)"
         ],
         "knowsLanguage": ["Thai", "English"]
       },
@@ -64,7 +64,7 @@ export default function Schema() {
         "name": "AemDevWeb",
         "url": "https://www.aemdevweb.com",
         "logo": "https://me.aemdevweb.com/images/service/aemdevweb.webp",
-        "description": "สตูดิโอผู้ออกแบบเว็บไซต์และพาร์ทเนอร์วางกลยุทธ์ SEO Organic เพื่อการเติบโตที่ยั่งยืนสำหรับ SME ไทย",
+        "description": "สตูดิโอรับทำ SEO และพาร์ทเนอร์วางกลยุทธ์การเขียนคอนเทนต์เพื่อการเติบโตอย่างยั่งยืนบน Google",
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "customer service",
