@@ -1,63 +1,111 @@
-# 🛠 บริการของเรา (Services)
+/** @format */
 
-เราพร้อมดูแลคุณในทุกมิติของโลกดิจิทัล ตั้งแต่การสร้างตัวตนที่แข็งแกร่ง ไปจนถึงการปกป้องชื่อเสียงออนไลน์ของคุณ
+# 🛠 บริการของเรา (Solutions)
+
+เรามุ่งมั่นสร้างเครื่องมือดิจิทัลที่ประณีตและทรงพลัง เพื่อช่วยให้ธุรกิจของคุณเติบโตอย่างมั่นคงและสง่างามบนโลกออนไลน์
 
 ---
 
-### เลือกบริการที่ตอบโจทย์คุณ
+### เลือกโซลูชันที่ตอบโจทย์ความสำเร็จของคุณ
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-10">
   
   {/* บริการที่ 1: AEM Dev Web */}
-  <Card className="flex flex-col border-2 transition-all hover:border-blue-500 hover:shadow-md">
-    <CardHeader>
-      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-blue-600">
-        <Layout size={28} />
+  <Card className="flex flex-col border-2 transition-all hover:border-blue-500 hover:shadow-xl group rounded-[2rem] overflow-hidden">
+    <CardHeader className="bg-slate-50/50 pb-8">
+      <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center mb-6 text-white shadow-lg shadow-blue-200">
+        <Layout size={30} />
       </div>
-      <CardTitle className="text-2xl font-black">AEM Dev Web</CardTitle>
-      <CardDescription>บริการพัฒนาเว็บไซต์และระบบจัดการข้อมูล</CardDescription>
+      <CardTitle className="text-3xl font-black text-slate-900">AEM Dev Web</CardTitle>
+      <CardDescription className="text-lg font-medium text-slate-500">
+        สร้างสรรค์เว็บไซต์ประสิทธิภาพสูงเพื่อยอดขายและภาพลักษณ์
+      </CardDescription>
     </CardHeader>
-    <CardContent className="flex-1">
-      <ul className="list-none p-0 m-0 space-y-3 text-sm text-muted-foreground font-medium">
-        <li className="flex items-center gap-2">
-          <Rocket size={16} className="text-blue-500" /> รับทำเว็บไซต์ Next.js 15 ความเร็วสูง
+    <CardContent className="flex-1 pt-8">
+      <ul className="list-none p-0 m-0 space-y-4 text-slate-600 font-medium">
+        <li className="flex items-center gap-3">
+          <div className="p-1 bg-blue-100 rounded-full text-blue-600">
+            <Sparkles size={14} />
+          </div> 
+          พัฒนาเว็บไซต์ที่โหลดไวที่สุดเพื่อประสบการณ์ลูกค้าที่ดีกว่า
         </li>
-        <li className="flex items-center gap-2">
-          <Rocket size={16} className="text-blue-500" /> ระบบ Marketplace สำหรับ SMEs
+        <li className="flex items-center gap-3">
+          <div className="p-1 bg-blue-100 rounded-full text-blue-600">
+            <Sparkles size={14} />
+          </div> 
+          โครงสร้างที่ช่วยให้ธุรกิจของคุณถูกค้นหาพบบน Google ได้ง่ายขึ้น
+        </li>
+        <li className="flex items-center gap-3">
+          <div className="p-1 bg-blue-100 rounded-full text-blue-600">
+            <Sparkles size={14} />
+          </div> 
+          ระบบจัดการเนื้อหาที่ใช้งานง่าย ให้คุณปรับปรุงข้อมูลได้เองตลอดเวลา
         </li>
       </ul>
-      <Button className="w-full mt-8 bg-blue-600 hover:bg-blue-700" asChild>
-        <a href="/services/aem-dev">
-          รายละเอียดบริการ <ArrowRight className="ml-2 h-4 w-4" />
-        </a>
+      <Button className="w-full mt-10 bg-blue-600 hover:bg-blue-700 h-12 rounded-xl font-bold transition-all group-hover:gap-4" asChild>
+        <Link href="/services/aem-dev">
+          เจาะลึกรายละเอียดงานคราฟต์ <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
       </Button>
     </CardContent>
   </Card>
 
   {/* บริการที่ 2: Unlink-th */}
-  <Card className="flex flex-col border-2 transition-all hover:border-red-500 hover:shadow-md">
-    <CardHeader>
-      <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 text-red-600">
-        <SearchSlash size={28} />
+  <Card className="flex flex-col border-2 transition-all hover:border-slate-900 hover:shadow-xl group rounded-[2rem] overflow-hidden">
+    <CardHeader className="bg-slate-900 text-white pb-8">
+      <div className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6 text-white border border-white/20">
+        <ShieldCheck size={30} />
       </div>
-      <CardTitle className="text-2xl font-black">Unlink-th</CardTitle>
-      <CardDescription>จัดการภาพลักษณ์และลบประวัติออนไลน์</CardDescription>
+      <CardTitle className="text-3xl font-black">Unlink-th</CardTitle>
+      <CardDescription className="text-lg font-medium text-slate-400">
+        จัดการข้อมูลและปกป้องชื่อเสียงดิจิทัลอย่างมืออาชีพ
+      </CardDescription>
     </CardHeader>
-    <CardContent className="flex-1">
-      <ul className="list-none p-0 m-0 space-y-3 text-sm text-muted-foreground font-medium">
-        <li className="flex items-center gap-2">
-          <ShieldCheck size={16} className="text-red-500" /> ลบข้อมูลส่วนตัวและประวัติเสียหาย
+    <CardContent className="flex-1 pt-8">
+      <ul className="list-none p-0 m-0 space-y-4 text-slate-600 font-medium">
+        <li className="flex items-center gap-3">
+          <div className="p-1 bg-slate-100 rounded-full text-slate-900">
+            <MousePointer2 size={14} />
+          </div> 
+          ดำเนินการจัดการข้อมูลที่ส่งผลเสียต่อภาพลักษณ์ออนไลน์ของคุณ
         </li>
-        <li className="flex items-center gap-2">
-          <ShieldCheck size={16} className="text-red-500" /> บริการจัดการชื่อเสียงออนไลน์
+        <li className="flex items-center gap-3">
+          <div className="p-1 bg-slate-100 rounded-full text-slate-900">
+            <MousePointer2 size={14} />
+          </div> 
+          วางแผนสร้างพื้นที่ข้อมูลเชิงบวกเพื่อเริ่มต้นตัวตนใหม่ที่น่าเชื่อถือ
+        </li>
+        <li className="flex items-center gap-3">
+          <div className="p-1 bg-slate-100 rounded-full text-slate-900">
+            <MousePointer2 size={14} />
+          </div> 
+          ดูแลรักษาความลับและความปลอดภัยของข้อมูลในระดับสูงสุด
         </li>
       </ul>
-      <Button className="w-full mt-8 bg-neutral-900 hover:bg-neutral-800" asChild>
-        <a href="/services/unlink-th">
-          รายละเอียดบริการ <ArrowRight className="ml-2 h-4 w-4" />
-        </a>
+      <Button className="w-full mt-10 bg-slate-900 hover:bg-slate-800 h-12 rounded-xl font-bold transition-all group-hover:gap-4" asChild>
+        <Link href="/services/unlink-th">
+          ปรึกษาการจัดการข้อมูล <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
       </Button>
     </CardContent>
   </Card>
 
+</div>
+
+---
+
+### 💡 ทำไมต้องวางใจให้เราดูแล?
+
+เราไม่ได้เพียงแค่รับจ้างทำตามคำสั่ง แต่เราใช้ประสบการณ์และความเชี่ยวชาญระดับงานฝีมือมาช่วยวิเคราะห์และแก้ปัญหาให้ธุรกิจของคุณอย่างตรงจุด
+
+* **ความเร็วที่เป็นเลิศ:** มาตรฐานเว็บไซต์ที่เราส่งมอบคือความเร็วระดับสูงสุดในตลาด
+* **ความลับคือหัวใจ:** บริการจัดการชื่อเสียงถูกออกแบบมาเพื่อรักษาความเป็นส่วนตัว
+* **การลงทุนที่คุ้มค่า:** เว็บไซต์ที่ดีช่วยลดค่าใช้จ่ายด้านการตลาดในระยะยาว
+
+<div className="mt-16 text-center bg-blue-50 p-10 rounded-[2.5rem] border-2 border-blue-100">
+  <h3 className="text-2xl font-black text-blue-900 mb-4">ไม่แน่ใจว่าธุรกิจของคุณควรเริ่มจากจุดไหน?</h3>
+  <p className="text-blue-700 mb-8 font-medium">ผมยินดีให้คำปรึกษาเบื้องต้นเพื่อวางแผนโครงสร้างที่เหมาะสมที่สุดสำหรับคุณ (ไม่มีค่าใช้จ่าย)</p>
+  <Button size="lg" className="bg-blue-600 hover:bg-blue-700 rounded-full px-10 h-14 font-bold text-lg" asChild>
+    <Link href="/contact">ติดต่อนายเอ็มซ่ามากส์</Link>
+  </Button>
 </div>

@@ -42,14 +42,17 @@
         32,
         48,
         64,
-        96
+        96,
+        128,
+        256,
+        384
       ],
       "path": "/_next/image",
       "loader": "default",
       "loaderFile": "",
       "domains": [],
       "disableStaticImages": false,
-      "minimumCacheTTL": 60,
+      "minimumCacheTTL": 3600,
       "formats": [
         "image/avif",
         "image/webp"
@@ -97,15 +100,12 @@
     "httpAgentOptions": {
       "keepAlive": true
     },
-    "logging": {
-      "fetches": {
-        "fullUrl": true
-      }
-    },
+    "logging": {},
     "compiler": {
       "removeConsole": {
         "exclude": [
-          "error"
+          "error",
+          "warn"
         ]
       }
     },
@@ -204,6 +204,7 @@
       "parallelServerBuildTraces": false,
       "ppr": false,
       "authInterrupts": false,
+      "webpackBuildWorker": true,
       "webpackMemoryOptimizations": false,
       "optimizeServerReact": true,
       "viewTransition": false,
@@ -230,12 +231,9 @@
         "lucide-react",
         "framer-motion",
         "sonner",
-        "clsx",
-        "tailwind-merge",
-        "date-fns",
-        "lodash",
         "@radix-ui/react-icons",
         "@/components/ui",
+        "date-fns",
         "lodash-es",
         "ramda",
         "antd",
