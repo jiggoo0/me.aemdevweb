@@ -7,66 +7,70 @@ import { usePathname } from "next/navigation";
 import Container from "./Container";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Rocket } from "lucide-react";
 import { useState, useEffect } from "react";
 
 /**
- * Header Component - ฉบับปรับปรุงความลื่นไหล (Premium Interaction)
- * รองรับการแสดงสถานะเมนูแบบไดนามิก และเอฟเฟกต์ Glassmorphism
- * ออกแบบมาเพื่อเป็นจุดเริ่มต้นของการสร้าง Trust ให้กับธุรกิจ SME
+ * 🏗️ Header Component - ฉบับปรับปรุงความลื่นไหล (Premium Interaction)
+ * รองรับสถานะเมนูแบบไดนามิก และเอฟเฟกต์ Glassmorphism
+ * ออกแบบมาเพื่อสร้าง Trust ให้กับธุรกิจ SME ตั้งแต่เสี้ยววินาทีแรก
  */
 export default function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // ตรวจสอบการ Scroll เพื่อปรับเปลี่ยนสไตล์ของ Header
+  // ตรวจสอบการ Scroll เพื่อปรับเปลี่ยนสไตล์ (Visual Feedback)
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ปิดเมนูมือถือเมื่อมีการเปลี่ยนหน้า
+  // ปิดเมนูมือถืออัตโนมัติเมื่อเปลี่ยนหน้า
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
   const navLinks = [
     { label: "หน้าแรก", href: "/" },
-    { label: "เกี่ยวกับเอ็ม", href: "/about" },
-    { label: "บริการ", href: "/services" },
-    { label: "ผลงาน", href: "/projects" },
+    { label: "รู้จักนายเอ็ม", href: "/about" },
+    { label: "บริการ & ราคา", href: "/services" },
+    { label: "เคสความสำเร็จ", href: "/projects" },
     { label: "คลังความรู้", href: "/blog" },
-    { label: "ติดต่อเรา", href: "/contact" },
   ];
 
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300",
+        "sticky top-0 z-[100] w-full transition-all duration-500",
         isScrolled
-          ? "border-b border-slate-200/50 bg-white/80 backdrop-blur-xl"
-          : "bg-transparent py-2"
+          ? "border-b border-slate-200/60 bg-white/70 shadow-sm backdrop-blur-xl"
+          : "bg-transparent py-4"
       )}
     >
       <Container className="flex h-16 items-center justify-between">
-        {/* --- Logo Section: อัตลักษณ์แบรนด์ AEM DEV WEB --- */}
-        <Link href="/" className="group flex items-center gap-1.5">
-          <div className="rounded bg-blue-600 px-2 py-1 text-lg font-black text-white shadow-sm transition-transform group-hover:scale-110">
-            AEM
+        {/* --- Logo Section: อัตลักษณ์แบรนด์ AEMDEVWEB --- */}
+        <Link href="/" className="group flex items-center gap-2">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-lg font-black text-white shadow-lg shadow-blue-600/30 transition-transform group-hover:scale-110 group-hover:rotate-3">
+            A
           </div>
-          <span className="text-xl font-black tracking-tighter text-slate-900 transition-colors group-hover:text-blue-600">
-            DEV<span className="italic text-blue-600">WEB</span>
-          </span>
+          <div className="flex flex-col">
+            <span className="text-xl font-black tracking-tighter text-slate-900 transition-colors group-hover:text-blue-600">
+              AEMDEV<span className="text-blue-600">WEB</span>
+            </span>
+            <span className="text-[10px] font-bold tracking-[0.3em] text-slate-400 uppercase">
+              Specialist
+            </span>
+          </div>
         </Link>
 
         {/* --- Navigation Links (Desktop) --- */}
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-10 lg:flex">
           {navLinks.map((link) => {
-            // เช็ค Active State (รวมถึงหน้าย่อย เช่น /blog/[slug])
+            // เช็ค Active State ครอบคลุมถึงหน้าย่อย (Dynamic Routes)
             const isActive =
               pathname === link.href ||
               (link.href !== "/" && pathname.startsWith(link.href));
@@ -76,17 +80,16 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "relative group text-sm font-black uppercase tracking-widest transition-colors",
-                  isActive ? "text-blue-600" : "text-slate-500 hover:text-blue-600"
+                  "relative py-2 text-xs font-black tracking-[0.2em] uppercase transition-all",
+                  isActive
+                    ? "text-blue-600"
+                    : "text-slate-500 hover:text-slate-900"
                 )}
               >
                 {link.label}
-                <span
-                  className={cn(
-                    "absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-300",
-                    isActive ? "w-full" : "w-0 group-hover:w-full"
-                  )}
-                />
+                {isActive && (
+                  <span className="absolute -bottom-1 left-0 h-1 w-full rounded-full bg-blue-600" />
+                )}
               </Link>
             );
           })}
@@ -96,15 +99,16 @@ export default function Header() {
         <div className="flex items-center gap-4">
           <Button
             asChild
-            size="sm"
-            className="hidden rounded-full bg-blue-600 px-6 font-black shadow-lg shadow-blue-600/20 transition-transform hover:scale-105 hover:bg-blue-700 sm:flex"
+            className="hidden h-12 rounded-full bg-slate-900 px-8 text-sm font-black tracking-widest uppercase shadow-xl transition-all hover:scale-105 hover:bg-blue-600 sm:flex"
           >
-            <Link href="/contact">เริ่มโปรเจกต์</Link>
+            <Link href="/contact">
+              <Rocket className="mr-2 h-4 w-4" /> เริ่มโปรเจกต์
+            </Link>
           </Button>
 
           {/* Mobile Menu Trigger */}
           <button
-            className="rounded-lg p-2 text-slate-600 transition-colors hover:bg-slate-100 md:hidden"
+            className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-900 transition-all hover:bg-blue-50 hover:text-blue-600 lg:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle Menu"
           >
@@ -113,34 +117,36 @@ export default function Header() {
         </div>
       </Container>
 
-      {/* --- Mobile Navigation Menu --- */}
+      {/* --- Mobile Navigation Menu (Slide Down) --- */}
       <div
         className={cn(
-          "absolute left-0 top-[65px] w-full border-b bg-white p-6 shadow-xl transition-all duration-300 md:hidden",
+          "absolute top-full left-0 w-full overflow-hidden bg-white/95 backdrop-blur-2xl transition-all duration-500 ease-in-out lg:hidden",
           isMobileMenuOpen
-            ? "translate-y-0 opacity-100"
-            : "-translate-y-10 opacity-0 pointer-events-none"
+            ? "max-h-[100vh] border-b border-slate-100 shadow-2xl"
+            : "max-h-0"
         )}
       >
-        <nav className="flex flex-col gap-5">
+        <nav className="flex flex-col gap-6 p-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "text-lg font-black uppercase tracking-widest transition-colors",
-                pathname === link.href ? "text-blue-600" : "text-slate-600"
+                "text-2xl font-black tracking-tighter uppercase transition-colors",
+                pathname === link.href ? "text-blue-600" : "text-slate-900"
               )}
             >
               {link.label}
             </Link>
           ))}
-          <Button
-            asChild
-            className="mt-4 w-full rounded-full bg-blue-600 font-black h-12"
-          >
-            <Link href="/contact">เริ่มโปรเจกต์กับเรา</Link>
-          </Button>
+          <div className="mt-4 border-t border-slate-100 pt-6">
+            <Button
+              asChild
+              className="h-16 w-full rounded-[2rem] bg-blue-600 text-lg font-black shadow-2xl shadow-blue-600/30"
+            >
+              <Link href="/contact">เริ่มต้นคุยงานกับนายเอ็ม</Link>
+            </Button>
+          </div>
         </nav>
       </div>
     </header>

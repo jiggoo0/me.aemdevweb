@@ -17,19 +17,19 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 3600,
     remotePatterns: [
       { protocol: "https", hostname: "lin.ee" },
-      { protocol: "https", hostname: "**.supabase.co" },
-      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "me.aemdevweb.com" },
     ],
   },
 
   compiler: {
-    removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
+    removeConsole:
+      process.env.NODE_ENV === "production"
+        ? { exclude: ["error", "warn"] }
+        : false,
   },
 
   experimental: {
-    // ✅ ต้องปรับเป็น false เพื่อให้ remark-frontmatter ทำงานได้ครับ
-    mdxRs: false, 
-    
+    mdxRs: false, // จำเป็นเพื่อให้ remark-frontmatter ทำงาน
     webpackBuildWorker: true,
     optimizePackageImports: [
       "lucide-react",
@@ -44,7 +44,6 @@ const nextConfig: NextConfig = {
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    // ✅ ใส่ Plugins ที่นี่เพื่อให้ระบบตัด Frontmatter ออกจากการเรนเดอร์
     remarkPlugins: [remarkFrontmatter, remarkGfm],
     rehypePlugins: [],
   },

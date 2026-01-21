@@ -1,173 +1,214 @@
-/** @format */
+---
+title: "สร้างเว็บไซต์ SME และ SEO Organic - นายเอ็มซ่ามากส์"
+description: "บริการทำเว็บไซต์ความเร็วสูง (Next.js 15) พร้อมวางโครงสร้าง SEO ตั้งแต่รากฐาน เพื่อให้ธุรกิจของคุณเติบโตอย่างยั่งยืนบน Google"
+---
 
-# พลิกโฉมธุรกิจด้วย "หน้าร้านดิจิทัล" ที่ช่วยหาเงินให้คุณจริง
-
-ในยุคที่ใครก็ทำเว็บได้... แต่จะมีกี่เว็บที่ **"ช่วยหาเงิน"** ให้คุณได้จริง? ผมไม่ได้แค่ทำเว็บให้เสร็จไป แต่ผมส่งมอบ **"เครื่องจักรผลิตยอดขาย"** ที่ออกแบบมาเพื่อปั้นธุรกิจของพี่โดยเฉพาะครับ
+<Hero
+  title="พลิกโฉมธุรกิจด้วย"
+  highlight="หน้าร้านดิจิทัล"
+  subtitle="ผมส่งมอบ 'เครื่องจักรผลิตยอดขาย' ที่ออกแบบมาเพื่อปั้นธุรกิจของพี่โดยเฉพาะครับ"
+/>
 
 ---
 
-### <Star className="inline-block mr-2 h-6 w-6 text-blue-600" /> ทำไมเจ้าของธุรกิจถึงไว้วางใจให้ผมดูแล?
+# <Star className="inline-block mr-3 h-8 w-8 text-blue-600" /> ทำไมเจ้าของธุรกิจถึงไว้วางใจให้ผมดูแล?
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
-  <Card className="border-none bg-slate-50 shadow-sm overflow-hidden rounded-[2rem]">
-    <CardContent className="pt-10">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 bg-blue-600 rounded-lg shadow-lg shadow-blue-200">
-          <Zap className="text-white h-5 w-5" />
-        </div>
-        <h4 className="font-black m-0 text-xl text-slate-900 uppercase">ความเร็วระดับเสี้ยววินาที</h4>
+ในยุคที่ใครก็ทำเว็บได้... แต่จะมีกี่เว็บที่ **"ช่วยหาเงิน"** ให้คุณได้จริง? ผมไม่ได้แค่ทำเว็บให้เสร็จไป แต่ผมให้ความสำคัญกับผลลัพธ์ทางธุรกิจเป็นอันดับหนึ่งครับ
+
+<div className="my-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+  <Card className="overflow-hidden rounded-[2.5rem] border-none bg-slate-50/80 p-8 shadow-sm">
+    <div className="mb-6 flex items-center gap-4">
+      <div className="rounded-2xl bg-blue-600 p-3 shadow-lg shadow-blue-200">
+        <Zap className="h-6 w-6 text-white" />
       </div>
-      <div className="text-slate-600 leading-relaxed font-medium">
-        ลูกค้าไม่รอนานเกิน 2 วินาทีแน่นอนครับ เว็บที่ผมสร้างถูกรีดประสิทธิภาพให้โหลดไว (ลื่นหัวแตก) 
-        ซึ่งเป็นปัจจัยสำคัญที่ช่วยให้พี่ปิดการขายได้ง่ายขึ้น และช่วยลดค่าโฆษณาในระยะยาวได้จริงครับ
-      </div>
-    </CardContent>
+      <h4 className="text-xl font-black tracking-tight text-slate-900 uppercase">
+        ความเร็วระดับเสี้ยววินาที
+      </h4>
+    </div>
+    <div className="text-lg leading-relaxed font-medium text-slate-600">
+      ลูกค้าไม่รอนานเกิน 2 วินาทีแน่นอนครับ
+      เว็บที่ผมสร้างถูกรีดประสิทธิภาพให้โหลดไว **(ลื่นหัวแตก)**
+      ซึ่งเป็นปัจจัยสำคัญที่ช่วยให้พี่ปิดการขายได้ง่ายขึ้น
+      และช่วยลดค่าโฆษณาในระยะยาวได้จริงครับ
+    </div>
   </Card>
-  
-  <Card className="border-none bg-slate-50 shadow-sm overflow-hidden rounded-[2rem]">
-    <CardContent className="pt-10">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 bg-purple-600 rounded-lg shadow-lg shadow-purple-200">
-          <TrendingUp className="text-white h-5 w-5" />
-        </div>
-        <h4 className="font-black m-0 text-xl text-slate-900 uppercase">ปั้นอันดับด้วย SEO Organic</h4>
+
+  <Card className="overflow-hidden rounded-[2.5rem] border-none bg-slate-50/80 p-8 shadow-sm">
+    <div className="mb-6 flex items-center gap-4">
+      <div className="rounded-2xl bg-purple-600 p-3 shadow-lg shadow-purple-200">
+        <TrendingUp className="h-6 w-6 text-white" />
       </div>
-      <div className="text-slate-600 leading-relaxed font-medium">
-        ผมไม่ได้แค่ใส่คีย์เวิร์ด แต่ผมวางโครงสร้างให้ Google รักเว็บไซต์ของพี่ตั้งแต่รากฐาน 
-        เพื่อให้ธุรกิจของพี่ถูกค้นหาเจอเองตามธรรมชาติ และเติบโตได้อย่างยั่งยืนโดยไม่ต้องพึ่งพาแต่ค่าแอดครับ
-      </div>
-    </CardContent>
+      <h4 className="text-xl font-black tracking-tight text-slate-900 uppercase">
+        ปั้นอันดับด้วย SEO Organic
+      </h4>
+    </div>
+    <div className="text-lg leading-relaxed font-medium text-slate-600">
+      ผมไม่ได้แค่ใส่คีย์เวิร์ด แต่ผมวางโครงสร้างให้ Google
+      รักเว็บไซต์ของพี่ตั้งแต่รากฐาน
+      เพื่อให้ธุรกิจของพี่ถูกค้นหาเจอเองตามธรรมชาติ
+      และเติบโตได้อย่างยั่งยืนโดยไม่ต้องพึ่งพาแต่ค่าแอดครับ
+    </div>
   </Card>
 </div>
 
 ---
 
-### <Layers className="inline-block mr-2 h-6 w-6 text-blue-600" /> ประณีตในทุกจุด... เพื่อผลลัพธ์ที่พี่สัมผัสได้
+### <Layers className="inline-block mr-3 h-7 w-7 text-blue-600" /> ประณีตในทุกจุด... เพื่อผลลัพธ์ที่พี่สัมผัสได้
 
 งานของผมคือการออกแบบระบบที่คอยทำงานแทนพี่ตลอด 24 ชั่วโมง:
 
-* **เน้นการปิดยอดขาย:** ทุกปุ่ม ทุกรูปภาพ ถูกวางในตำแหน่งที่กระตุ้นให้ลูกค้าอยาก "ทัก" หรือ "ซื้อ" มากที่สุด
-* **ระบบเสถียรไม่มีล่ม:** ต่อให้คนเข้าหลักหมื่นพร้อมกัน เว็บก็ยังนิ่งด้วยเทคโนโลยีระดับ Global Standard
-* **พี่จัดการข้อมูลเองได้:** พี่เป็นเจ้าของเนื้อหาทั้งหมด อยากปรับปรุงข้อมูลตอนไหนก็ทำได้ง่ายๆ ไม่ต้องรอผม
-* **พาร์ทเนอร์ดูแลระยะยาว:** ผมพร้อมเป็นที่ปรึกษาเพื่ออัปเกรดระบบให้พี่ก้าวทันเทคโนโลยีเสมอ
+- <CheckCircle2 className="mr-2 inline-block h-4 w-4 text-blue-600" />
+  **เน้นการปิดยอดขาย:** ทุกปุ่ม ทุกรูปภาพ ถูกวางในตำแหน่งที่กระตุ้นให้ลูกค้าอยาก
+  "ทัก" หรือ "ซื้อ" มากที่สุด
+- <CheckCircle2 className="mr-2 inline-block h-4 w-4 text-blue-600" />
+  **ระบบเสถียรไม่มีล่ม:** ต่อให้คนเข้าหลักหมื่นพร้อมกัน
+  เว็บก็ยังนิ่งด้วยเทคโนโลยีระดับ Global Standard (Next.js 15)
+- <CheckCircle2 className="mr-2 inline-block h-4 w-4 text-blue-600" />
+  **พี่จัดการข้อมูลเองได้:** พี่เป็นเจ้าของเนื้อหาทั้งหมด
+  อยากปรับปรุงข้อมูลตอนไหนก็ทำได้ง่ายๆ ไม่ต้องรอผม
+- <CheckCircle2 className="mr-2 inline-block h-4 w-4 text-blue-600" />
+  **พาร์ทเนอร์ดูแลระยะยาว:**
+  ผมพร้อมเป็นที่ปรึกษาเพื่ออัปเกรดระบบให้พี่ก้าวทันเทคโนโลยีเสมอ
 
 ---
 
-### <Search className="inline-block mr-2 h-6 w-6 text-blue-600" /> เลือกลงทุนให้ตรงจุดประสงค์ธุรกิจ
+### <Search className="inline-block mr-3 h-7 w-7 text-blue-600" /> เลือกลงทุนให้ตรงจุดประสงค์ธุรกิจ
 
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-12">
   
   {/* Package 1: Growth */}
-  <Card className="border-2 border-slate-100 shadow-sm rounded-[2.5rem] overflow-hidden flex flex-col">
-    <CardHeader className="p-8 bg-slate-50/50 border-b border-slate-100">
-      <div className="flex justify-between items-start mb-4">
-        <div className="p-3 bg-white rounded-2xl shadow-sm">
-          <Rocket className="text-blue-600 h-6 w-6" />
+  <Card className="border-2 border-slate-100 shadow-sm rounded-[2.5rem] overflow-hidden flex flex-col bg-white">
+    <CardHeader className="p-10 bg-slate-50/50 border-b border-slate-100">
+      <div className="flex justify-between items-start mb-6">
+        <div className="p-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+          <Rocket className="text-blue-600 h-8 w-8" />
         </div>
-        <Badge variant="outline" className="border-blue-200 text-blue-600 font-black px-3 py-1">SME Starter</Badge>
+        <Badge variant="outline" className="border-blue-200 text-blue-600 font-black px-4 py-1.5 text-xs">SME STARTER</Badge>
       </div>
-      <CardTitle className="text-3xl font-black text-slate-900">Growth Plan</CardTitle>
-      <CardDescription className="text-base font-bold text-slate-500 mt-2">สำหรับธุรกิจที่เริ่มสร้างตัวตนออนไลน์</CardDescription>
+      <CardTitle className="text-4xl font-black text-slate-900">Growth Plan</CardTitle>
+      <CardDescription className="text-lg font-bold text-slate-500 mt-3">สำหรับธุรกิจที่เริ่มสร้างตัวตนออนไลน์</CardDescription>
     </CardHeader>
-    <CardContent className="p-8 flex-1">
-      <div className="space-y-5">
-        <div className="flex items-center justify-between py-1 border-b border-slate-50">
-          <span className="text-slate-600 font-bold">โครงสร้าง SEO พื้นฐาน</span>
-          <CheckCircle2 className="text-green-600 h-5 w-5" />
+    <CardContent className="p-10 flex-1">
+      <div className="space-y-6">
+        <div className="flex items-center justify-between py-2 border-b border-slate-50">
+          <span className="text-slate-600 font-bold text-lg">โครงสร้าง SEO พื้นฐาน</span>
+          <CheckCircle2 className="text-green-600 h-6 w-6" />
         </div>
-        <div className="flex items-center justify-between py-1 border-b border-slate-50">
-          <span className="text-slate-600 font-bold">ความเร็ว PageSpeed (90+)</span>
-          <Zap className="text-yellow-500 h-5 w-5" />
+        <div className="flex items-center justify-between py-2 border-b border-slate-50">
+          <span className="text-slate-600 font-bold text-lg">ความเร็ว PageSpeed (90+)</span>
+          <Zap className="text-amber-500 h-6 w-6" />
         </div>
-        <div className="flex items-center justify-between py-1 border-b border-slate-50">
-          <span className="text-slate-600 font-bold">ดีไซน์ตามอัตลักษณ์แบรนด์</span>
-          <CheckCircle2 className="text-green-600 h-5 w-5" />
+        <div className="flex items-center justify-between py-2 border-b border-slate-50">
+          <span className="text-slate-600 font-bold text-lg">ดีไซน์ตามอัตลักษณ์แบรนด์</span>
+          <CheckCircle2 className="text-green-600 h-6 w-6" />
         </div>
-        <div className="flex items-center justify-between py-1 border-b border-slate-50 opacity-40">
-          <span className="text-slate-400 font-medium">ระบบวิเคราะห์ลูกค้าขั้นสูง</span>
-          <XCircle className="text-slate-300 h-5 w-5" />
-        </div>
-        <div className="flex items-center justify-between py-1 border-b border-slate-50 opacity-40">
-          <span className="text-slate-400 font-medium">กลยุทธ์ SEO เต็มรูปแบบ</span>
-          <XCircle className="text-slate-300 h-5 w-5" />
+        <div className="flex items-center justify-between py-2 border-b border-slate-50 opacity-30">
+          <span className="text-slate-400 font-medium text-lg italic">ระบบวิเคราะห์ลูกค้าขั้นสูง</span>
+          <XCircle className="text-slate-300 h-6 w-6" />
         </div>
       </div>
     </CardContent>
-    <CardFooter className="p-8 pt-0">
-      <div className="w-full p-4 rounded-2xl bg-blue-50 text-blue-700 text-center font-black text-xs uppercase tracking-[0.2em]">
+    <CardFooter className="p-10 pt-0">
+      <div className="w-full p-5 rounded-2xl bg-blue-50 text-blue-700 text-center font-black text-sm uppercase tracking-[0.25em]">
         เน้นความเร็วและตัวตนที่ชัดเจน
       </div>
     </CardFooter>
   </Card>
 
-  {/* Package 2: Empire */}
-  <Card className="border-2 border-slate-900 shadow-xl rounded-[2.5rem] overflow-hidden flex flex-col bg-slate-950 text-white">
-    <CardHeader className="p-8 bg-slate-900 border-b border-slate-800">
-      <div className="flex justify-between items-start mb-4">
-        <div className="p-3 bg-blue-600 rounded-2xl shadow-lg shadow-blue-900/50">
-          <Star className="text-white h-6 w-6" />
-        </div>
-        <Badge className="bg-blue-600 text-white font-black px-3 py-1 border-none">Market Leader</Badge>
+{/* Package 2: Empire */}
+
+<Card className="flex flex-col overflow-hidden rounded-[2.5rem] border-2 border-slate-900 bg-slate-950 text-white shadow-2xl">
+  <CardHeader className="border-b border-slate-800 bg-slate-900 p-10">
+    <div className="mb-6 flex items-start justify-between">
+      <div className="rounded-2xl bg-blue-600 p-4 shadow-lg shadow-blue-900/50">
+        <Star className="h-8 w-8 text-white" />
       </div>
-      <CardTitle className="text-3xl font-black text-white">Empire Plan</CardTitle>
-      <CardDescription className="text-base font-bold text-slate-400 mt-2">ธุรกิจที่ต้องการเป็นเบอร์ 1 ในตลาด</CardDescription>
-    </CardHeader>
-    <CardContent className="p-8 flex-1">
-      <div className="space-y-5">
-        <div className="flex items-center justify-between py-1 border-b border-white/5">
-          <span className="text-slate-300 font-bold">SEO Organic เต็มรูปแบบ</span>
-          <CheckCircle2 className="text-blue-400 h-5 w-5" />
-        </div>
-        <div className="flex items-center justify-between py-1 border-b border-white/5">
-          <span className="text-slate-300 font-bold">ความเร็ว 95-100 (ลื่นหัวแตก)</span>
-          <Zap className="text-blue-400 h-5 w-5" />
-        </div>
-        <div className="flex items-center justify-between py-1 border-b border-white/5">
-          <span className="text-slate-300 font-bold">ระบบวิเคราะห์พฤติกรรมลูกค้า</span>
-          <CheckCircle2 className="text-blue-400 h-5 w-5" />
-        </div>
-        <div className="flex items-center justify-between py-1 border-b border-white/5">
-          <span className="text-slate-300 font-bold">การออกแบบ Conversion ขั้นสูง</span>
-          <CheckCircle2 className="text-blue-400 h-5 w-5" />
-        </div>
-        <div className="flex items-center justify-between py-1 border-b border-white/5">
-          <span className="text-slate-300 font-bold">ดูแลระบบและอัปเดตรายเดือน</span>
-          <CheckCircle2 className="text-blue-400 h-5 w-5" />
-        </div>
+      <Badge className="border-none bg-blue-600 px-4 py-1.5 text-xs font-black text-white">
+        MARKET LEADER
+      </Badge>
+    </div>
+    <CardTitle className="text-4xl font-black text-white">
+      Empire Plan
+    </CardTitle>
+    <CardDescription className="mt-3 text-lg font-bold text-slate-400">
+      ธุรกิจที่ต้องการเป็นเบอร์ 1 ในตลาด
+    </CardDescription>
+  </CardHeader>
+  <CardContent className="flex-1 p-10">
+    <div className="space-y-6">
+      <div className="flex items-center justify-between border-b border-white/5 py-2">
+        <span className="text-lg font-bold text-slate-200">
+          SEO Organic เต็มรูปแบบ
+        </span>
+        <CheckCircle2 className="h-6 w-6 text-blue-400" />
       </div>
-    </CardContent>
-    <CardFooter className="p-8 pt-0">
-      <div className="w-full p-4 rounded-2xl bg-blue-600 text-white text-center font-black text-xs uppercase tracking-[0.2em] shadow-lg shadow-blue-600/20">
-        ยึดครองอันดับ Google อย่างยั่งยืน
+      <div className="flex items-center justify-between border-b border-white/5 py-2">
+        <span className="text-lg font-bold text-slate-200">
+          ความเร็ว 95-100 (ลื่นหัวแตก)
+        </span>
+        <Zap className="h-6 w-6 text-blue-400" />
       </div>
-    </CardFooter>
-  </Card>
+      <div className="flex items-center justify-between border-b border-white/5 py-2">
+        <span className="text-lg font-bold text-slate-200">
+          ระบบวิเคราะห์พฤติกรรมลูกค้า
+        </span>
+        <CheckCircle2 className="h-6 w-6 text-blue-400" />
+      </div>
+      <div className="flex items-center justify-between border-b border-white/5 py-2">
+        <span className="text-lg font-bold text-slate-200">
+          การออกแบบ Conversion ขั้นสูง
+        </span>
+        <CheckCircle2 className="h-6 w-6 text-blue-400" />
+      </div>
+    </div>
+  </CardContent>
+  <CardFooter className="p-10 pt-0">
+    <div className="w-full rounded-2xl bg-blue-600 p-5 text-center text-sm font-black tracking-[0.25em] text-white uppercase shadow-lg shadow-blue-600/20">
+      ยึดครองอันดับ Google อย่างยั่งยืน
+    </div>
+  </CardFooter>
+</Card>
 
 </div>
 
 ---
 
-### <HeartHandshake className="inline-block mr-2 h-6 w-6 text-blue-600" /> เริ่มต้นสร้าง "ความได้เปรียบ" ตั้งแต่วันนี้
+### <HeartHandshake className="inline-block mr-3 h-7 w-7 text-blue-600" /> เริ่มต้นสร้าง "ความได้เปรียบ" ตั้งแต่วันนี้
 
 อย่าปล่อยให้เว็บไซต์เก่าๆ หรือระบบที่ช้ามาทำลายโอกาสทางธุรกิจของพี่ครับ ทักมาปรึกษาผมเพื่อวางแผนโครงสร้างที่เหมาะสมที่สุด ข้อมูลของพี่เป็นความลับและไม่มีค่าใช้จ่ายครับ
 
-<div className="flex flex-wrap gap-4 mt-16 bg-slate-900 p-12 rounded-[3.5rem] justify-center items-center text-center shadow-2xl relative overflow-hidden">
-  <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -mr-32 -mt-32" />
-  
-  <div className="relative z-10 w-full mb-6">
-    <h3 className="text-white font-black text-3xl m-0 leading-tight">พร้อมเปลี่ยนเว็บไซต์ให้เป็นสินทรัพย์หรือยังครับ?</h3>
-    <p className="text-slate-400 mt-4 font-medium">เริ่มต้นวางรากฐาน SEO Organic เพื่อความยั่งยืนของธุรกิจพี่วันนี้</p>
+<div className="relative mt-16 flex flex-wrap items-center justify-center gap-4 overflow-hidden rounded-[4rem] bg-slate-900 p-12 text-center shadow-2xl lg:p-16">
+  <div className="absolute top-0 right-0 -mt-40 -mr-40 h-80 w-80 rounded-full bg-blue-600/10 blur-[100px]" />
+
+  <div className="relative z-10 mb-8 w-full">
+    <h3 className="m-0 text-3xl leading-tight font-black text-white italic lg:text-4xl">
+      พร้อมเปลี่ยนเว็บไซต์ให้เป็นสินทรัพย์หรือยังครับ?
+    </h3>
+    <p className="mt-6 text-lg font-medium text-slate-400">
+      เริ่มต้นวางรากฐาน SEO Organic เพื่อความยั่งยืนของธุรกิจพี่วันนี้
+    </p>
   </div>
-  
-  <Button size="lg" className="bg-blue-600 hover:bg-blue-700 h-16 px-12 rounded-full font-black text-lg transition-transform hover:scale-105 shadow-xl shadow-blue-600/20" asChild>
+
+  <Button
+    size="lg"
+    className="h-16 rounded-full bg-blue-600 px-12 text-xl font-black shadow-xl shadow-blue-600/30 transition-transform hover:scale-105 hover:bg-blue-700"
+    asChild
+  >
     <Link href="/contact">ปรึกษาเรื่อง SEO / เริ่มโปรเจกต์</Link>
   </Button>
-  
-  <Button size="lg" variant="outline" className="text-white border-white/20 hover:bg-white/10 h-16 px-12 rounded-full font-black text-lg transition-transform hover:scale-105" asChild>
+
+  <Button
+    size="lg"
+    variant="outline"
+    className="h-16 rounded-full border-white/20 px-12 text-xl font-black text-white transition-transform hover:scale-105 hover:bg-white/10"
+    asChild
+  >
     <Link href="/projects">ดูเคสที่สำเร็จมาแล้ว</Link>
   </Button>
 </div>
 
 ---
 
-> <Lock className="inline-block mr-2 h-4 w-4 text-slate-500" /> **คำแนะนำจากผม:** "เว็บไซต์ที่ดีไม่ใช่แค่มีไว้โชว์ แต่ต้องมีไว้เพื่อแก้ปัญหาและสร้างการเติบโตให้ธุรกิจพี่ครับ"
+> <Lock className="mr-2 inline-block h-5 w-5 text-slate-500" />
+> **คำแนะนำจากผม:** "เว็บไซต์ที่ดีไม่ใช่แค่มีไว้โชว์
+> แต่ต้องมีไว้เพื่อแก้ปัญหาและสร้างการเติบโตให้ธุรกิจพี่ครับ"

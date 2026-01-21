@@ -1,68 +1,83 @@
 /** @format */
 import { MetadataRoute } from "next";
+import fs from "fs";
+import path from "path";
 
 /**
- * Sitemap Generator - ฉบับ DNA นายเอ็มซ่ามากส์
- * เป้าหมาย: เพื่อให้ Google เข้ามาเก็บข้อมูล "เครื่องจักรผลิตเงิน" 
- * และหน้าผลงาน Unlink-th ของพี่ไปจัดอันดับได้ไวที่สุด
+ * 🗺️ Sitemap Generator - DNA นายเอ็มซ่ามากส์
+ * ออกแบบมาเพื่อเร่งการทำ Indexing ให้กับบริการรับทำ SEO และผลงาน Unlink-th
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://me.aemdevweb.com";
+  const blogDir = path.join(process.cwd(), "content/blog");
 
-  // กำหนดเส้นทางหลักของเว็ปไซต์
-  const routes = [
+  // 1. กำหนดเส้นทางหลัก (Static Routes)
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: "",
-      lastModified: new Date().toISOString(),
-      changeFrequency: "daily" as const, // หน้าแรกสำคัญที่สุด ให้ Google มาดูบ่อยๆ
-      priority: 1.0,
+      url: `${baseUrl}`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 1.0, // หน้าแรก: จุดรวมศูนย์ Trust และบริการรับทำ SEO
     },
     {
-      url: "/services",
-      lastModified: new Date().toISOString(),
-      changeFrequency: "weekly" as const,
+      url: `${baseUrl}/services`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: "/services/aem-dev",
-      lastModified: new Date().toISOString(),
-      changeFrequency: "weekly" as const,
+      url: `${baseUrl}/services/aem-dev`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: "/services/unlink-th",
-      lastModified: new Date().toISOString(),
-      changeFrequency: "weekly" as const,
-      priority: 0.9, // ผลงานชิ้นเอก ต้องเน้นเป็นพิเศษ
+      url: `${baseUrl}/services/unlink-th`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9, // Exclusive Service: เน้นเป็นพิเศษ
     },
     {
-      url: "/projects",
-      lastModified: new Date().toISOString(),
-      changeFrequency: "weekly" as const,
+      url: `${baseUrl}/projects`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: "/blog",
-      lastModified: new Date().toISOString(),
-      changeFrequency: "daily" as const, // บล็อกมีการอัปเดตความรู้บ่อย ให้ Google มาเช็กทุกวัน
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.8, // คลังความรู้: ท่อส่ง Traffic หลัก
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
       priority: 0.7,
     },
-    {
-      url: "/about",
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly" as const,
-      priority: 0.5,
-    },
-    {
-      url: "/contact",
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly" as const,
-      priority: 0.5,
-    },
-  ].map((route) => ({
-    ...route,
-    url: `${baseUrl}${route.url}`,
-  }));
+  ];
 
-  return routes;
+  // 2. ดึงบทความจากไฟล์จริง (Dynamic Blog Routes)
+  let blogRoutes: MetadataRoute.Sitemap = [];
+  try {
+    if (fs.existsSync(blogDir)) {
+      const files = fs.readdirSync(blogDir);
+      blogRoutes = files
+        .filter((file) => file.endsWith(".mdx"))
+        .map((file) => {
+          const slug = file.replace(".mdx", "");
+          const stats = fs.statSync(path.join(blogDir, file));
+          return {
+            url: `${baseUrl}/blog/${slug}`,
+            lastModified: stats.mtime,
+            changeFrequency: "weekly",
+            priority: 0.6,
+          };
+        });
+    }
+  } catch (error) {
+    console.error("Sitemap Blog Generation Error:", error);
+  }
+
+  return [...staticRoutes, ...blogRoutes];
 }

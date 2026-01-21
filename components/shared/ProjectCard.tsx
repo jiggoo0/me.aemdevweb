@@ -2,7 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Github, ArrowRight, Star } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  ArrowRight,
+  Star,
+  ShieldCheck,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Card,
@@ -24,9 +30,8 @@ interface ProjectCardProps {
 }
 
 /**
- * ProjectCard Component - ฉบับพาร์ทเนอร์ดูแลระบบ (Architect Style)
- * ออกแบบมาเพื่อเน้นผลลัพธ์ของโปรเจกต์ (Case Study) 
- * รองรับการแสดงผลแบบพรีเมียมที่ Google และลูกค้า SME ชื่นชอบ
+ * 🏗️ ProjectCard Component - ฉบับพาร์ทเนอร์ดูแลระบบ (Architect Style)
+ * เน้นการนำเสนอ Case Study ให้ดูมีมูลค่าและน่าเชื่อถือในระดับสูงสุด
  */
 export default function ProjectCard({
   title,
@@ -41,13 +46,14 @@ export default function ProjectCard({
   return (
     <Card
       className={cn(
-        "group flex h-full flex-col overflow-hidden transition-all duration-500",
-        "border-slate-100 bg-white shadow-sm hover:-translate-y-3 hover:shadow-2xl hover:shadow-blue-900/10",
-        isFeatured && "ring-2 ring-blue-600/5 shadow-blue-50/50 border-blue-200/60",
+        "group flex h-full flex-col overflow-hidden transition-all duration-700",
+        "border-slate-100 bg-white shadow-sm hover:-translate-y-4 hover:shadow-[0_30px_60px_-15px_rgba(30,58,138,0.15)]",
+        isFeatured &&
+          "border-blue-100 ring-2 shadow-blue-50/50 ring-blue-600/10",
         className
       )}
     >
-      {/* 🖼️ Image Section - แสดงผลงานแบบเน้น Performance */}
+      {/* 🖼️ Image Section - Performance Optimized */}
       <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100">
         <Image
           src={image || "/images/service/aemdevweb.webp"}
@@ -58,37 +64,43 @@ export default function ProjectCard({
           priority={isFeatured}
         />
 
-        {/* Gradient Overlay แบบนุ่มนวลเมื่อ Hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        {/* Dynamic Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/10 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
 
-        {isFeatured && (
-          <div className="absolute left-5 top-5 z-10">
-            <span className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-xl shadow-blue-600/30 transition-transform group-hover:scale-105">
-              <Star className="h-3 w-3 fill-white" /> Featured Case
+        {/* Status Badges */}
+        <div className="absolute top-6 left-6 z-10 flex flex-col gap-3">
+          {isFeatured && (
+            <span className="inline-flex items-center gap-2 rounded-2xl bg-blue-600 px-5 py-2.5 text-[10px] font-black tracking-[0.2em] text-white uppercase shadow-2xl shadow-blue-600/40 transition-all group-hover:scale-105">
+              <Star className="h-3.5 w-3.5 fill-white" /> Featured Case
             </span>
-          </div>
-        )}
+          )}
+          {title.includes("Unlink-th") && (
+            <span className="inline-flex items-center gap-2 rounded-2xl border border-white/50 bg-white/90 px-4 py-2 text-[9px] font-black tracking-[0.15em] text-slate-900 uppercase backdrop-blur-md">
+              <ShieldCheck className="h-3 w-3 text-blue-600" /> System Architect
+            </span>
+          )}
+        </div>
       </div>
 
-      {/* 📝 Header & Tags Section */}
-      <CardHeader className="space-y-4 p-8 pb-4">
-        <div className="flex items-start justify-between gap-4">
-          <CardTitle className="text-2xl font-black leading-tight text-slate-900 transition-colors group-hover:text-blue-600">
+      {/* 📝 Content Header */}
+      <CardHeader className="space-y-5 p-8 pb-4 lg:p-10">
+        <div className="flex items-start justify-between gap-6">
+          <CardTitle className="text-2xl leading-tight font-black text-slate-900 transition-colors group-hover:text-blue-600 lg:text-3xl">
             {title}
           </CardTitle>
           {link && (
-            <div className="hidden md:block transform text-blue-600 opacity-0 transition-all duration-500 -translate-x-4 group-hover:translate-x-0 group-hover:opacity-100">
-              <ArrowRight size={24} strokeWidth={3} />
+            <div className="hidden shrink-0 -translate-x-4 rounded-full bg-blue-50 p-2 text-blue-600 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100 md:flex">
+              <ArrowRight size={20} strokeWidth={3} />
             </div>
           )}
         </div>
 
         {tags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 pt-2">
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-lg border border-slate-100 bg-slate-50/50 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-slate-500 transition-all group-hover:border-blue-200 group-hover:bg-blue-50 group-hover:text-blue-600"
+                className="rounded-xl border border-slate-100 bg-slate-50/80 px-4 py-2 text-[9px] font-black tracking-[0.2em] text-slate-500 uppercase transition-all group-hover:border-blue-200 group-hover:bg-blue-50 group-hover:text-blue-600"
               >
                 {tag}
               </span>
@@ -97,25 +109,25 @@ export default function ProjectCard({
         )}
       </CardHeader>
 
-      {/* 📄 Description Section */}
-      <CardContent className="flex-grow px-8 pb-8">
-        <p className="line-clamp-3 text-base font-medium leading-relaxed text-slate-500 transition-colors group-hover:text-slate-600">
+      {/* 📄 Description Body */}
+      <CardContent className="flex-grow px-8 pb-10 lg:px-10">
+        <p className="line-clamp-3 text-base leading-relaxed font-medium text-slate-500 transition-colors group-hover:text-slate-700 md:text-lg">
           {description}
         </p>
       </CardContent>
 
-      {/* 🔗 Footer Interaction */}
-      <CardFooter className="flex items-center justify-between border-t border-slate-50 bg-slate-50/30 px-8 py-6 transition-colors group-hover:bg-blue-50/40">
-        <div className="flex gap-8">
+      {/* 🔗 Interactive Footer */}
+      <CardFooter className="flex items-center justify-between border-t border-slate-50 bg-slate-50/20 px-8 py-7 transition-colors group-hover:bg-blue-50/30 lg:px-10">
+        <div className="flex items-center gap-8">
           {link && (
             <Link
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.1em] text-blue-600 transition-all hover:text-blue-800 hover:gap-3"
+              className="group/link inline-flex items-center gap-2 text-[11px] font-black tracking-[0.2em] text-blue-600 uppercase transition-all hover:text-blue-800"
             >
               <ExternalLink className="h-4 w-4" />
-              Live Preview
+              <span>Live Preview</span>
             </Link>
           )}
           {github && (
@@ -123,13 +135,16 @@ export default function ProjectCard({
               href={github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.1em] text-slate-400 transition-all hover:text-slate-900"
+              className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.2em] text-slate-400 uppercase transition-all hover:text-slate-900"
             >
               <Github className="h-4 w-4" />
-              Repository
+              <span>Repository</span>
             </Link>
           )}
         </div>
+
+        {/* Subtle Indicator */}
+        <div className="h-1.5 w-1.5 rounded-full bg-slate-200 transition-all group-hover:w-8 group-hover:bg-blue-600" />
       </CardFooter>
     </Card>
   );

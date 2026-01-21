@@ -31,10 +31,12 @@ tags:
 _Generated on: **2026-01-20 00:45:36**_
 
 ## 🔴 1. Project Health & Deployment Readiness
+
 ✅ **READY FOR DEPLOY** — Production standards satisfied.
 
 ### 📍 Production Route Map
-```text
+
+````text
 ```text
 Route (app)                                  Size  First Load JS
 ┌ ○ /                                       192 B         110 kB
@@ -59,8 +61,9 @@ Route (app)                                  Size  First Load JS
   └ other shared chunks (total)           1.92 kB
 ○  (Static)  prerendered as static content
 ●  (SSG)     prerendered as static HTML (uses generateStaticParams)
-```
-```
+````
+
+````
 
 ## 📊 2. File Statistics by Extension
 ```text
@@ -74,9 +77,10 @@ Route (app)                                  Size  First Load JS
       1 jpg
       1 ico
       1 css
-```
+````
 
 ## 📁 3. Directory Structure (Enterprise Architecture Tree)
+
 ```text
 📂 app/
   📂 about/
@@ -162,8 +166,10 @@ Route (app)                                  Size  First Load JS
 ```
 
 ## 📄 4. Critical Code Analysis & Environment Context
+
 #### 🔍 Path: `pre-deploy-report.md`
-```markdown
+
+````markdown
 ---
 title: "Pre-deploy Inspection Report"
 project: "UnlinkTH"
@@ -190,15 +196,24 @@ tags:
 - **Build ID:** b0c172fa
 - **Target Site:** https://me.aemdevweb.com
 
-## 🛠️  1. Auto-Fix Procedure
+## 🛠️ 1. Auto-Fix Procedure
+
 ✅ Status: Auto-fix completed or no issues found.
+
 ## 🧹 2. Code Linting (ESLint)
+
 ✅ Status: Linting passed.
+
 ## ⌨️ 3. Type Safety Check
+
 ✅ Status: TypeScript verified.
-## 🏗️  4. Production Build Test
+
+## 🏗️ 4. Production Build Test
+
 ✅ Status: Build successfully optimized.
+
 ### 📊 Route Statistics & Bundle Size
+
 ```text
 Route (app)                                  Size  First Load JS
 ┌ ○ /                                       192 B         110 kB
@@ -225,15 +240,19 @@ Route (app)                                  Size  First Load JS
 
 ○  (Static)  prerendered as static content
 ●  (SSG)     prerendered as static HTML (uses generateStaticParams)
-
 ```
+````
 
 ---
+
 ## 🏆 Summary Result
+
 ### ✅ READY FOR DEPLOY
+
 All protocols verified: Lint passed, Types safe, and Build successful.
 Deployment is approved for **https://me.aemdevweb.com**.
-```
+
+````
 ---
 
 #### 🔍 Path: `app/globals.css`
@@ -247,22 +266,22 @@ Deployment is approved for **https://me.aemdevweb.com**.
   --color-ring: hsl(var(--ring));
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
-  
+
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
-  
+
   --color-secondary: hsl(var(--secondary));
   --color-secondary-foreground: hsl(var(--secondary-foreground));
-  
+
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
-  
+
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
-  
+
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
-  
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
@@ -307,10 +326,12 @@ Deployment is approved for **https://me.aemdevweb.com**.
     @apply bg-background text-foreground;
   }
 }
-```
+````
+
 ---
 
 #### 🔍 Path: `app/layout.tsx`
+
 ```typescript
 /** @format */
 import type { Metadata, Viewport } from "next";
@@ -441,9 +462,11 @@ export default function RootLayout({
   );
 }
 ```
+
 ---
 
 #### 🔍 Path: `app/page.tsx`
+
 ```typescript
 /** @format */
 import Hero from "@/components/profile/Hero";
@@ -605,9 +628,11 @@ export default function HomePage() {
   );
 }
 ```
+
 ---
 
 #### 🔍 Path: `app/about/page.mdx`
+
 ```text
 import Hero from "@/components/profile/Hero"
 import { Card, CardContent } from "@/components/ui/card"
@@ -691,9 +716,11 @@ import Link from "next/link"
   </Button>
 </div>
 ```
+
 ---
 
 #### 🔍 Path: `app/contact/page.mdx`
+
 ```text
 import ContactInfo from "@/components/profile/ContactInfo"
 import { Button } from "@/components/ui/button"
@@ -735,7 +762,7 @@ import Link from "next/link"
     </div>
     <div className="space-y-3">
       <label className="text-sm font-black text-slate-700 uppercase tracking-wider">รายละเอียดที่อยากให้ผมช่วย</label>
-      <textarea 
+      <textarea
         className="flex min-h-[150px] w-full rounded-[2rem] border border-input bg-slate-50/50 px-5 py-4 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all"
         placeholder="พี่สามารถเล่าปัญหาหรือเป้าหมายที่อยากทำให้ฟังได้เลยครับ เพื่อให้ผมเตรียมข้อมูลไปช่วยพี่ได้แม่นยำขึ้น"
       />
@@ -775,9 +802,11 @@ import Link from "next/link"
   </div>
 </div>
 ```
+
 ---
 
 #### 🔍 Path: `app/projects/page.mdx`
+
 ```text
 /** @format */
 
@@ -790,15 +819,15 @@ import Link from "next/link"
 ### <Star className="inline-block mr-2 h-6 w-6 text-blue-600" /> ผลงานระดับ Flagship
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-10">
-  <ProjectCard 
+  <ProjectCard
     title="ระบบ Unlink-th (Flagship Project)"
     description="ผู้อยู่เบื้องหลังการวางโครงสร้างระบบจัดการข้อมูลและชื่อเสียงออนไลน์ทั้งหมด เน้นความปลอดภัยระดับสูงสุดและการทำอันดับแบบ Organic เพื่อคืนตัวตนใหม่ที่ขาวสะอาดบนโลกดิจิทัล"
     image="/images/service/Unlink-th.webp"
     tags={["ผู้วางระบบทั้งหมด", "SEO Organic", "Security Expert"]}
     isFeatured={true}
   />
-  
-  <ProjectCard 
+
+  <ProjectCard
     title="AEM Dev Web Portal"
     description="ระบบศูนย์รวมบริการสำหรับ SME ไทยที่ต้องการเว็ปไซต์โหลดไวระดับเสี้ยววินาที พร้อมโครงสร้างที่ Google รักตั้งแต่วันแรกที่เปิดตัวด้วยเทคนิคสายขาว"
     image="/images/service/aemdevweb.webp"
@@ -812,24 +841,24 @@ import Link from "next/link"
 ### <LayoutGrid className="inline-block mr-2 h-6 w-6 text-blue-600" /> ผลงานและการดูแลระบบ
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10">
-  <ProjectCard 
+  <ProjectCard
     title="SME Brand Growth"
     description="เคสการปั้นอันดับ Keyword ธุรกิจเฉพาะทางให้ติดหน้าแรก Google ด้วยเทคนิค Organic 100% ช่วยเพิ่ม Traffic คุณภาพโดยไม่ต้องยิงแอด"
     image="/images/project-01.webp"
     tags={["SEO Strategy", "Organic Search"]}
   />
 
-  <ProjectCard 
+  <ProjectCard
     title="SecureDocs Master"
     description="ระบบจัดการเอกสารออนไลน์พร้อม Workflow อัตโนมัติ ช่วยลดเวลาการทำงานและเพิ่มความถูกต้องของข้อมูลได้กว่า 70%"
     image="/images/activity.webp"
     tags={["System Design", "Workflow"]}
   />
-  
-  <ProjectCard 
+
+  <ProjectCard
     title="Reputation Monitoring"
     description="ระบบเฝ้าสังเกตการณ์ชื่อเสียงออนไลน์ แจ้งเตือนความเสี่ยงแบบ Real-time เพื่อรักษาภาพลักษณ์ของธุรกิจอย่างแม่นยำ"
-    image="/images/case/case99.webp" 
+    image="/images/case/case99.webp"
     tags={["Brand Protection", "Real-time"]}
   />
 </div>
@@ -874,9 +903,11 @@ import Link from "next/link"
   </CardContent>
 </Card>
 ```
+
 ---
 
 #### 🔍 Path: `app/services/page.mdx`
+
 ```text
 /** @format */
 
@@ -889,7 +920,7 @@ import Link from "next/link"
 ### <Sparkles className="inline-block mr-2 h-6 w-6 text-blue-600" /> เลือกทางออกที่พร้อมจะ "โต" ไปกับธุรกิจพี่
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12">
-  
+
   {/* บริการที่ 1: สร้างเว็บและ SEO Organic */}
   <Card className="flex flex-col border-none bg-slate-50/50 shadow-sm transition-all hover:bg-white hover:shadow-2xl hover:shadow-blue-900/10 group rounded-[2.5rem] overflow-hidden border-2 border-transparent hover:border-blue-100">
     <CardHeader className="p-10 pb-6">
@@ -984,9 +1015,11 @@ import Link from "next/link"
   </div>
 </div>
 ```
+
 ---
 
 #### 🔍 Path: `app/services/aem-dev/page.mdx`
+
 ```text
 /** @format */
 
@@ -1008,12 +1041,12 @@ import Link from "next/link"
         <h4 className="font-black m-0 text-xl text-slate-900 uppercase">ความเร็วระดับเสี้ยววินาที</h4>
       </div>
       <div className="text-slate-600 leading-relaxed font-medium">
-        ลูกค้าไม่รอนานเกิน 2 วินาทีแน่นอนครับ เว็บที่ผมสร้างถูกรีดประสิทธิภาพให้โหลดไว (ลื่นหัวแตก) 
+        ลูกค้าไม่รอนานเกิน 2 วินาทีแน่นอนครับ เว็บที่ผมสร้างถูกรีดประสิทธิภาพให้โหลดไว (ลื่นหัวแตก)
         ซึ่งเป็นปัจจัยสำคัญที่ช่วยให้พี่ปิดการขายได้ง่ายขึ้น และช่วยลดค่าโฆษณาในระยะยาวได้จริงครับ
       </div>
     </CardContent>
   </Card>
-  
+
   <Card className="border-none bg-slate-50 shadow-sm overflow-hidden rounded-[2rem]">
     <CardContent className="pt-10">
       <div className="flex items-center gap-3 mb-4">
@@ -1023,7 +1056,7 @@ import Link from "next/link"
         <h4 className="font-black m-0 text-xl text-slate-900 uppercase">ปั้นอันดับด้วย SEO Organic</h4>
       </div>
       <div className="text-slate-600 leading-relaxed font-medium">
-        ผมไม่ได้แค่ใส่คีย์เวิร์ด แต่ผมวางโครงสร้างให้ Google รักเว็บไซต์ของพี่ตั้งแต่รากฐาน 
+        ผมไม่ได้แค่ใส่คีย์เวิร์ด แต่ผมวางโครงสร้างให้ Google รักเว็บไซต์ของพี่ตั้งแต่รากฐาน
         เพื่อให้ธุรกิจของพี่ถูกค้นหาเจอเองตามธรรมชาติ และเติบโตได้อย่างยั่งยืนโดยไม่ต้องพึ่งพาแต่ค่าแอดครับ
       </div>
     </CardContent>
@@ -1046,7 +1079,7 @@ import Link from "next/link"
 ### <Search className="inline-block mr-2 h-6 w-6 text-blue-600" /> เลือกลงทุนให้ตรงจุดประสงค์ธุรกิจ
 
 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-12">
-  
+
   {/* Package 1: Growth */}
   <Card className="border-2 border-slate-100 shadow-sm rounded-[2.5rem] overflow-hidden flex flex-col">
     <CardHeader className="p-8 bg-slate-50/50 border-b border-slate-100">
@@ -1143,16 +1176,16 @@ import Link from "next/link"
 
 <div className="flex flex-wrap gap-4 mt-16 bg-slate-900 p-12 rounded-[3.5rem] justify-center items-center text-center shadow-2xl relative overflow-hidden">
   <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -mr-32 -mt-32" />
-  
+
   <div className="relative z-10 w-full mb-6">
     <h3 className="text-white font-black text-3xl m-0 leading-tight">พร้อมเปลี่ยนเว็บไซต์ให้เป็นสินทรัพย์หรือยังครับ?</h3>
     <p className="text-slate-400 mt-4 font-medium">เริ่มต้นวางรากฐาน SEO Organic เพื่อความยั่งยืนของธุรกิจพี่วันนี้</p>
   </div>
-  
+
   <Button size="lg" className="bg-blue-600 hover:bg-blue-700 h-16 px-12 rounded-full font-black text-lg transition-transform hover:scale-105 shadow-xl shadow-blue-600/20" asChild>
     <Link href="/contact">ปรึกษาเรื่อง SEO / เริ่มโปรเจกต์</Link>
   </Button>
-  
+
   <Button size="lg" variant="outline" className="text-white border-white/20 hover:bg-white/10 h-16 px-12 rounded-full font-black text-lg transition-transform hover:scale-105" asChild>
     <Link href="/projects">ดูเคสที่สำเร็จมาแล้ว</Link>
   </Button>
@@ -1162,9 +1195,11 @@ import Link from "next/link"
 
 > <Lock className="inline-block mr-2 h-4 w-4 text-slate-500" /> **คำแนะนำจากผม:** "เว็บไซต์ที่ดีไม่ใช่แค่มีไว้โชว์ แต่ต้องมีไว้เพื่อแก้ปัญหาและสร้างการเติบโตให้ธุรกิจพี่ครับ"
 ```
+
 ---
 
 #### 🔍 Path: `app/services/unlink-th/page.mdx`
+
 ```text
 /** @format */
 
@@ -1190,7 +1225,7 @@ import Link from "next/link"
       ดำเนินการประสานงานและจัดการกับข้อมูลที่ส่งผลลบต่อภาพลักษณ์ เพื่อให้เรื่องราวเหล่านั้นลดบทบาทลงจากหน้าค้นหาอย่างเป็นระบบและยั่งยืนครับ
     </CardContent>
   </Card>
-  
+
   <Card className="border-none bg-slate-50 shadow-sm">
     <CardContent className="pt-8">
       <div className="flex items-center gap-3 mb-4">
@@ -1231,9 +1266,11 @@ import Link from "next/link"
 
 > <Lock className="inline-block mr-2 h-4 w-4 text-slate-500" /> **ความตั้งใจจากผม:** "ผมเชื่อว่าทุกคนมีสิทธิ์ที่จะมีภาพลักษณ์ที่ดี และผมพร้อมใช้เทคนิคที่มีช่วยให้สิ่งนั้นเกิดขึ้นจริงกับธุรกิจพี่ครับ"
 ```
+
 ---
 
 #### 🔍 Path: `app/blog/[slug]/page.tsx`
+
 ```typescript
 /** @format */
 
@@ -1335,8 +1372,8 @@ export default async function BlogPostPage({
 
         {/* --- Article Content Section --- */}
         <div
-          className="prose prose-slate max-w-none lg:prose-xl 
-          prose-headings:scroll-m-20 prose-headings:font-black prose-headings:text-slate-900 
+          className="prose prose-slate max-w-none lg:prose-xl
+          prose-headings:scroll-m-20 prose-headings:font-black prose-headings:text-slate-900
           prose-p:font-medium prose-p:leading-8 prose-p:text-slate-600
           prose-a:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800
           prose-blockquote:rounded-r-2xl prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50/50
@@ -1376,14 +1413,16 @@ export async function generateStaticParams() {
     }));
 }
 ```
+
 ---
 
 #### 🔍 Path: `app/blog/page.tsx`
+
 ```typescript
 /** @format */
 
 // ✅ ต้องเพิ่มบรรทัด Import นี้เข้ามาครับ
-import { getAllPosts } from "@/lib/blog"; 
+import { getAllPosts } from "@/lib/blog";
 import Container from "@/components/layout/Container";
 import BlogCard from "@/components/shared/BlogCard";
 import { Globe, BookOpen, Sparkles } from "lucide-react";
@@ -1464,9 +1503,11 @@ export default function BlogListPage() {
   );
 }
 ```
+
 ---
 
 #### 🔍 Path: `components/profile/Schema.tsx`
+
 ```typescript
 /** @format */
 
@@ -1552,9 +1593,11 @@ export default function Schema() {
   );
 }
 ```
+
 ---
 
 #### 🔍 Path: `mdx-components.tsx`
+
 ```typescript
 /** @format */
 import type { MDXComponents } from "mdx/types";
@@ -1648,7 +1691,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
 
-    // ✅ ป้องกัน Hydration Error: ใช้ <span> display: block แทน <p> 
+    // ✅ ป้องกัน Hydration Error: ใช้ <span> display: block แทน <p>
     // เพื่อให้สามารถวาง Component บล็อกภายใน MDX ได้โดยไม่ผิดกฎ HTML
     p: ({ className, ...props }) => (
       <span
@@ -1754,9 +1797,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   };
 }
 ```
+
 ---
 
 #### 🔍 Path: `tsconfig.json`
+
 ```json
 {
   "compilerOptions": {
@@ -1792,9 +1837,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   "exclude": ["node_modules", ".next"]
 }
 ```
+
 ---
 
 #### 🔍 Path: `package.json`
+
 ```json
 {
   "name": "alongkorl-yomkert",
@@ -1842,9 +1889,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   }
 }
 ```
+
 ---
 
 #### 🔍 Path: `next.config.ts`
+
 ```typescript
 /** @format */
 import type { NextConfig } from "next";
@@ -1871,13 +1920,16 @@ const nextConfig: NextConfig = {
   },
 
   compiler: {
-    removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
+    removeConsole:
+      process.env.NODE_ENV === "production"
+        ? { exclude: ["error", "warn"] }
+        : false,
   },
 
   experimental: {
     // ✅ ต้องปรับเป็น false เพื่อให้ remark-frontmatter ทำงานได้ครับ
-    mdxRs: false, 
-    
+    mdxRs: false,
+
     webpackBuildWorker: true,
     optimizePackageImports: [
       "lucide-react",
@@ -1900,9 +1952,11 @@ const withMDX = createMDX({
 
 export default withMDX(nextConfig);
 ```
+
 ---
 
 #### 🔍 Path: `components.json`
+
 ```json
 {
   "$schema": "https://ui.shadcn.com/schema.json",
@@ -1927,9 +1981,11 @@ export default withMDX(nextConfig);
   "registries": {}
 }
 ```
+
 ---
 
 #### 🔍 Path: `lib/blog.ts`
+
 ```typescript
 /** @format */
 
@@ -2007,20 +2063,25 @@ export function getPostBySlug(slug: string): BlogPost | null {
       image: data.image,
       tags: data.tags,
     } as BlogPost;
-  } catch { 
+  } catch {
     // ✅ ลบ (error) ออก เพราะเราแค่ต้องการส่งค่า null กลับเมื่อเกิดปัญหา
     return null;
   }
 }
 ```
+
 ---
 
 #### 🔍 Path: `.env`
+
 ```text
+
 ```
+
 ---
 
 ## 📝 Summary
+
 - Full architecture and code context compiled
 - AEM ingestion ready
 - AI context ready
@@ -2029,4 +2090,4 @@ export function getPostBySlug(slug: string): BlogPost | null {
 - Production environment compliant
 
 _Report generated by AEM DevWeb Platform Automation System_
-_Domain: 
+\_Domain:

@@ -51,7 +51,9 @@ export function getAllProjects(): ProjectPost[] {
       } as ProjectPost;
     });
 
-  return allProjectsData.sort((a, b) => (a.isFeatured === b.isFeatured ? 0 : a.isFeatured ? -1 : 1));
+  return allProjectsData.sort((a, b) =>
+    a.isFeatured === b.isFeatured ? 0 : a.isFeatured ? -1 : 1
+  );
 }
 
 /**
@@ -77,7 +79,7 @@ export function getProjectBySlug(slug: string): ProjectPost | null {
       github: data.github,
       isFeatured: data.isFeatured,
     } as ProjectPost;
-  } catch { 
+  } catch {
     // ✅ ตัด (error) ออกเพื่อให้ ESLint ผ่านฉลุยสไตล์ Next.js 15
     return null;
   }

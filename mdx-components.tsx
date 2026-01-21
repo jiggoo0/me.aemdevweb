@@ -1,11 +1,12 @@
 /** @format */
 import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 // --- [Profile & Shared Components] ---
-import Hero from "@/components/profile/Hero"; // ✅ ลงทะเบียนให้ MDX ทุกหน้าเข้าถึงได้
+import Hero from "@/components/profile/Hero";
+import ContactInfo from "@/components/profile/ContactInfo";
 import ProjectCard from "@/components/shared/ProjectCard";
 
 // --- [UI Components] ---
@@ -19,8 +20,10 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 
-// --- [Lucide Icons] ---
+// --- [Lucide Icons Registry] ---
+// รวบรวม Icons ทั้งหมดที่ใช้ในหน้า About, Contact และ Blog
 import {
   Layout,
   Rocket,
@@ -50,7 +53,14 @@ import {
   MapPin,
   PiggyBank,
   Users,
-  PenTool, // ✅ เพิ่มไว้สำหรับหน้า About ที่พี่เพิ่งแก้
+  PenTool,
+  Terminal,
+  Mail,
+  MessageSquare,
+  Send,
+  Clock,
+  Phone,
+  Facebook,
 } from "lucide-react";
 
 interface MdxImageProps {
@@ -95,11 +105,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
 
-    // ✅ ป้องกัน Hydration Error ใน Next.js 15
+    // ✅ ป้องกัน Hydration Error ใน Next.js 15/16 โดยการใช้ span/div แทน p ในบางกรณี
     p: ({ className, ...props }) => (
       <span
         className={cn(
-          "block text-lg font-medium leading-8 text-slate-600 [&:not(:first-child)]:mt-6",
+          "block text-lg leading-8 font-medium text-slate-600 [&:not(:first-child)]:mt-6",
           className
         )}
         {...props}
@@ -109,22 +119,23 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ul: ({ className, ...props }) => (
       <ul
         className={cn(
-          "my-6 ml-6 list-disc font-medium space-y-3 text-slate-600",
+          "my-6 ml-6 list-disc space-y-3 font-medium text-slate-600",
           className
         )}
         {...props}
       />
     ),
+
     blockquote: ({ className, ...props }) => (
       <div
         className={cn(
-          "my-10 flex items-center gap-6 rounded-3xl bg-blue-50/50 p-8 border-l-8 border-blue-600 md:rounded-r-[2.5rem]",
+          "my-10 flex items-center gap-6 rounded-3xl border-l-8 border-blue-600 bg-blue-50/50 p-8 md:rounded-r-[2.5rem]",
           className
         )}
       >
-        <Lightbulb className="hidden h-10 w-10 text-blue-600 shrink-0 md:block" />
+        <Lightbulb className="hidden h-10 w-10 shrink-0 text-blue-600 md:block" />
         <blockquote
-          className="text-lg font-bold italic text-blue-900"
+          className="text-lg font-bold text-blue-900 italic"
           {...props}
         />
       </div>
@@ -136,7 +147,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         <Image
           fill
           src={src || ""}
-          alt={alt || "AEM DEV WEB Content Image"}
+          alt={alt || "AEMDEVWEB Content Image"}
           className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 50vw"
           {...props}
@@ -157,8 +168,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
 
-    // 4. Custom Registry (พาร์ทสำคัญที่แก้ Error)
-    Hero, // ✅ ลงทะเบียนเรียบร้อย เรียกใช้ <Hero /> ใน MDX ได้เลย
+    // 4. Custom Registry (ลงทะเบียนเพื่อใช้ในไฟล์ .mdx)
+    Hero,
+    ContactInfo,
     ProjectCard,
     Card,
     CardHeader,
@@ -168,6 +180,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     CardFooter,
     Button,
     Badge,
+    Input,
 
     // 5. Lucide Icons Registry
     Layout,
@@ -199,5 +212,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     PiggyBank,
     Users,
     PenTool,
+    Terminal,
+    Mail,
+    MessageSquare,
+    Send,
+    Clock,
+    Phone,
+    Facebook,
   };
 }

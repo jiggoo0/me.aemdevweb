@@ -1,131 +1,183 @@
 /** @format */
 
 import Link from "next/link";
-import { Mail, Phone, MapPin, Globe, ArrowUpRight } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Globe,
+  ArrowUpRight,
+  ShieldCheck,
+} from "lucide-react";
 import Container from "./Container";
 import SocialLinks from "../shared/SocialLinks";
 
 /**
- * Footer Component - ฉบับพาร์ทเนอร์ดูแลระบบและ SEO Organic
+ * 🏗️ Footer Component - ฉบับพาร์ทเนอร์ดูแลระบบและ SEO Organic
  * ปรับปรุงการเชื่อมโยงข้อมูลให้สอดคล้องกับตัวตน Alongkorl Yomkerd (นายเอ็มซ่ามากส์)
- * เน้นความขลังและความน่าเชื่อถือด้วยข้อมูลที่ชัดเจนและ Professional UI
+ * เน้นความน่าเชื่อถือด้วยข้อมูลที่ชัดเจนและ Professional Dark UI
  */
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  // ข้อมูลโปรไฟล์ที่อัปเดตตามจริง (อ้างอิงจากข้อมูลความเชี่ยวชาญล่าสุด)
+  // ข้อมูลโปรไฟล์ (อ้างอิงจากฐานข้อมูลตัวตนล่าสุดของคุณ)
   const profile = {
     name: "อลงกรณ์ ยมเกิด",
     nickname: "นายเอ็มซ่ามากส์",
-    location: "กำแพงเพชร, ประเทศไทย",
-    email: "me@aemdevweb.com", // ปรับให้เป็นอีเมลธุรกิจเพื่อความน่าเชื่อถือ
-    phone: "012-345-6789", // แก้ไขเป็นเบอร์จริงของคุณเมื่อพร้อม
+    location: "กรุงเทพมหานคร, ประเทศไทย", // อัปเดตตามข้อมูลล่าสุดที่ระบุไว้
+    email: "me@aemdevweb.com",
+    phone: "099-999-8989", // อัปเดตตามข้อมูลใน siteConfig
   };
 
   return (
-    <footer className="w-full border-t border-slate-900 bg-slate-950 pt-20 pb-10 text-slate-300">
+    <footer className="w-full border-t border-slate-900 bg-slate-950 pt-24 pb-12 text-slate-300">
       <Container>
-        <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-          
-          {/* Section 1: Brand Identity - เน้นความเป็นผู้อยู่เบื้องหลังระบบ */}
-          <div className="space-y-6 lg:col-span-1">
+        <div className="mb-20 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+          {/* Section 1: Brand Identity - ตัวตนในฐานะ Specialist */}
+          <div className="space-y-8 lg:col-span-1">
             <Link href="/" className="group flex w-fit flex-col">
-              <span className="text-2xl font-black leading-none tracking-tight text-white transition-colors group-hover:text-blue-500">
+              <span className="text-3xl leading-none font-black tracking-tighter text-white transition-colors group-hover:text-blue-500">
                 ALONGKORL
               </span>
-              <span className="mt-1 text-[10px] font-black uppercase tracking-[0.2em] text-blue-500">
-                AemDevWeb Owner
+              <span className="mt-1 text-[11px] font-black tracking-[0.3em] text-blue-500 uppercase">
+                AEMDEVWEB OWNER
               </span>
             </Link>
-            <p className="text-sm font-medium leading-relaxed italic text-slate-400">
-              "ผู้อยู่เบื้องหลังโครงสร้างทางเทคนิคของ Unlink-th และที่ปรึกษาการพัฒนา Next.js ที่เน้นผลลัพธ์จาก SEO Organic ระดับลึก"
+            <p className="max-w-[240px] text-sm leading-relaxed font-medium text-slate-400 italic">
+              "ที่ปรึกษาการพัฒนา Next.js และผู้วางรากฐาน Technical SEO
+              ให้กับระบบ Unlink-th มุ่งเน้นการสร้าง Digital Asset ที่ยั่งยืน"
             </p>
             <SocialLinks variant="aemdevweb" className="pt-2" />
           </div>
 
-          {/* Section 2: Quick Navigation - เมนูที่เข้าถึงง่ายช่วยเรื่อง SEO Crawling */}
-          <div className="space-y-6">
-            <h4 className="border-l-2 border-blue-600 pl-3 text-sm font-black uppercase tracking-widest text-white">
-              เมนูหลัก
+          {/* Section 2: Quick Navigation - เมนูเพื่อการ Crawling ที่ดีขึ้น */}
+          <div className="space-y-8">
+            <h4 className="border-l-4 border-blue-600 pl-4 text-xs font-black tracking-[0.2em] text-white uppercase">
+              Navigation
             </h4>
-            <nav className="flex flex-col space-y-3 text-sm font-black">
-              <Link href="/" className="transition-colors hover:text-blue-400">หน้าแรก</Link>
-              <Link href="/about" className="transition-colors hover:text-blue-400">เกี่ยวกับเอ็ม</Link>
-              <Link href="/services" className="transition-colors hover:text-blue-400">บริการทั้งหมด</Link>
-              <Link href="/projects" className="transition-colors hover:text-blue-400">ผลงานที่ผ่านมา</Link>
-              <Link href="/blog" className="transition-colors hover:text-blue-400">คลังความรู้ SEO</Link>
-              <Link href="/contact" className="transition-colors hover:text-blue-400">ติดต่อจ้างงาน</Link>
+            <nav className="flex flex-col space-y-4 text-sm font-bold">
+              <Link href="/" className="transition-colors hover:text-blue-400">
+                หน้าแรก
+              </Link>
+              <Link
+                href="/about"
+                className="transition-colors hover:text-blue-400"
+              >
+                รู้จักนายเอ็ม
+              </Link>
+              <Link
+                href="/services"
+                className="transition-colors hover:text-blue-400"
+              >
+                บริการและราคา
+              </Link>
+              <Link
+                href="/projects"
+                className="transition-colors hover:text-blue-400"
+              >
+                เคสความสำเร็จ
+              </Link>
+              <Link
+                href="/blog"
+                className="transition-colors hover:text-blue-400"
+              >
+                คลังความรู้ SEO
+              </Link>
+              <Link
+                href="/contact"
+                className="transition-colors hover:text-blue-400"
+              >
+                ติดต่อจ้างงาน
+              </Link>
             </nav>
           </div>
 
-          {/* Section 3: Authority Proof - ตอกย้ำความเป็นเจ้าของระบบ Unlink-th */}
-          <div className="space-y-6">
-            <h4 className="border-l-2 border-slate-600 pl-3 text-sm font-black uppercase tracking-widest text-white">
-              Featured Case
+          {/* Section 3: Authority Case Study - การเชื่อมโยงแบรนด์หลัก */}
+          <div className="space-y-8">
+            <h4 className="border-l-4 border-slate-600 pl-4 text-xs font-black tracking-[0.2em] text-white uppercase">
+              Featured Work
             </h4>
             <div className="space-y-4">
-              <Link 
-                href="https://www.unlink-th.com" 
+              <Link
+                href="https://www.unlink-th.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block rounded-2xl border border-slate-800 bg-slate-900/50 p-4 shadow-sm transition-all hover:border-blue-500/50"
+                className="group block rounded-[2rem] border border-slate-800 bg-slate-900/40 p-5 transition-all hover:border-blue-500/50 hover:bg-slate-900"
               >
-                <span className="mb-1 block text-xs font-black uppercase text-blue-400">Unlink-th Platform</span>
-                <span className="flex items-center justify-between text-sm font-bold text-slate-200">
-                  Reputation Management 
-                  <ArrowUpRight className="h-4 w-4 opacity-50 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:opacity-100" />
+                <div className="mb-2 flex items-center gap-2">
+                  <ShieldCheck size={14} className="text-blue-400" />
+                  <span className="text-[10px] font-black tracking-widest text-blue-400 uppercase">
+                    Flagship Platform
+                  </span>
+                </div>
+                <span className="flex items-center justify-between text-base font-black text-slate-100">
+                  Unlink-th
+                  <ArrowUpRight className="h-5 w-5 opacity-30 transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:opacity-100" />
                 </span>
+                <p className="mt-2 text-[11px] font-medium text-slate-500">
+                  พัฒนาระบบและดูแลโครงสร้าง SEO เชิงเทคนิคแบบ 100%
+                </p>
               </Link>
-              <p className="px-1 text-[11px] font-medium leading-relaxed text-slate-500">
-                *พัฒนาระบบและดูแลโครงสร้าง SEO เชิงเทคนิคให้กับแบรนด์ Unlink-th โดยตรง
-              </p>
             </div>
           </div>
 
-          {/* Section 4: Contact Details - ข้อมูลการติดต่อที่ชัดเจน */}
-          <div className="space-y-6">
-            <h4 className="border-l-2 border-blue-600 pl-3 text-sm font-black uppercase tracking-widest text-white">
-              Get In Touch
+          {/* Section 4: Contact Details - ข้อมูลการติดต่อ Professional */}
+          <div className="space-y-8">
+            <h4 className="border-l-4 border-blue-600 pl-4 text-xs font-black tracking-[0.2em] text-white uppercase">
+              Contact
             </h4>
-            <ul className="space-y-4 text-sm font-black">
-              <li className="group flex items-center gap-3">
-                <div className="rounded-lg border border-slate-800 bg-slate-900 p-2 text-blue-400 transition-all group-hover:bg-blue-600 group-hover:text-white">
-                  <Phone size={16}/>
+            <ul className="space-y-5 text-sm font-bold">
+              <li className="group flex items-center gap-4">
+                <div className="rounded-xl border border-slate-800 bg-slate-900 p-2.5 text-blue-400 transition-all group-hover:bg-blue-600 group-hover:text-white">
+                  <Phone size={18} />
                 </div>
-                <a href={`tel:${profile.phone}`} className="transition-colors hover:text-white">{profile.phone}</a>
+                <a
+                  href={`tel:${profile.phone.replace(/-/g, "")}`}
+                  className="transition-colors hover:text-white"
+                >
+                  {profile.phone}
+                </a>
               </li>
-              <li className="group flex items-center gap-3">
-                <div className="rounded-lg border border-slate-800 bg-slate-900 p-2 text-blue-400 transition-all group-hover:bg-blue-600 group-hover:text-white">
-                  <Mail size={16}/>
+              <li className="group flex items-center gap-4">
+                <div className="rounded-xl border border-slate-800 bg-slate-900 p-2.5 text-blue-400 transition-all group-hover:bg-blue-600 group-hover:text-white">
+                  <Mail size={18} />
                 </div>
-                <a href={`mailto:${profile.email}`} className="text-[13px] transition-colors hover:text-white">{profile.email}</a>
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="transition-colors hover:text-white"
+                >
+                  {profile.email}
+                </a>
               </li>
-              <li className="flex items-center gap-3">
-                <div className="rounded-lg border border-slate-800 bg-slate-900 p-2 text-blue-400">
-                  <MapPin size={16}/>
+              <li className="flex items-center gap-4">
+                <div className="rounded-xl border border-slate-800 bg-slate-900 p-2.5 text-slate-500">
+                  <MapPin size={18} />
                 </div>
                 <span className="text-slate-400">{profile.location}</span>
               </li>
             </ul>
           </div>
-
         </div>
 
-        {/* --- Bottom Bar: Copyright & System Status --- */}
-        <div className="flex flex-col items-center justify-between gap-6 border-t border-slate-900 pt-8 md:flex-row">
-          <div className="flex flex-col items-center gap-2 font-mono text-xs text-slate-500 md:flex-row md:gap-4">
-            <span>© {currentYear} Alongkorl Yomkerd. All rights reserved.</span>
-            <span className="hidden text-slate-800 md:inline">|</span>
-            <span className="flex items-center gap-1">
-              <Globe className="h-3 w-3 animate-[spin_10s_linear_infinite]" /> Kamphaeng Phet, TH
+        {/* --- Bottom Footer: Rights & System Integrity --- */}
+        <div className="flex flex-col items-center justify-between gap-8 border-t border-slate-900 pt-12 md:flex-row">
+          <div className="flex flex-col items-center gap-3 font-mono text-[10px] tracking-widest text-slate-500 uppercase md:flex-row md:gap-6">
+            <span>© {currentYear} Alongkorl Yomkerd.</span>
+            <span className="hidden text-slate-800 md:inline">•</span>
+            <span className="flex items-center gap-2">
+              <Globe className="h-3 w-3 animate-[spin_10s_linear_infinite] text-blue-500" />
+              BANGKOK, THAILAND
             </span>
+            <span className="hidden text-slate-800 md:inline">•</span>
+            <span>Technical SEO Specialist</span>
           </div>
-          
-          <div className="flex items-center gap-4 rounded-full border border-slate-800 bg-slate-900/50 px-3 py-1.5">
-             <div className="h-2 w-2 animate-pulse rounded-full bg-green-500" />
-             <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
-               Ready for New SEO Projects
-             </span>
+
+          {/* Status Badge */}
+          <div className="flex items-center gap-3 rounded-full border border-slate-800 bg-slate-900/80 px-4 py-2 shadow-inner">
+            <div className="h-2 w-2 animate-pulse rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
+            <span className="text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase">
+              Project Availability: ACTIVE
+            </span>
           </div>
         </div>
       </Container>

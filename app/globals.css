@@ -1,43 +1,73 @@
+/** @format */
 @import "tailwindcss";
+/* ✅ ติดตั้ง Plugin สำหรับจัดการบทความ MDX */
+@plugin "@tailwindcss/typography";
 
 @theme {
-  /* นิยามตัวแปรสีที่ Shadcn UI เรียกใช้เพื่อให้ Tailwind รู้จัก */
+  /* 🎨 ระบบสีหลัก (AEMDEVWEB Specialist Palette) */
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
-  
+
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
-  
+
   --color-secondary: hsl(var(--secondary));
   --color-secondary-foreground: hsl(var(--secondary-foreground));
-  
+
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
-  
+
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
-  
+
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
-  
+
+  /* 📐 ความโค้งมนที่ดูพรีเมียม (Modern Roundness) */
+  --radius-xl: calc(var(--radius) + 4px);
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+
+  /* ✨ Animations สำหรับ UI ที่มีความลื่นไหลสูงสุด */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
 }
 
 @layer base {
   :root {
+    /* ⚪ Light Mode: สะอาดตา น่าเชื่อถือ */
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
+
+    /* 🔹 แบรนด์สีน้ำเงิน AEM DEV (Blue 600) */
     --primary: 221.2 83.2% 53.3%;
     --primary-foreground: 210 40% 98%;
+
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
     --muted: 240 4.8% 95.9%;
@@ -46,24 +76,61 @@
     --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
+
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 221.2 83.2% 53.3%;
-    --radius: 0.75rem;
+
+    --radius: 1.25rem;
   }
 
   .dark {
+    /* ⚫ Dark Mode: สำหรับงานระบบและ Unlink-th */
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
-    /* ... (ค่าสี Dark mode อื่นๆ) */
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
   }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased selection:bg-blue-600 selection:text-white;
+  }
+
+  /* 🖱️ Custom Smooth Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-50;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full border-4 border-slate-50 bg-slate-200 transition-colors hover:bg-slate-300;
+  }
+}
+
+/* 📝 ปรับแต่งสไตล์เฉพาะสำหรับ MDX Content (Technical & Clean) */
+@layer components {
+  .prose-aem {
+    @apply prose prose-slate prose-headings:font-black prose-headings:tracking-tighter prose-headings:text-slate-900 prose-p:text-slate-600 prose-p:leading-8 prose-p:font-medium prose-strong:text-slate-900 prose-strong:font-black prose-img:rounded-[2.5rem] prose-img:shadow-2xl prose-img:border-4 prose-img:border-slate-50 prose-blockquote:border-l-4 prose-blockquote:border-blue-600 prose-blockquote:bg-blue-50/50 prose-blockquote:rounded-r-2xl max-w-none;
   }
 }

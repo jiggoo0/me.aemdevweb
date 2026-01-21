@@ -17,10 +17,10 @@ const eslintConfig = [
   {
     ignores: [".next/**", "node_modules/**", "public/**"],
   },
-  
+
   // นำค่าคอนฟิกของ Next.js มาประยุกต์ใช้ใน Flat Config
   ...compat.extends("next/core-web-vitals", "next/typescript"),
-  
+
   // ตั้งค่ากฎเพิ่มเติม
   {
     rules: {

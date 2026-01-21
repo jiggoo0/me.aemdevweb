@@ -1,6 +1,6 @@
 /** @format */
 
-import { Facebook, MessageCircle } from "lucide-react";
+import { Facebook, MessageCircle, Github } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -11,55 +11,61 @@ interface SocialLinksProps {
 }
 
 /**
- * SocialLinks Component (v2 - Refactored for aemdevweb.com)
- * ใช้สำหรับแสดงช่องทางติดต่อทาง Social Media แยกตามแบรนด์
- * เน้นความสะอาดตาและ Interaction ที่ลื่นไหลตามสไตล์ผู้เชี่ยวชาญ
+ * 🏗️ SocialLinks Component (v2.1 - Refactored)
+ * ออกแบบมาเพื่อสร้างการเชื่อมต่อระหว่างพาร์ทเนอร์กับลูกค้า
+ * แยกชุดข้อมูลตามแบรนด์ (AEMDEVWEB / Unlink-th) เพื่อความแม่นยำในการทำอันดับ
  */
 export default function SocialLinks({
   className,
   variant = "aemdevweb",
   showLabel = true,
 }: SocialLinksProps) {
-  // กำหนดข้อมูลลิงก์แยกตาม Variant เพื่อรองรับทั้ง AemDevWeb และ Unlink-th
+  // ชุดข้อมูลลิงก์ที่ได้รับการตรวจสอบความถูกต้อง (อ้างอิงจากโปรไฟล์ Alongkorl Yomkerd)
   const links =
     variant === "aemdevweb"
       ? [
           {
-            name: "AemDevWeb Page",
+            name: "Line Official",
+            href: "https://lin.ee/dDHISbG",
+            icon: <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />,
+            color: "group-hover:text-[#00B900] group-hover:bg-green-50",
+          },
+          {
+            name: "AEMDEVWEB Page",
             href: "https://www.facebook.com/aemdevweb",
-            icon: <Facebook className="h-5 w-5" />,
-            color: "hover:text-blue-600 hover:bg-blue-50/80",
+            icon: <Facebook className="h-4 w-4 md:h-5 md:w-5" />,
+            color: "group-hover:text-[#1877F2] group-hover:bg-blue-50",
           },
           {
             name: "นายเอ็มซ่ามากส์",
             href: "https://www.facebook.com/profile.php?id=61586317184043",
-            icon: <Facebook className="h-5 w-5" />,
-            color: "hover:text-blue-500 hover:bg-blue-50/80",
+            icon: <Facebook className="h-4 w-4 md:h-5 md:w-5" />,
+            color: "group-hover:text-[#1877F2] group-hover:bg-blue-50",
           },
           {
-            name: "Line Official",
-            href: "https://lin.ee/dDHISbG",
-            icon: <MessageCircle className="h-5 w-5" />,
-            color: "hover:text-green-600 hover:bg-green-50/80",
+            name: "GitHub",
+            href: "https://github.com/jiggoo0",
+            icon: <Github className="h-4 w-4 md:h-5 md:w-5" />,
+            color: "group-hover:text-slate-900 group-hover:bg-slate-100",
           },
         ]
       : [
           {
-            name: "Unlink-th Official",
-            href: "https://www.facebook.com/profile.php?id=61586111353518",
-            icon: <Facebook className="h-5 w-5" />,
-            color: "hover:text-blue-900 hover:bg-slate-100",
-          },
-          {
             name: "Unlink-th Line",
             href: "https://lin.ee/EkHkRvI",
-            icon: <MessageCircle className="h-5 w-5" />,
-            color: "hover:text-green-700 hover:bg-slate-100",
+            icon: <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />,
+            color: "group-hover:text-[#00B900] group-hover:bg-green-50",
+          },
+          {
+            name: "Unlink-th Official",
+            href: "https://www.facebook.com/profile.php?id=61586111353518",
+            icon: <Facebook className="h-4 w-4 md:h-5 md:w-5" />,
+            color: "group-hover:text-[#1877F2] group-hover:bg-blue-50",
           },
         ];
 
   return (
-    <div className={cn("flex flex-wrap gap-2 md:gap-3", className)}>
+    <div className={cn("flex flex-wrap gap-3 md:gap-4", className)}>
       {links.map((link) => (
         <Link
           key={link.name}
@@ -67,18 +73,18 @@ export default function SocialLinks({
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
-            "group flex items-center gap-2.5 rounded-xl border border-transparent px-3.5 py-2 transition-all duration-300",
-            "bg-slate-50/50 text-slate-600",
-            link.color,
-            "hover:border-current/10 hover:shadow-sm"
+            "group flex items-center gap-3 rounded-2xl border border-slate-100 px-5 py-3 transition-all duration-500",
+            "bg-white/50 text-slate-500 backdrop-blur-sm",
+            "hover:-translate-y-1.5 hover:border-transparent hover:shadow-xl hover:shadow-slate-200/50",
+            link.color
           )}
           aria-label={link.name}
         >
-          <span className="transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110">
+          <span className="transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12">
             {link.icon}
           </span>
           {showLabel && (
-            <span className="text-sm font-black tracking-tight">
+            <span className="text-[11px] font-black tracking-[0.15em] uppercase transition-colors">
               {link.name}
             </span>
           )}

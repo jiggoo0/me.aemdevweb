@@ -5,21 +5,15 @@ import path from "path";
 import { notFound } from "next/navigation";
 import Container from "@/components/layout/Container";
 import { Button } from "@/components/ui/button";
-import {
-  ArrowLeft,
-  Calendar,
-  User,
-  Search,
-  // ShieldCheck, // ❌ ตัดออกเนื่องจากไม่ได้ใช้ในหน้านี้
-  // HeartHandshake, // ❌ ตัดออกเนื่องจากไม่ได้ใช้ในหน้านี้
-} from "lucide-react";
+import { ArrowLeft, Calendar, User, Search, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import matter from "gray-matter";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 
 /**
- * Metadata Generation (SEO)
+ * 📈 Metadata Generation (SEO Specialist Strategy)
+ * ดึงข้อมูลจาก Frontmatter เพื่อสร้าง Meta Tags ที่ Google รัก
  */
 export async function generateMetadata({
   params,
@@ -28,17 +22,41 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
-  if (!fs.existsSync(filePath)) return {};
+
+  if (!fs.existsSync(filePath)) return { title: "Post Not Found" };
+
   const fileContents = fs.readFileSync(filePath, "utf8");
   const { data } = matter(fileContents);
+
   return {
-    title: `${data.title} | นายเอ็มซ่ามากส์`,
+    title: `${data.title} | นายเอ็มซ่ามากส์ (AEMDEVWEB)`,
     description: data.description,
+    openGraph: {
+      title: data.title,
+      description: data.description,
+      type: "article",
+      publishedTime: data.date,
+      authors: [data.author || "Alongkorl Yomkerd"],
+      images: [
+        {
+          url: data.image || "/images/blog/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: data.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: data.title,
+      description: data.description,
+      images: [data.image || "/images/blog/og-image.png"],
+    },
   };
 }
 
 /**
- * BlogPostPage Component
+ * 📄 BlogPostPage Component
  */
 export default async function BlogPostPage({
   params,
@@ -52,42 +70,47 @@ export default async function BlogPostPage({
     notFound();
   }
 
-  // 1. ดึงข้อมูล Metadata ผ่าน gray-matter
+  // 1. ดึงข้อมูล Frontmatter
   const fileContents = fs.readFileSync(filePath, "utf8");
   const { data } = matter(fileContents);
 
-  // 2. Dynamic Import ตัวเนื้อหา MDX
+  // 2. Dynamic Import ตัวเนื้อหา MDX (ต้องตรงกับ Path ในระบบไฟล์)
   const { default: PostContent } = await import(`@/content/blog/${slug}.mdx`);
 
   return (
-    <article className="bg-white py-12 md:py-20">
-      <Container className="max-w-4xl">
-        {/* --- Navigation --- */}
-        <Button
-          variant="ghost"
-          size="sm"
-          asChild
-          className="mb-10 font-bold transition-colors hover:bg-blue-50 hover:text-blue-600"
-        >
-          <Link href="/blog">
-            <ArrowLeft className="mr-2 h-4 w-4" /> กลับสู่คลังความรู้
+    <article className="bg-white py-12 md:py-24">
+      <Container className="max-w-4xl px-6">
+        {/* --- Breadcrumb Navigation --- */}
+        <nav className="mb-12 flex items-center gap-2 text-sm font-bold text-slate-400">
+          <Link href="/blog" className="transition-colors hover:text-blue-600">
+            คลังความรู้
           </Link>
-        </Button>
+          <ChevronRight size={14} />
+          <span className="truncate text-slate-300">{data.title}</span>
+        </nav>
 
         {/* --- Header Section --- */}
-        <header className="mb-12 space-y-8">
-          <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-5 py-2 text-xs font-black uppercase tracking-[0.2em] text-blue-600 shadow-sm">
-            <Search className="h-3.5 w-3.5" /> Organic Search Strategy
+        <header className="mb-16 space-y-8 text-center md:text-left">
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-5 py-2 text-xs font-black tracking-[0.2em] text-blue-600 uppercase shadow-sm">
+            <Search className="h-3.5 w-3.5" /> Organic Strategy 2026
           </div>
-          <h1 className="text-4xl font-black leading-tight text-slate-900 md:text-6xl lg:leading-[1.1]">
+
+          <h1 className="text-4xl leading-[1.15] font-black text-slate-900 md:text-6xl">
             {data.title}
           </h1>
-          <div className="flex flex-wrap items-center gap-6 text-sm font-black uppercase tracking-widest text-slate-400">
-            <div className="flex items-center gap-2 border-slate-200 pr-0 md:border-r md:pr-6">
+
+          <div className="flex flex-wrap items-center justify-center gap-8 border-t border-slate-50 pt-8 text-sm font-black tracking-widest text-slate-400 uppercase md:justify-start">
+            <div className="flex items-center gap-3">
               <Calendar size={18} className="text-blue-500" />
-              <span className="text-slate-600">{data.date}</span>
+              <span className="text-slate-600">
+                {new Date(data.date).toLocaleDateString("th-TH", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <User size={18} className="text-blue-500" />
               <span className="text-slate-600">
                 {data.author || "Alongkorl Yomkerd"}
@@ -96,39 +119,58 @@ export default async function BlogPostPage({
           </div>
         </header>
 
-        {/* --- Article Content Section --- */}
-        <div
-          className="prose prose-slate max-w-none lg:prose-xl 
-          prose-headings:scroll-m-20 prose-headings:font-black prose-headings:text-slate-900 
-          prose-p:font-medium prose-p:leading-8 prose-p:text-slate-600
-          prose-a:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800
-          prose-blockquote:rounded-r-2xl prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50/50
-          prose-img:rounded-[2rem] prose-img:border-2 prose-img:border-slate-100 shadow-none"
-        >
+        {/* --- Article Content (Render MDX) --- */}
+        <section className="prose prose-slate lg:prose-xl prose-headings:scroll-m-20 prose-headings:font-black prose-headings:text-slate-900 prose-p:font-medium prose-p:leading-8 prose-p:text-slate-600 prose-a:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-blockquote:rounded-3xl prose-blockquote:border-l-8 prose-blockquote:border-blue-600 prose-blockquote:bg-blue-50/50 prose-blockquote:p-8 prose-img:rounded-[2.5rem] prose-img:border-4 prose-img:border-slate-50 max-w-none shadow-none">
           <PostContent />
-        </div>
+        </section>
 
-        {/* --- CTA Section --- */}
-        <div className="relative mt-24 overflow-hidden rounded-[3.5rem] bg-slate-950 p-10 text-white shadow-2xl md:p-16 border border-white/5">
-          <div className="absolute right-0 top-0 -mr-32 -mt-32 h-64 w-64 rounded-full bg-blue-600/10 blur-3xl" />
-          <div className="relative z-10 text-center md:text-left">
-            <h3 className="mb-6 text-3xl font-black md:text-5xl">
-              อยากเปลี่ยนเว็บไซต์ให้เป็น <br className="hidden md:block" />{" "}
-              "สินทรัพย์" ที่ช่วยหาเงินไหมครับ?
-            </h3>
-            <Button
-              className="h-16 rounded-full bg-blue-600 px-12 text-xl font-black shadow-xl shadow-blue-600/30 transition-all hover:scale-105"
-              asChild
-            >
-              <Link href="/contact">ปรึกษาเรื่อง SEO ฟรี</Link>
-            </Button>
+        {/* --- Dynamic CTA Section --- */}
+        <footer className="mt-28">
+          <div className="relative overflow-hidden rounded-[4rem] border border-white/5 bg-slate-950 p-12 text-center shadow-2xl md:p-20">
+            <div className="absolute -top-20 -right-20 h-80 w-80 rounded-full bg-blue-600/20 blur-[100px]" />
+            <div className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-indigo-600/10 blur-[100px]" />
+
+            <div className="relative z-10">
+              <h3 className="mb-8 text-3xl leading-tight font-black text-white italic md:text-5xl">
+                อยากเปลี่ยนเว็บไซต์ให้เป็น <br />
+                <span className="text-blue-400">
+                  "เครื่องจักรผลิตเงิน"
+                </span>{" "}
+                ไหมครับ?
+              </h3>
+              <p className="mx-auto mb-12 max-w-2xl text-lg font-medium text-slate-400">
+                ผมยินดีให้คำปรึกษาเรื่องการวางโครงสร้าง SEO และเทคโนโลยี Next.js
+                เพื่อให้ธุรกิจพี่เติบโตอย่างยั่งยืนบนหน้าแรก Google
+              </p>
+              <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
+                <Button
+                  className="h-16 w-full rounded-full bg-blue-600 px-12 text-xl font-black shadow-xl shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 md:w-auto"
+                  asChild
+                >
+                  <Link href="/contact">ปรึกษาเรื่อง SEO ฟรี</Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="h-16 w-full rounded-full text-xl font-black text-white hover:bg-white/10 md:w-auto"
+                  asChild
+                >
+                  <Link href="/blog">
+                    <ArrowLeft className="mr-2 h-5 w-5" /> อ่านบทความอื่น
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </div>
-        </div>
+        </footer>
       </Container>
     </article>
   );
 }
 
+/**
+ * 🛠️ Static Generation
+ * บังคับให้ Next.js สร้างหน้า Static ล่วงหน้าทั้งหมดเพื่อความเร็วสูงสุด
+ */
 export async function generateStaticParams() {
   if (!fs.existsSync(BLOG_DIR)) return [];
   const files = fs.readdirSync(BLOG_DIR);

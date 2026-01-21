@@ -74,7 +74,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
       image: data.image,
       tags: data.tags,
     } as BlogPost;
-  } catch { 
+  } catch {
     // ✅ ลบ (error) ออก เพราะเราแค่ต้องการส่งค่า null กลับเมื่อเกิดปัญหา
     return null;
   }

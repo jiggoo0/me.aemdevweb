@@ -1,53 +1,58 @@
-import ContactInfo from "@/components/profile/ContactInfo"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent } from "@/components/ui/card"
-import { MessageSquare, Send, Clock, ShieldCheck, Search, Mail, HeartHandshake } from "lucide-react"
-import Link from "next/link"
+---
+title: "ติดต่อสอบถาม / ปรึกษาโปรเจกต์ - นายเอ็มซ่ามากส์"
+description: "ปรึกษาเรื่องทำเว็บไซต์ SEO และการตลาดออนไลน์แบบพี่น้อง ฝากรายละเอียดโปรเจกต์ให้นายเอ็มวิเคราะห์โครงสร้างฟรี"
+---
 
-# <Mail className="inline-block mr-3 h-8 w-8 text-blue-600" /> ติดต่อสอบถาม / ปรึกษาโปรเจกต์
-
-ไม่ว่าพี่จะอยากเริ่มปั้นเว็บไซต์ใหม่ให้ติดหน้าแรก Google หรือต้องการพาร์ทเนอร์คอยดูแลระบบและจัดการชื่อเสียงออนไลน์ ผมพร้อมรับฟังและให้คำปรึกษาแบบพี่น้องครับ
+<Hero
+  title="ติดต่อสอบถาม"
+  highlight="ปรึกษาโปรเจกต์"
+  subtitle="ไม่ว่าพี่จะอยากเริ่มปั้นเว็บไซต์ใหม่ให้ติดหน้าแรก Google หรือต้องการพาร์ทเนอร์ดูแลระบบ ผมพร้อมรับฟังครับ"
+/>
 
 ---
 
-{/* ส่วนข้อมูลการติดต่อหลัก (LINE, Email, Facebook) */}
+{/* 📞 ส่วนข้อมูลการติดต่อหลัก (ดึงจาก Component ที่ลงทะเบียนไว้) */}
+
 <ContactInfo />
 
 ---
 
 ### <MessageSquare className="inline-block mr-3 h-7 w-7 text-blue-600" /> ฝากรายละเอียดให้ผมติดต่อกลับ
 
-ถ้าพี่ไม่สะดวกโทรหรือแชทในตอนนี้ สามารถฝากรายละเอียดไว้ให้ผมวิเคราะห์เบื้องต้นก่อนได้ครับ ข้อมูลของพี่จะถูกเก็บเป็นความลับสูงสุด
+ถ้าพี่ไม่สะดวกโทรหรือแชทในตอนนี้ สามารถฝากรายละเอียดไว้ให้ผมวิเคราะห์เบื้องต้นก่อนได้ครับ **ข้อมูลของพี่จะถูกเก็บเป็นความลับสูงสุด**
 
-<Card className="my-10 border-2 shadow-lg rounded-[2.5rem] overflow-hidden">
-  <CardContent className="pt-8 space-y-6">
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+<Card className="my-10 border-2 shadow-xl shadow-slate-200/50 rounded-[2.5rem] overflow-hidden bg-white">
+  <CardContent className="pt-10 pb-10 space-y-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div className="space-y-3">
-        <label className="text-sm font-black text-slate-700 uppercase tracking-wider">ชื่อ-นามสกุล / ชื่อธุรกิจ</label>
-        <Input className="h-12 rounded-2xl bg-slate-50/50" placeholder="ระบุชื่อเพื่อให้ผมเรียกถูกครับ" />
+        <label className="text-xs font-black text-slate-400 uppercase tracking-widest pl-1">ชื่อ-นามสกุล / ชื่อธุรกิจ</label>
+        <Input className="h-14 rounded-2xl bg-slate-50/50 border-slate-200 focus:bg-white focus:border-blue-500 text-lg" placeholder="ระบุชื่อเพื่อให้ผมเรียกถูกครับ" />
       </div>
       <div className="space-y-3">
-        <label className="text-sm font-black text-slate-700 uppercase tracking-wider">ช่องทางติดต่อกลับ</label>
-        <Input className="h-12 rounded-2xl bg-slate-50/50" placeholder="เบอร์โทร, LINE ID หรือ อีเมล" />
+        <label className="text-xs font-black text-slate-400 uppercase tracking-widest pl-1">ช่องทางติดต่อกลับ</label>
+        <Input className="h-14 rounded-2xl bg-slate-50/50 border-slate-200 focus:bg-white focus:border-blue-500 text-lg" placeholder="เบอร์โทร, LINE ID หรือ อีเมล" />
       </div>
     </div>
+    
     <div className="space-y-3">
-      <label className="text-sm font-black text-slate-700 uppercase tracking-wider">สิ่งที่พี่ต้องการปรึกษา</label>
-      <Input className="h-12 rounded-2xl bg-slate-50/50" placeholder="เช่น ปั้นอันดับ SEO, สร้างเว็บ SME หรือ ปรึกษาเรื่อง Unlink-th" />
+      <label className="text-xs font-black text-slate-400 uppercase tracking-widest pl-1">สิ่งที่พี่ต้องการปรึกษา</label>
+      <Input className="h-14 rounded-2xl bg-slate-50/50 border-slate-200 focus:bg-white focus:border-blue-500 text-lg" placeholder="เช่น ปั้นอันดับ SEO, สร้างเว็บ SME หรือ ปรึกษาเรื่อง Unlink-th" />
     </div>
+
     <div className="space-y-3">
-      <label className="text-sm font-black text-slate-700 uppercase tracking-wider">รายละเอียดที่อยากให้ผมช่วย</label>
-      <textarea 
-        className="flex min-h-[150px] w-full rounded-[2rem] border border-input bg-slate-50/50 px-5 py-4 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all"
+      <label className="text-xs font-black text-slate-400 uppercase tracking-widest pl-1">รายละเอียดที่อยากให้ผมช่วย</label>
+      <textarea
+        className="flex min-h-[180px] w-full rounded-[2rem] border-2 border-slate-100 bg-slate-50/50 px-6 py-5 text-base shadow-none placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 transition-all focus:bg-white"
         placeholder="พี่สามารถเล่าปัญหาหรือเป้าหมายที่อยากทำให้ฟังได้เลยครับ เพื่อให้ผมเตรียมข้อมูลไปช่วยพี่ได้แม่นยำขึ้น"
       />
     </div>
-    <div className="pt-2">
-      <Button className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 h-16 px-12 rounded-full font-black text-lg shadow-xl shadow-blue-600/20 transition-transform hover:scale-105">
-        <Send className="mr-2 h-5 w-5" /> ส่งข้อมูลให้นายเอ็มวิเคราะห์
+
+    <div className="pt-4">
+      <Button className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 h-16 px-12 rounded-full font-black text-xl shadow-xl shadow-blue-600/30 transition-transform hover:scale-105 active:scale-95">
+        <Send className="mr-3 h-6 w-6" /> ส่งข้อมูลให้นายเอ็มวิเคราะห์
       </Button>
     </div>
+
   </CardContent>
 </Card>
 
@@ -57,23 +62,35 @@ import Link from "next/link"
 
 ผมให้ความสำคัญกับทุกเคส และมุ่งมั่นที่จะช่วยหาทางออกให้พี่โดยเร็วที่สุดครับ
 
-* **ช่วงเวลาให้คำปรึกษา:** จันทร์ - ศุกร์ (09:00 - 18:00 น.)
-* **การตอบกลับ:** โดยปกติผมจะติดต่อกลับภายใน 24 ชั่วโมง (เว้นวันหยุดเสาร์-อาทิตย์)
-* **กรณีเร่งด่วน:** แนะนำให้ทัก LINE Official มาได้เลยครับ ผมจะรีบตอบกลับให้ไวที่สุด
+- <Zap className="mr-2 inline-block h-4 w-4 text-amber-500" />
+  **ช่วงเวลาให้คำปรึกษา:** จันทร์ - ศุกร์ (09:00 - 18:00 น.)
+- <CheckCircle2 className="mr-2 inline-block h-4 w-4 text-green-500" />
+  **การตอบกลับ:** โดยปกติผมจะติดต่อกลับภายใน 24 ชั่วโมง
+  (เว้นวันหยุดเสาร์-อาทิตย์)
+- <Star className="mr-2 inline-block h-4 w-4 text-blue-500" /> **กรณีเร่งด่วน:**
+  แนะนำให้ทัก LINE Official มาได้เลยครับ ผมจะรีบตอบกลับให้ไวที่สุด
 
 ---
 
-<div className="flex flex-col md:flex-row items-center justify-center gap-10 py-12 border-t border-dashed">
-  <div className="flex items-center gap-3 text-slate-600 font-bold">
-    <Search size={24} className="text-blue-500" />
-    <span>วิเคราะห์โครงสร้าง SEO เบื้องต้นฟรี</span>
+<div className="flex flex-col md:flex-row items-center justify-center gap-10 py-16 border-t border-dashed border-slate-200">
+  <div className="flex items-center gap-4 group">
+    <div className="bg-blue-50 p-3 rounded-2xl group-hover:bg-blue-100 transition-colors">
+      <Search size={24} className="text-blue-600" />
+    </div>
+    <span className="text-slate-700 font-bold text-lg">วิเคราะห์โครงสร้าง SEO ฟรี</span>
   </div>
-  <div className="flex items-center gap-3 text-slate-600 font-bold">
-    <ShieldCheck size={24} className="text-green-500" />
-    <span>รักษาความลับของโปรเจกต์ 100%</span>
+  
+  <div className="flex items-center gap-4 group">
+    <div className="bg-green-50 p-3 rounded-2xl group-hover:bg-green-100 transition-colors">
+      <ShieldCheck size={24} className="text-green-600" />
+    </div>
+    <span className="text-slate-700 font-bold text-lg">รักษาความลับโปรเจกต์ 100%</span>
   </div>
-  <div className="flex items-center gap-3 text-slate-600 font-bold">
-    <HeartHandshake size={24} className="text-orange-500" />
-    <span>พร้อมเป็นพาร์ทเนอร์ดูแลระยะยาว</span>
+
+  <div className="flex items-center gap-4 group">
+    <div className="bg-orange-50 p-3 rounded-2xl group-hover:bg-orange-100 transition-colors">
+      <HeartHandshake size={24} className="text-orange-600" />
+    </div>
+    <span className="text-slate-700 font-bold text-lg">พร้อมเป็นพาร์ทเนอร์ระยะยาว</span>
   </div>
 </div>
