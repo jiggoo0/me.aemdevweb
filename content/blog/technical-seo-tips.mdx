@@ -16,15 +16,11 @@ isFeatured: true
 
 วันนี้ผมจะพาพี่ไปเจาะลึก 5 ปัจจัยทางเทคนิค (Technical SEO) ที่เปรียบเสมือน **"รากฐานของตึก"** ถ้าฐานแน่น ตึกก็จะสูงและมั่นคงครับ
 
-![Technical SEO Optimization](/images/service/Unlink-th.webp)
-
 ---
 
 ### <Search className="inline-block mr-2 h-6 w-6 text-blue-600" /> 1. JSON-LD Structured Data: ล่ามแปลภาษาให้ Google เข้าใจ
 
-พี่เคยสงสัยไหมครับว่า ทำไมบางเว็บเวลาค้นหาใน Google แล้วมี "ดาวรีวิว" ขึ้นโชว์? หรือมี "ราคาสินค้า" แสดงขึ้นมาเลยโดยไม่ต้องกดเข้าเว็บ? สิ่งนั้นเรียกว่า **Rich Snippets** ครับ และกุญแจสำคัญของมันคือ **Structured Data**
-
-#### มาตรฐานของ AEMDEVWEB
+พี่เคยสงสัยไหมครับว่า ทำไมบางเว็บเวลาค้นหาใน Google แล้วมี "ดาวรีวิว" ขึ้นโชว์? สิ่งนั้นเรียกว่า **Rich Snippets** ครับ และกุญแจสำคัญของมันคือ **Structured Data**
 
 ในทุกโปรเจกต์ที่ผมดูแล ผมจะฝังชุดข้อมูล **JSON-LD** (JavaScript Object Notation for Linked Data) คือการกระซิบข้างหู Google ว่าหน้านี้คือสินค้า ราคาเท่าไหร่ มีคนรีวิวอย่างไร เพื่อให้ธุรกิจของพี่ดูโดดเด่นและน่าคลิกกว่าคู่แข่งตั้งแต่หน้าค้นหาครับ
 
@@ -34,9 +30,9 @@ isFeatured: true
 
 ปี 2026 Google ประกาศชัดเจนว่า **"User Experience (UX)"** คือปัจจัยหลักในการจัดอันดับ และตัวชี้วัดที่สำคัญที่สุดคือ **Core Web Vitals** ครับ
 
-- **LCP (Largest Contentful Paint):** ความเร็วในการโหลดส่วนที่ใหญ่ที่สุด ต้องไม่เกิน 2.5 วินาที
-- **INP (Interaction to Next Paint):** ความไวในการตอบสนอง เวลากดปุ่มแล้วเว็บต้องเด้งรับทันที
-- **CLS (Cumulative Layout Shift):** ความนิ่งของหน้าเว็บ (ปุ่มห้ามเด้งหนีตอนจะกด)
+* **LCP (Largest Contentful Paint):** ความเร็วในการโหลดส่วนที่ใหญ่ที่สุด ต้องไม่เกิน 2.5 วินาที
+* **INP (Interaction to Next Paint):** ความไวในการตอบสนอง เวลากดปุ่มแล้วเว็บต้องเด้งรับทันที
+* **CLS (Cumulative Layout Shift):** ความนิ่งของหน้าเว็บ (ปุ่มห้ามเด้งหนีตอนจะกด)
 
 ผมเลือกใช้ **Next.js** เวอร์ชันล่าสุดในการพัฒนา เพราะมีฟีเจอร์อย่าง **Partial Prerendering (PPR)** ที่ช่วยให้เว็บของพี่ "ลื่นหัวแตก" และ Google รักสุดๆ ครับ
 
@@ -46,20 +42,11 @@ isFeatured: true
 
 "รูปภาพ" คือฆาตกรเงียบที่ทำให้เว็บอืดครับ ผมแก้ปัญหานี้ด้วยเทคนิคระดับสากล:
 
-- **Next-Gen Formats:** แปลงรูปเป็น **.avif** หรือ **.webp** (เล็กลง 70% แต่คมชัดเท่าเดิม)
-- **Lazy Loading:** โหลดรูปเฉพาะเมื่อลูกค้าเลื่อนไปถึง ช่วยประหยัดเน็ตและเพิ่มความเร็ว
-- **Explicit Size:** ระบุขนาดให้ชัดเจนเพื่อแก้ปัญหาภาพกระตุก (CLS) 100%
+* **Next-Gen Formats:** แปลงรูปเป็น **.avif** หรือ **.webp** (เล็กลง 70% แต่คมชัดเท่าเดิม)
+* **Lazy Loading:** โหลดรูปเฉพาะเมื่อลูกค้าเลื่อนไปถึง ช่วยประหยัดเน็ตและเพิ่มความเร็ว
+* **Explicit Size:** ระบุขนาดให้ชัดเจนเพื่อแก้ปัญหาภาพกระตุก (CLS) 100%
 
-<Card className="my-10 rounded-[2rem] border-blue-100 bg-blue-50/50">
-  <CardContent className="flex items-start gap-4 pt-8">
-    <Sparkles className="mt-1 h-6 w-6 shrink-0 text-blue-600" />
-    <span className="leading-relaxed font-bold text-blue-900">
-      ผลลัพธ์ที่พิสูจน์ได้: เว็บไซต์ที่ปรับแต่งรูปภาพอย่างถูกวิธี
-      จะมีอัตราการตีกลับ (Bounce Rate) ลดลงกว่า 40% และมีโอกาสติดหน้าแรก Google
-      สูงขึ้นอย่างชัดเจนครับ
-    </span>
-  </CardContent>
-</Card>
+> **ผลลัพธ์ที่พิสูจน์ได้:** เว็บไซต์ที่ปรับแต่งรูปภาพอย่างถูกวิธี จะมีอัตราการตีกลับ (Bounce Rate) ลดลงกว่า 40% และมีโอกาสติดหน้าแรก Google สูงขึ้นอย่างชัดเจนครับ
 
 ---
 
@@ -90,7 +77,7 @@ isFeatured: true
     <div className="mt-10 flex flex-col justify-center gap-4 md:flex-row">
       <Button
         asChild
-        className="h-16 rounded-full bg-blue-600 px-12 text-xl font-black text-white shadow-xl shadow-blue-600/30 transition-transform hover:scale-105 hover:bg-blue-700"
+        className="h-16 rounded-full bg-blue-600 px-12 text-xl font-black text-white shadow-xl shadow-blue-600/40 transition-transform hover:scale-105 hover:bg-blue-700"
       >
         <Link href="/contact">ปรึกษาโปรเจกต์ฟรี</Link>
       </Button>

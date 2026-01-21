@@ -1,16 +1,16 @@
 {
-  "/_not-found/page": "/_not-found",
   "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
   "/favicon.ico/route": "/favicon.ico",
   "/robots.txt/route": "/robots.txt",
   "/sitemap.xml/route": "/sitemap.xml",
+  "/page": "/",
   "/blog/[slug]/page": "/blog/[slug]",
   "/blog/page": "/blog",
-  "/page": "/",
-  "/about/page": "/about",
-  "/contact/page": "/contact",
-  "/projects/page": "/projects",
   "/services/aem-dev/page": "/services/aem-dev",
+  "/services/unlink-th/page": "/services/unlink-th",
   "/services/page": "/services",
-  "/services/unlink-th/page": "/services/unlink-th"
+  "/contact/page": "/contact",
+  "/about/page": "/about",
+  "/projects/page": "/projects"
 }

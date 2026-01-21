@@ -15,7 +15,8 @@ import {
 
 /**
  * 🏠 HomePage - ฉบับนายเอ็มซ่ามากส์ (Alongkorl Yomkerd)
- * จุดมุ่งหมาย: สร้าง Trust และเปลี่ยนผู้เข้าชมให้เป็นพาร์ทเนอร์ธุรกิจ
+ * จุดมุ่งหมาย: สร้างความเชื่อมั่น (Trust) และเปลี่ยนผู้เข้าชมให้เป็นพาร์ทเนอร์ธุรกิจ
+ * ชูจุดเด่นเรื่อง Technical SEO และความสำเร็จจากโปรเจกต์ Unlink-th
  */
 export default function HomePage() {
   const services = [
@@ -44,13 +45,15 @@ export default function HomePage() {
 
   return (
     <>
+      {/* 🛠️ SEO Schema - ยืนยันตัวตนระดับ Specialist */}
       <Schema />
 
       <div className="flex flex-col gap-24 pb-20">
-        {/* --- Hero Section: ด่านแรกของการสร้างความน่าเชื่อถือ --- */}
+        
+        {/* --- Hero Section: ด่านแรกของการสร้าง Authority --- */}
         <Hero />
 
-        {/* --- Services Section: บริการและทางออกทางธุรกิจ --- */}
+        {/* --- Services Section: บริการและทางออกทางเทคนิค --- */}
         <Container as="section" id="services" className="scroll-m-20">
           <div className="mb-20 flex flex-col items-center space-y-6 text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-100/50 bg-blue-50 px-5 py-2 text-xs font-black tracking-[0.2em] text-blue-600 uppercase shadow-sm">
@@ -74,7 +77,7 @@ export default function HomePage() {
           </div>
         </Container>
 
-        {/* --- Blog Teaser Section: คลังความรู้และวิชาทำอันดับ --- */}
+        {/* --- Blog Teaser Section: คลังวิชาทำอันดับ --- */}
         <Container
           as="section"
           className="mt-12 border-t border-slate-50 pt-32"
@@ -104,7 +107,7 @@ export default function HomePage() {
             </Button>
           </div>
 
-          {/* Empty State / Coming Soon Articles */}
+          {/* ⏳ Coming Soon Articles - สร้างความน่าค้นหา */}
           <div className="group rounded-[3.5rem] border-4 border-dashed border-slate-100 bg-slate-50/50 p-20 text-center transition-all hover:border-blue-100">
             <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-[1.5rem] bg-white shadow-2xl shadow-slate-200/50 transition-transform group-hover:scale-110 group-hover:rotate-6">
               <Sparkles className="h-10 w-10 text-blue-500" />
@@ -119,10 +122,10 @@ export default function HomePage() {
           </div>
         </Container>
 
-        {/* --- Final CTA Section: ปิดการขาย --- */}
+        {/* --- Final CTA Section: ปิดการขายด้วยความมั่นคง --- */}
         <Container as="section">
           <div className="relative overflow-hidden rounded-[4rem] border border-white/5 bg-slate-950 px-10 py-28 text-center text-white shadow-[0_50px_100px_-20px_rgba(30,58,138,0.4)]">
-            {/* Background Grid Pattern */}
+            {/* 🌌 Atmospheric Decorations */}
             <div className="pointer-events-none absolute inset-0 bg-[url('/images/grid.svg')] opacity-10" />
             <div className="absolute -top-20 -right-20 h-96 w-96 rounded-full bg-blue-600/20 blur-[120px]" />
             <div className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-indigo-600/10 blur-[100px]" />

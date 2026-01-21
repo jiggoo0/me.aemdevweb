@@ -3,6 +3,7 @@
 /**
  * 🛠️ Schema Component (JSON-LD) - Personal Branding Strategy
  * วัตถุประสงค์: ยืนยันตัวตน "Alongkorl Yomkerd" ในฐานะ Expert บน Knowledge Graph ของ Google
+ * เชื่อมโยงประวัติการทำงานจาก LinkedIn URL ใหม่ เพื่อเพิ่มความน่าเชื่อถือ (EEAT)
  */
 export default function Schema() {
   const personSchema = {
@@ -41,10 +42,12 @@ export default function Schema() {
           addressRegion: "Thailand",
           addressCountry: "TH",
         },
+        // ✅ อัปเดต LinkedIn เป็น Custom URL ใหม่ (alongkorl-aemdevweb)
         sameAs: [
           "https://www.aemdevweb.com",
           "https://www.unlink-th.com",
           "https://www.facebook.com/aemdevweb",
+          "https://www.linkedin.com/in/alongkorl-aemdevweb",
           "https://lin.ee/dDHISbG",
           "https://github.com/jiggoo0",
         ],

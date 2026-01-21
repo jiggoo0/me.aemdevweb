@@ -1,6 +1,6 @@
 /** @format */
 
-import { Facebook, MessageCircle, Github } from "lucide-react";
+import { Facebook, MessageCircle, Github, Linkedin } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -11,19 +11,25 @@ interface SocialLinksProps {
 }
 
 /**
- * 🏗️ SocialLinks Component (v2.1 - Refactored)
+ * 🏗️ SocialLinks Component (v2.3 - LinkedIn Custom URL Updated)
  * ออกแบบมาเพื่อสร้างการเชื่อมต่อระหว่างพาร์ทเนอร์กับลูกค้า
- * แยกชุดข้อมูลตามแบรนด์ (AEMDEVWEB / Unlink-th) เพื่อความแม่นยำในการทำอันดับ
+ * อัปเดต LinkedIn URL เป็นภาษาอังกฤษเพื่อประสิทธิภาพสูงสุดด้าน SEO
  */
 export default function SocialLinks({
   className,
   variant = "aemdevweb",
   showLabel = true,
 }: SocialLinksProps) {
-  // ชุดข้อมูลลิงก์ที่ได้รับการตรวจสอบความถูกต้อง (อ้างอิงจากโปรไฟล์ Alongkorl Yomkerd)
+  // ชุดข้อมูลลิงก์ที่ได้รับการตรวจสอบความถูกต้อง (อัปเดต LinkedIn URL ใหม่)
   const links =
     variant === "aemdevweb"
       ? [
+          {
+            name: "LinkedIn",
+            href: "https://www.linkedin.com/in/alongkorl-aemdevweb",
+            icon: <Linkedin className="h-4 w-4 md:h-5 md:w-5" />,
+            color: "group-hover:text-[#0A66C2] group-hover:bg-blue-50/50",
+          },
           {
             name: "Line Official",
             href: "https://lin.ee/dDHISbG",
@@ -37,12 +43,6 @@ export default function SocialLinks({
             color: "group-hover:text-[#1877F2] group-hover:bg-blue-50",
           },
           {
-            name: "นายเอ็มซ่ามากส์",
-            href: "https://www.facebook.com/profile.php?id=61586317184043",
-            icon: <Facebook className="h-4 w-4 md:h-5 md:w-5" />,
-            color: "group-hover:text-[#1877F2] group-hover:bg-blue-50",
-          },
-          {
             name: "GitHub",
             href: "https://github.com/jiggoo0",
             icon: <Github className="h-4 w-4 md:h-5 md:w-5" />,
@@ -50,6 +50,12 @@ export default function SocialLinks({
           },
         ]
       : [
+          {
+            name: "LinkedIn",
+            href: "https://www.linkedin.com/in/alongkorl-aemdevweb",
+            icon: <Linkedin className="h-4 w-4 md:h-5 md:w-5" />,
+            color: "group-hover:text-[#0A66C2] group-hover:bg-blue-50/50",
+          },
           {
             name: "Unlink-th Line",
             href: "https://lin.ee/EkHkRvI",
