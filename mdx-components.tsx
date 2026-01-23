@@ -23,8 +23,8 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 
 // --- [Lucide Icons Registry] ---
-// รวบรวม Icons ทั้งหมดที่ใช้ในหน้า About, Contact และ Blog
 import {
+  Heart,
   Layout,
   Rocket,
   ArrowRight,
@@ -70,13 +70,13 @@ interface MdxImageProps {
 }
 
 /**
- * useMDXComponents - ฉบับพาร์ทเนอร์ดูแลระบบและ SEO Organic
- * จัดการเรื่อง Registry คอมโพเนนต์เพื่อให้ไฟล์ .mdx เรียกใช้ Tag ได้โดยไม่ต้อง Import ซ้ำ
+ * useMDXComponents - ฉบับการจัดการโครงสร้างระบบและ SEO Organic 2026
+ * แก้ไขปัญหา Prerender Error และจัดการการแสดงผลระดับสมรรถนะสูง
  */
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
-    // 1. Typography & Layout Standard
+    // 1. การจัดการหัวข้อ (Typography Standards)
     h1: ({ className, ...props }) => (
       <h1
         className={cn(
@@ -105,7 +105,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
 
-    // ✅ ป้องกัน Hydration Error ใน Next.js 15/16 โดยการใช้ span/div แทน p ในบางกรณี
+    // ✅ การจัดการ Tag ย่อยเพื่อป้องกัน Hydration Error
     p: ({ className, ...props }) => (
       <span
         className={cn(
@@ -116,59 +116,34 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
 
-    ul: ({ className, ...props }) => (
-      <ul
-        className={cn(
-          "my-6 ml-6 list-disc space-y-3 font-medium text-slate-600",
-          className
-        )}
-        {...props}
-      />
-    ),
-
-    blockquote: ({ className, ...props }) => (
-      <div
-        className={cn(
-          "my-10 flex items-center gap-6 rounded-3xl border-l-8 border-blue-600 bg-blue-50/50 p-8 md:rounded-r-[2.5rem]",
-          className
-        )}
-      >
-        <Lightbulb className="hidden h-10 w-10 shrink-0 text-blue-600 md:block" />
-        <blockquote
-          className="text-lg font-bold text-blue-900 italic"
-          {...props}
-        />
-      </div>
-    ),
-
-    // 2. Media Optimization
+    // 2. การจัดการสื่อ (Media Optimization for LCP)
     img: ({ alt, src, ...props }: MdxImageProps) => (
-      <span className="relative my-10 block aspect-video w-full overflow-hidden rounded-[2rem] border-2 border-slate-100 shadow-xl transition-transform hover:scale-[1.01]">
+      <span className="relative my-10 block aspect-video w-full overflow-hidden rounded-[2rem] border-2 border-slate-100 shadow-xl">
         <Image
           fill
           src={src || ""}
           alt={alt || "AEMDEVWEB Content Image"}
           className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 50vw"
+          sizes="(max-width: 768px) 100vw, 75vw"
           {...props}
         />
       </span>
     ),
 
-    // 3. Navigation
+    // 3. การนำทาง (Navigation Hub)
     Link,
     a: ({ href, className, ...props }) => (
       <Link
         href={href as string}
         className={cn(
-          "font-bold text-blue-600 underline underline-offset-4 transition-colors hover:text-blue-800",
+          "font-bold text-blue-600 underline underline-offset-4 hover:text-blue-800",
           className
         )}
         {...props}
       />
     ),
 
-    // 4. Custom Registry (ลงทะเบียนเพื่อใช้ในไฟล์ .mdx)
+    // 4. การลงทะเบียนคอมโพเนนต์ (Custom Components)
     Hero,
     ContactInfo,
     ProjectCard,
@@ -182,7 +157,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Badge,
     Input,
 
-    // 5. Lucide Icons Registry
+    // 5. การลงทะเบียน Icon (Icon Registry)
+    Heart,
     Layout,
     Rocket,
     ArrowRight,

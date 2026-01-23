@@ -11,12 +11,13 @@ interface ServiceCardProps {
   image: string;
   link?: string;
   isDark?: boolean;
-  features?: string[]; // ✅ เพิ่มเพื่อแสดงจุดเด่นของบริการนั้นๆ
+  features?: string[]; // เพิ่มเพื่อแสดงจุดเด่นเฉพาะทางของบริการ
 }
 
 /**
- * 🏗️ ServiceCard Component - ฉบับปรับปรุงความเสถียร (Runtime Safe)
- * ออกแบบมาเพื่อแยกความต่างระหว่างบริการ Web Dev ทั่วไป กับ Exclusive Service ของ Unlink-th
+ * ServiceCard Component - Infrastructure Lead Version
+ * ออกแบบมาเพื่อแยกความต่างระหว่างบริการพัฒนาเว็บทั่วไป กับบริการพิเศษของ Unlink-th
+ * ดำเนินการโดย นายอลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์)
  */
 export default function ServiceCard({
   title,
@@ -26,7 +27,7 @@ export default function ServiceCard({
   isDark = false,
   features = [],
 }: ServiceCardProps) {
-  // ตรวจสอบความปลอดภัยและความถูกต้องของ URL
+  // ตรวจสอบความปลอดภัยและความถูกต้องของชุดข้อมูล URL
   const safeLink = typeof link === "string" ? link : "#";
   const isExternal = safeLink.startsWith("http");
 
@@ -39,7 +40,7 @@ export default function ServiceCard({
           : "border-slate-100 bg-white text-slate-900 hover:shadow-2xl hover:shadow-blue-900/10"
       )}
     >
-      {/* 🖼️ Image Section - ปรับสัดส่วน 16:10 ให้ดูเต็มตา */}
+      {/* Image Section - ปรับสัดส่วน 16:10 เพื่อการแสดงผลที่สมบูรณ์ */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-800">
         <Image
           src={image || "/images/service/aemdevweb.webp"}
@@ -60,7 +61,7 @@ export default function ServiceCard({
         />
       </div>
 
-      {/* 📝 Content Section */}
+      {/* Content Section */}
       <div className="flex flex-1 flex-col p-8 md:p-12">
         <div className="mb-6">
           <h3 className="mb-4 text-2xl font-black tracking-tight uppercase md:text-3xl lg:text-4xl">
@@ -76,7 +77,7 @@ export default function ServiceCard({
           </p>
         </div>
 
-        {/* ✅ Features List (ถ้ามี) - ช่วยปิดการขายได้ดีขึ้น */}
+        {/* Features List - รายละเอียดจุดเด่นเพื่อสร้างความเชื่อมั่นเชิงเทคนิค */}
         {features.length > 0 && (
           <ul className="mb-10 space-y-3">
             {features.map((feature, index) => (
@@ -111,16 +112,16 @@ export default function ServiceCard({
             )}
           >
             รายละเอียดบริการ
-            <ArrowUpRight className="ml-2 h-5 w-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+            <ArrowUpRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
           </Link>
         </div>
       </div>
 
-      {/* 🛡️ Exclusive Badge สำหรับบริการ Dark Mode (เช่น Unlink-th) */}
+      {/* Exclusive Badge สำหรับบริการระดับพรีเมียม */}
       {isDark && (
         <div className="absolute top-8 right-8 z-10 rounded-full border border-blue-400/20 bg-blue-600/10 px-4 py-1.5 backdrop-blur-md">
           <span className="text-[10px] font-black tracking-[0.2em] text-blue-400 uppercase">
-            Premium Solution
+            Specialist Service
           </span>
         </div>
       )}

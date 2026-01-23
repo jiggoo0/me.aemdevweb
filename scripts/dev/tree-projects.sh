@@ -1,18 +1,27 @@
 #!/bin/bash
 
-# ===============================
-# === CONFIG / METADATA =========
-# ===============================
+# ==============================================================================
+# PROJECT: me.aemdevweb.com (Authority Domain)
+# PURPOSE: Personal Brand Context, Architecture & Deployment Readiness Compilation
+# VERSION: 2.2.1 (2026-01-23)
+# IDENTITY: Alongkorl Yomkerd (นายเอ็มซ่ามากส์)
+# ==============================================================================
+
+# CONFIGURATION
 OUTPUT_FILE="project-structure.md"
 PRE_DEPLOY_REPORT="pre-deploy-report.md"
-MDX_COMPONENTS_FILE="mdx-components.tsx"
-NEXT_CONFIG_FILE="next.config.ts"
+
+# Next.js 16 System File Conventions
+MDX_FILES=("mdx-components.tsx" "mdx-components.js")
+CONFIG_FILES=("next.config.ts" "next.config.mjs" "next.config.js")
+EDGE_FILES=("proxy.ts" "middleware.ts" "instrumentation.ts")
 
 SITE_URL="https://me.aemdevweb.com/"
-AUTHOR="Auto Generated Script"
-PROJECT_TYPE="Web Application"
+AUTHOR="Alongkorl Yomkerd"
+PROJECT_TYPE="Personal Brand & Knowledge Base (Authority)"
 ENVIRONMENT="pre-deploy"
 BUILD_ID=$(git rev-parse --short HEAD 2>/dev/null || echo "local")
+GENERATED_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 WHITELIST_DIRS=(
   "config"
@@ -27,79 +36,57 @@ WHITELIST_DIRS=(
   "providers"
 )
 
-# ===============================
-# === CLEAN OLD OUTPUT ==========
-# ===============================
+# INITIALIZATION
 rm -f "$OUTPUT_FILE"
-
-echo "🚀 Scanning project structure with metadata & content analysis..."
+echo "[INFO] Scanning project architecture for $SITE_URL..."
 
 {
-  # ===============================
-  # === FRONT MATTER METADATA ====
-  # ===============================
-  echo "---"
-  echo "title: \"Project Structure Report\""
-  echo "description: \"Extended scan of project folders, configuration, content, MDX, Next.js config, and pre-deploy analysis\""
-  echo "author: \"$AUTHOR\""
-  echo "site: \"$SITE_URL\""
-  echo "projectType: \"$PROJECT_TYPE\""
-  echo "environment: \"$ENVIRONMENT\""
-  echo "buildId: \"$BUILD_ID\""
-  echo "contentType: \"documentation\""
-  echo "generatedAt: \"$(date -u +"%Y-%m-%dT%H:%M:%SZ")\""
-  echo "tags:"
-  echo "  - project-structure"
-  echo "  - nextjs"
-  echo "  - mdx"
-  echo "  - pre-deploy"
-  echo "  - aem"
-  echo "  - automation"
-  echo "---"
-  echo ""
+  # YAML FRONT MATTER (Optimized for Machine Learning & Documentation)
+  cat <<EOF
+---
+title: "Project Structure Report (Authority Domain)"
+description: "Architecture, MDX mapping, and pre-deploy status for personal branding network"
+author: "$AUTHOR"
+site: "$SITE_URL"
+projectType: "$PROJECT_TYPE"
+environment: "$ENVIRONMENT"
+buildId: "$BUILD_ID"
+generatedAt: "$GENERATED_AT"
+contentType: "documentation"
+tags:
+  - project-structure
+  - nextjs-16
+  - authority-domain
+  - eeat-strategy
+---
 
-  echo "# 📁 Project Structure Report (Extended Scan)"
-  echo "_Generated: $(date)_"
-  echo ""
+# Project Structure Report (Extended Scan)
+Generated: $(date)
 
-  # ===============================
-  # === FOLDER STRUCTURE =========
-  # ===============================
-  echo "## 🌳 Folder Structure"
+> Site: $SITE_URL
+> Identity: นายเอ็มซ่ามากส์ (Person Entity)
+> Purpose: Knowledge Base & Trust Foundation
+> Build ID: $BUILD_ID
 
+EOF
+
+  # 1. DIRECTORY ARCHITECTURE (Tree Representation)
+  echo "## 1. Directory Architecture"
   for dir in "${WHITELIST_DIRS[@]}"; do
     if [ -d "$dir" ]; then
       echo ""
-      echo "📂 $dir"
-
-      find "$dir" -maxdepth 10 -mindepth 1 \
-        -path "*/node_modules" -prune -o \
-        -path "*/.*" -prune -o \
-        -print | sort | while read -r path; do
-
-          depth=$(echo "$path" | tr -cd '/' | wc -c)
-          indent=$(printf '%*s' $((depth * 2)) "")
-          name=$(basename "$path")
-
-          if [ -d "$path" ]; then
-            echo "${indent}📂 $name"
-          else
-            echo "${indent}📄 $name"
-          fi
-        done
+      echo "dir: $dir/"
+      find "$dir" -maxdepth 5 -not -path '*/.*' | sed -e 's/[^-][^\/]*\//  |/g' -e 's/|  /   /g'
     else
       echo ""
-      echo "⚠️ Skipped (not found): $dir"
+      echo "[WARN] Directory not found: $dir"
     fi
   done
 
-  # ===============================
-  # === PACKAGE.JSON ============
-  # ===============================
+  # 2. PACKAGE AND DEPENDENCY OVERVIEW
   echo ""
-  echo "## 📦 package.json Overview"
+  echo "## 2. Dependencies and Scripts (package.json)"
   echo '```json'
-
   if [ -f "package.json" ]; then
     if command -v jq >/dev/null 2>&1; then
       jq '{name, version, scripts, dependencies, devDependencies}' package.json
@@ -107,142 +94,85 @@ echo "🚀 Scanning project structure with metadata & content analysis..."
       cat package.json
     fi
   else
-    echo "package.json not found"
+    echo "{\"error\": \"package.json not found\"}"
   fi
-
   echo '```'
 
-  # ===============================
-  # === MDX COMPONENTS ===========
-  # ===============================
+  # 3. MDX AND RENDERING ANALYSIS
   echo ""
-  echo "## 🧩 MDX Components Analysis"
+  echo "## 3. MDX Rendering Logic"
+  FOUND_MDX=false
+  for f in "${MDX_FILES[@]}"; do
+    if [ -f "$f" ]; then
+      echo "File found: $f"
+      echo '```typescript'
+      cat "$f"
+      echo '```'
+      FOUND_MDX=true
+      break
+    fi
+  done
+  [ "$FOUND_MDX" = false ] && echo "Status: mdx-components file not found (Check mdx-components.tsx)"
 
-  if [ -f "$MDX_COMPONENTS_FILE" ]; then
-    echo ""
-    echo "### 📄 File: \`$MDX_COMPONENTS_FILE\`"
-    echo ""
-    echo "#### 🔍 Purpose"
-    echo "- Central MDX component mapping for content rendering"
-    echo "- Controls headings, links, images, code blocks, and custom UI"
-    echo "- Critical for SEO, Accessibility, and Headless CMS (AEM) compatibility"
-    echo ""
-
-    echo "#### 🧠 Structural Overview"
-    echo "- React components exposed to MDX provider"
-    echo "- Overrides default HTML tags (h1–h6, p, a, img, code, pre)"
-    echo "- Used by Next.js App Router MDX pipeline"
-    echo ""
-
-    echo "#### 🧩 Source Code"
-    echo '```typescript'
-    cat "$MDX_COMPONENTS_FILE"
-    echo '```'
-
-    echo "#### ⚠️ Review Checklist"
-    echo "- [ ] Heading hierarchy (h1–h6) is semantic"
-    echo "- [ ] External links use rel=\"noopener noreferrer\""
-    echo "- [ ] Images optimized (next/image preferred)"
-    echo "- [ ] Code blocks support syntax highlighting"
-    echo "- [ ] No inline scripts or unsafe HTML"
-    echo "- [ ] Compatible with AEM / Headless rendering"
-  else
-    echo "⚠️ \`$MDX_COMPONENTS_FILE\` not found — MDX rendering may be incomplete"
-  fi
-
-  # ===============================
-  # === NEXT.CONFIG.TS ===========
-  # ===============================
+  # 4. RUNTIME AND EDGE CONFIGURATION (Next.js 16)
   echo ""
-  echo "## ⚙️ Next.js Configuration Analysis"
+  echo "## 4. Next.js Runtime and Edge Configuration"
+  
+  # Scan Core Config
+  for f in "${CONFIG_FILES[@]}"; do
+    if [ -f "$f" ]; then
+      echo "Status: Core configuration detected ($f)"
+      echo '```typescript'
+      cat "$f"
+      echo '```'
+      break
+    fi
+  done
 
-  if [ -f "$NEXT_CONFIG_FILE" ]; then
-    echo ""
-    echo "### 📄 File: \`$NEXT_CONFIG_FILE\`"
-    echo ""
-    echo "#### 🔍 Purpose"
-    echo "- Core Next.js runtime and build configuration"
-    echo "- Controls routing behavior, images, security headers, and optimizations"
-    echo "- Critical for performance, SEO, and production deployment"
-    echo ""
+  # Scan Edge/Startup Files
+  for f in "${EDGE_FILES[@]}"; do
+    if [ -f "$f" ]; then
+      echo "Status: Edge/Startup logic detected ($f)"
+      echo '```typescript'
+      cat "$f"
+      echo '```'
+    fi
+  done
 
-    echo "#### 🧠 Configuration Review Focus"
-    echo "- App Router / experimental flags"
-    echo "- Image domains and optimization"
-    echo "- Headers (security, CSP, caching)"
-    echo "- Output mode (standalone / export)"
-    echo "- AEM / Headless compatibility"
-    echo ""
-
-    echo "#### ⚙️ Source Code"
-    echo '```typescript'
-    cat "$NEXT_CONFIG_FILE"
-    echo '```'
-
-    echo "#### ⚠️ Review Checklist"
-    echo "- [ ] output mode correctly set (standalone/export)"
-    echo "- [ ] images.domains explicitly defined"
-    echo "- [ ] security headers configured (CSP, X-Frame, etc.)"
-    echo "- [ ] experimental flags reviewed"
-    echo "- [ ] basePath / assetPrefix correct (if used)"
-    echo "- [ ] Compatible with CDN / AEM Dispatcher"
-  else
-    echo "⚠️ \`$NEXT_CONFIG_FILE\` not found — using Next.js defaults"
-  fi
-
-  # ===============================
-  # === PRE-DEPLOY ANALYSIS ======
-  # ===============================
+  # 5. PRE-DEPLOY INTEGRITY ANALYSIS
   echo ""
-  echo "## 📝 Pre-Deploy Analysis"
-  echo "________"
-
+  echo "## 5. Pre-Deploy Integrity Analysis"
+  echo "---"
   if [ -f "$PRE_DEPLOY_REPORT" ]; then
-    echo "🔍 Latest pre-deploy report detected"
-    echo ""
-
     if grep -qi "READY FOR DEPLOY" "$PRE_DEPLOY_REPORT"; then
-      echo "✅ Status: **READY FOR DEPLOY**"
+      echo "Verdict: READY FOR DEPLOY"
     else
-      echo "❌ Status: **FIX REQUIRED**"
+      echo "Verdict: FIX REQUIRED (Manual intervention needed)"
     fi
 
-    echo ""
-
-    if grep -q "### 📊 Route Statistics" "$PRE_DEPLOY_REPORT"; then
-      echo "### 📍 Production Route Map"
+    if grep -q "###.*Route" "$PRE_DEPLOY_REPORT"; then
+      echo "### Production Route Map (From Report)"
       echo '```text'
-      sed -n '/### 📊 Route Statistics/,/---/p' "$PRE_DEPLOY_REPORT" | \
-        grep -v "###" | \
-        grep -v -- "---" | \
-        sed '/^$/d'
+      sed -n '/###.*Route/,/---/p' "$PRE_DEPLOY_REPORT" | grep -vE "###|---" | sed '/^$/d'
       echo '```'
     fi
 
-    echo ""
-    echo "### ⚠️ Issues Highlight"
-
-    ISSUES=$(grep -E -- "❌|⚠️|error|warning|failed" "$PRE_DEPLOY_REPORT")
+    echo "### Critical Issues Highlight"
+    ISSUES=$(grep -E "ERR|FAIL|WARN|error|warning|failed" "$PRE_DEPLOY_REPORT" | grep -v "dir:")
     if [ -z "$ISSUES" ]; then
-      echo "✅ No critical issues detected"
+      echo "Status: No critical impediments detected in the latest audit."
     else
       echo "$ISSUES"
     fi
   else
-    echo "⚠️ pre-deploy-report.md not found"
-    echo "Run pre-deploy-check.sh to generate the report"
+    echo "[WARN] pre-deploy-report.md not found. Architecture scan completed without health metrics."
   fi
 
-  # ===============================
-  # === FINAL STATUS =============
-  # ===============================
   echo ""
   echo "---"
   echo "Status: Scan completed successfully."
-  echo "Scope: Architecture • Content • MDX • Next.js Config • Pre-deploy"
-  echo "Target: AEM / Headless / AI Context Ready"
+  echo "Scope: Personal Authority Domain Architecture Audit"
 
 } > "$OUTPUT_FILE"
 
-echo "✅ Scan completed → $OUTPUT_FILE"
-echo "🌐 Ready for ingestion at → https://me.aemdevweb.com/"
+echo "[SUCCESS] Scan completed -> $OUTPUT_FILE"

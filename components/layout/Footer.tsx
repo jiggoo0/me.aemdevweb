@@ -11,22 +11,23 @@ import {
 } from "lucide-react";
 import Container from "./Container";
 import SocialLinks from "../shared/SocialLinks";
+import { siteConfig } from "@/constants/site-config";
 
 /**
- * 🏗️ Footer Component - ฉบับพาร์ทเนอร์ดูแลระบบและ SEO Organic
- * ปรับปรุงการเชื่อมโยงข้อมูลให้สอดคล้องกับตัวตน Alongkorl Yomkerd (นายเอ็มซ่ามากส์)
+ * Footer Component - ฉบับพาร์ทเนอร์ดูแลระบบและ SEO Organic
+ * ปรับปรุงการเชื่อมโยงข้อมูลให้สอดคล้องกับตัวตน อลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์)
  * เน้นความน่าเชื่อถือด้วยข้อมูลที่ชัดเจนและ Professional Dark UI
  */
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  // ข้อมูลโปรไฟล์ (อ้างอิงจากฐานข้อมูลตัวตนล่าสุดของคุณ)
+  // ข้อมูลโปรไฟล์ อ้างอิงจาก siteConfig เพื่อความถูกต้องของข้อมูล (Single Source of Truth)
   const profile = {
-    name: "อลงกรณ์ ยมเกิด",
-    nickname: "นายเอ็มซ่ามากส์",
-    location: "กรุงเทพมหานคร, ประเทศไทย", // อัปเดตตามข้อมูลล่าสุดที่ระบุไว้
-    email: "me@aemdevweb.com",
-    phone: "099-999-8989", // อัปเดตตามข้อมูลใน siteConfig
+    name: siteConfig.fullName || "อลงกรณ์ ยมเกิด",
+    nickname: siteConfig.expert,
+    location: "กรุงเทพมหานคร, ประเทศไทย",
+    email: siteConfig.email,
+    phone: "099-999-8989", // ระบุตามฐานข้อมูลผู้เชี่ยวชาญ
   };
 
   return (
@@ -112,7 +113,7 @@ export default function Footer() {
                 </div>
                 <span className="flex items-center justify-between text-base font-black text-slate-100">
                   Unlink-th
-                  <ArrowUpRight className="h-5 w-5 opacity-30 transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:opacity-100" />
+                  <ArrowUpRight className="h-5 w-5 opacity-30 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:opacity-100" />
                 </span>
                 <p className="mt-2 text-[11px] font-medium text-slate-500">
                   พัฒนาระบบและดูแลโครงสร้าง SEO เชิงเทคนิคแบบ 100%
@@ -159,7 +160,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* --- Bottom Footer: Rights & System Integrity --- */}
+        {/* Bottom Footer: Rights & System Integrity */}
         <div className="flex flex-col items-center justify-between gap-8 border-t border-slate-900 pt-12 md:flex-row">
           <div className="flex flex-col items-center gap-3 font-mono text-[10px] tracking-widest text-slate-500 uppercase md:flex-row md:gap-6">
             <span>© {currentYear} Alongkorl Yomkerd.</span>

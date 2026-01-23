@@ -11,21 +11,22 @@ interface BlogCardProps {
   image: string;
   date: string;
   author?: string;
-  tags?: string[]; // ✅ เพิ่มรองรับ Tags เพื่อช่วยเรื่อง Topic Cluster
+  tags?: string[]; // รองรับ Tags เพื่อเพิ่มประสิทธิภาพการทำ Topic Cluster
   slug: string;
   className?: string;
 }
 
 /**
- * 🏗️ BlogCard Component - ฉบับเน้น Visual Hierarchy & SEO
- * ออกแบบมาเพื่อดึงดูดใจเจ้าของธุรกิจ SME ด้วย UI ที่สะอาดและ Professional
+ * BlogCard Component - Technical Specialist Edition
+ * ออกแบบมาเพื่อสร้างลำดับความสำคัญของข้อมูลและการเข้าถึงเนื้อหา (SEO Optimization)
+ * เน้นโครงสร้างที่สะอาดและเป็นระเบียบสำหรับผู้ที่มองหาข้อมูลเชิงลึก
  */
 export default function BlogCard({
   title,
   description,
   image,
   date,
-  author = "Alongkorl",
+  author = "นายอลงกรณ์ ยมเกิด",
   tags = [],
   slug,
   className,
@@ -39,7 +40,7 @@ export default function BlogCard({
         className
       )}
     >
-      {/* 🖼️ Image Section - มาตรฐาน 16:9 (Golden Ratio for Web) */}
+      {/* Media Section - มาตรฐาน 16:9 เพื่อความสวยงามและการโหลดที่รวดเร็ว */}
       <div className="relative aspect-video w-full overflow-hidden bg-slate-100">
         <Image
           src={image || "/images/service/aemdevweb.webp"}
@@ -49,7 +50,7 @@ export default function BlogCard({
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
 
-        {/* Glassmorphism Date Badge */}
+        {/* ข้อมูลวันที่แบบ Glassmorphism */}
         <div className="absolute top-6 left-6 z-10">
           <div className="flex items-center gap-2 rounded-2xl border border-white/40 bg-white/70 px-4 py-2.5 shadow-sm backdrop-blur-md">
             <Calendar className="h-3.5 w-3.5 text-blue-600" />
@@ -59,13 +60,13 @@ export default function BlogCard({
           </div>
         </div>
 
-        {/* Overlay ไล่เฉดสีเพื่อให้ข้อความสีขาวอ่านง่ายขึ้น (ถ้ามี) */}
+        {/* Overlay สำหรับการเน้นความลึกของรูปภาพ */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
       </div>
 
-      {/* 📝 Content Section */}
+      {/* Content Section */}
       <div className="flex flex-1 flex-col p-8 lg:p-10">
-        {/* Metadata: Author & Primary Tag */}
+        {/* ข้อมูลผู้เขียนและหมวดหมู่เนื้อหาหลัก */}
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-7 w-7 items-center justify-center rounded-full border border-blue-100 bg-blue-50 text-blue-600">
@@ -92,10 +93,10 @@ export default function BlogCard({
           {description}
         </p>
 
-        {/* 🔗 CTA: Interactive Footer */}
+        {/* ปุ่มนำทางไปยังเนื้อหาเจาะลึก */}
         <div className="mt-auto flex items-center gap-4 text-[11px] font-black tracking-[0.2em] text-blue-600 uppercase">
           <span className="transition-all group-hover:tracking-[0.3em]">
-            อ่านบทความเจาะลึก
+            อ่านเนื้อหาเจาะลึก
           </span>
           <div className="h-[2px] w-12 bg-blue-100 transition-all duration-500 group-hover:w-16 group-hover:bg-blue-600" />
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50 transition-colors group-hover:bg-blue-600 group-hover:text-white">

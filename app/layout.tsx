@@ -7,6 +7,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
 import Schema from "@/components/profile/Schema";
+import { siteConfig } from "@/constants/site-config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,39 +22,40 @@ const geistMono = Geist_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#2563eb", // Blue-600
+  themeColor: "#020617", // Slate-950 อ้างอิงตามโทนสีแบรนด์
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
 };
 
 /**
- * 🎯 SEO Strategy: อัปเดต Metadata เพื่อเชื่อมโยงฐานะ Architect และ Specialist
- * เน้นการดึงดูดกลุ่มเป้าหมายที่ต้องการคุณภาพระดับ "Technical SEO"
+ * Specialist SEO Strategy:
+ * มุ่งเน้น Information Intent และ Personal Branding เพื่อแยกส่วนกับหน้าบริการ (www)
+ * ดำเนินการโดย นายอลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์)
  */
 export const metadata: Metadata = {
-  metadataBase: new URL("https://me.aemdevweb.com"),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default:
-      "อลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์) | Technical SEO Specialist & Web Architect",
-    template: "%s | นายเอ็มซ่ามากส์",
+    default: `${siteConfig.fullName} (${siteConfig.expert}) | Infrastructure Lead & Technical SEO Consultant`,
+    template: `%s | ${siteConfig.expert}`,
   },
   description:
-    "รับทำ SEO และที่ปรึกษาการเขียน SEO Organic (สายขาว) โดย อลงกรณ์ ยมเกิด ผู้อยู่เบื้องหลังระบบ Unlink-th และ AEMDEVWEB ช่วยเปลี่ยนเว็บไซต์ให้เป็นสินทรัพย์ทำเงินสำหรับธุรกิจอย่างยั่งยืน",
+    "พื้นที่แบ่งปันประสบการณ์และวิสัยทัศน์ด้าน Technical SEO และการจัดการโครงสร้างระบบเว็บโดย นายอลงกรณ์ ยมเกิด ผู้อยู่เบื้องหลังระบบ Unlink-th และ AEMDEVWEB",
   keywords: [
-    "รับทำ SEO",
-    "รับทำ SEO Organic",
+    "อลงกรณ์ ยมเกิด",
+    "นายอลงกรณ์ ยมเกิด",
     "นายเอ็มซ่ามากส์",
     "Alongkorl Yomkerd",
-    "รับปรึกษาการเขียน SEO",
-    "รับทำ SEO สายขาว",
-    "Technical SEO Specialist",
-    "AemDevWeb",
-    "Unlink-th Architect",
+    "Technical SEO Consultant",
+    "ที่ปรึกษา SEO",
+    "ที่ปรึกษาการเขียน SEO Organic",
+    "Next.js Infrastructure Specialist",
+    "ผู้เชี่ยวชาญ SEO สายขาว",
+    "Technical SEO Specialist Thailand",
   ],
-  authors: [{ name: "Alongkorl Yomkerd", url: "https://me.aemdevweb.com" }],
-  creator: "Alongkorl Yomkerd",
-  publisher: "AemDevWeb",
+  authors: [{ name: siteConfig.fullName, url: siteConfig.url }],
+  creator: siteConfig.fullName,
+  publisher: siteConfig.companyName,
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -62,26 +64,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "th_TH",
-    url: "https://me.aemdevweb.com",
-    siteName: "AEMDEVWEB Specialist Portfolio",
-    title:
-      "อลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์) | Technical SEO & Web Architect",
+    url: siteConfig.url,
+    siteName: `${siteConfig.fullName} Specialist Portfolio`,
+    title: `${siteConfig.fullName} | Technical SEO & System Structure Specialist`,
     description:
-      "ปั้นอันดับ Google ให้ยั่งยืนด้วยเทคนิคการพัฒนาเว็บ Performance สูง และ Technical SEO สายขาว",
+      "เจาะลึกเทคนิคการทำ SEO สายขาว และการพัฒนาเว็บไซต์ระดับ High-Performance 100/100",
     images: [
       {
-        url: "/images/og-image.png",
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "Alongkorl Yomkerd - Portfolio & Insights",
+        alt: `${siteConfig.fullName} - Technical SEO Consultant`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "อลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์) | Technical SEO Specialist",
-    description: "ผู้อยู่เบื้องหลังระบบ Unlink-th และบริการ SEO ระดับ Professional",
-    images: ["/images/og-image.png"],
+    title: `${siteConfig.fullName} (${siteConfig.expert}) | Technical SEO Specialist`,
+    description: "ถอดบทเรียนการสร้างระบบ Unlink-th และโครงสร้างระบบเว็บยุคใหม่",
+    images: [siteConfig.ogImage],
   },
   robots: {
     index: true,
@@ -104,7 +105,7 @@ export default function RootLayout({
   return (
     <html lang="th" suppressHydrationWarning className="scroll-smooth">
       <head>
-        {/* ✅ ลงทะเบียน JSON-LD Schema (มีลิงก์ LinkedIn ใหม่เรียบร้อย) */}
+        {/* Schema สำหรับยืนยันตัวตนระดับ Specialist */}
         <Schema />
       </head>
       <body

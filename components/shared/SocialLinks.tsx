@@ -1,7 +1,9 @@
 /** @format */
 
-import { Facebook, MessageCircle, Github, Linkedin } from "lucide-react";
+"use client";
+
 import Link from "next/link";
+import { Facebook, MessageCircle, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SocialLinksProps {
@@ -11,16 +13,16 @@ interface SocialLinksProps {
 }
 
 /**
- * 🏗️ SocialLinks Component (v2.3 - LinkedIn Custom URL Updated)
- * ออกแบบมาเพื่อสร้างการเชื่อมต่อระหว่างพาร์ทเนอร์กับลูกค้า
- * อัปเดต LinkedIn URL เป็นภาษาอังกฤษเพื่อประสิทธิภาพสูงสุดด้าน SEO
+ * SocialLinks Component (v2.4 - Identity Focus)
+ * ออกแบบมาเพื่อสร้างการเชื่อมต่อระหว่างผู้เชี่ยวชาญกับพาร์ทเนอร์ธุรกิจ
+ * ปรับปรุง LinkedIn URL เป็นภาษาอังกฤษเพื่อประสิทธิภาพสูงสุดด้านการค้นหาชื่อจริง
  */
 export default function SocialLinks({
   className,
   variant = "aemdevweb",
   showLabel = true,
 }: SocialLinksProps) {
-  // ชุดข้อมูลลิงก์ที่ได้รับการตรวจสอบความถูกต้อง (อัปเดต LinkedIn URL ใหม่)
+  // ชุดข้อมูลลิงก์ที่ได้รับการตรวจสอบความถูกต้อง (ถอด GitHub ออกเพื่อเน้นช่องทางธุรกิจ)
   const links =
     variant === "aemdevweb"
       ? [
@@ -41,12 +43,6 @@ export default function SocialLinks({
             href: "https://www.facebook.com/aemdevweb",
             icon: <Facebook className="h-4 w-4 md:h-5 md:w-5" />,
             color: "group-hover:text-[#1877F2] group-hover:bg-blue-50",
-          },
-          {
-            name: "GitHub",
-            href: "https://github.com/jiggoo0",
-            icon: <Github className="h-4 w-4 md:h-5 md:w-5" />,
-            color: "group-hover:text-slate-900 group-hover:bg-slate-100",
           },
         ]
       : [

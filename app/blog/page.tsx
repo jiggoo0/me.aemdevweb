@@ -6,25 +6,26 @@ import BlogCard from "@/components/shared/BlogCard";
 import { Globe, BookOpen, Sparkles, TrendingUp, Search } from "lucide-react";
 
 /**
- * 📈 Metadata สำหรับหน้ารายการบล็อก (SEO Strategic)
- * ปรับปรุงเพื่อดึงดูดกลุ่ม SME ที่ค้นหาเรื่องการทำอันดับ Google
+ * Metadata สำหรับหน้ารายการบล็อก (SEO Strategic)
+ * ปรับปรุงเพื่อดึงดูดกลุ่ม SME ที่ต้องการจัดการโครงสร้างระบบเพื่อการทำอันดับ Google
  */
 export const metadata = {
-  title: "คลังความรู้ระบบเว็บ และ SEO Organic สำหรับ SME | นายเอ็มซ่ามากส์",
+  title:
+    "คลังความรู้โครงสร้างระบบเว็บ และ SEO Organic สำหรับ SME | นายเอ็มซ่ามากส์",
   description:
-    "แชร์กลยุทธ์การปั้นเว็บไซต์ให้เป็นสินทรัพย์ และเทคนิค SEO Organic จากประสบการณ์จริง โดย อลงกรณ์ ยมเกิด (AEMDEVWEB)",
+    "แบ่งปันกลยุทธ์การจัดการเว็บไซต์ให้เป็นสินทรัพย์ และเทคนิค SEO Organic จากประสบการณ์จริง โดย นายอลงกรณ์ ยมเกิด (AEMDEVWEB)",
 };
 
 export default function BlogListPage() {
   /**
-   * 🔍 ดึงข้อมูลบทความทั้งหมดจาก content/blog/*.mdx
+   * ดึงข้อมูลบทความทั้งหมดจาก content/blog/*.mdx ผ่าน lib/blog.ts
    */
   const posts = getAllPosts();
 
   return (
     <div className="min-h-screen bg-white">
       <Container className="py-20 md:py-32">
-        {/* --- Header Section --- */}
+        {/* Header Section - การนำเสนอแนวคิดและการจัดการเชิงเทคนิค */}
         <header className="mb-24 flex flex-col items-center space-y-8 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-6 py-2 text-xs font-black tracking-[0.2em] text-blue-600 uppercase shadow-sm">
             <Sparkles className="h-4 w-4" /> Organic Search Insights
@@ -36,8 +37,9 @@ export default function BlogListPage() {
           </h1>
 
           <p className="max-w-3xl text-xl leading-relaxed font-medium text-slate-500 md:text-2xl md:leading-10">
-            ผมหยิบเอาประสบการณ์จากการปั้นระบบและการงัดข้อกับอัลกอริทึม Google
-            มากลั่นเป็นบทความที่ช่วยให้ธุรกิจของพี่เติบโตอย่างยั่งยืนโดยไม่ต้องพึ่งพาแต่ค่าแอด
+            รวบรวมประสบการณ์จากการจัดการโครงสร้างระบบและการวิเคราะห์อัลกอริทึม
+            Google
+            เพื่อเป็นแนวทางให้ธุรกิจเติบโตอย่างยั่งยืนโดยมุ่งเน้นที่คุณภาพของเนื้อหา
           </p>
 
           <div className="flex flex-wrap justify-center gap-6 pt-4 text-sm font-black tracking-widest text-slate-400 uppercase">
@@ -52,7 +54,7 @@ export default function BlogListPage() {
           </div>
         </header>
 
-        {/* --- Blog Grid Section --- */}
+        {/* Blog Grid Section - แสดงรายการบทความเชิงลึก */}
         <section>
           {posts.length > 0 ? (
             <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
@@ -63,40 +65,40 @@ export default function BlogListPage() {
                   description={post.description}
                   image={post.image}
                   date={post.date}
-                  author={post.author}
+                  author={post.author || "นายอลงกรณ์ ยมเกิด"}
                   slug={post.slug}
                   tags={post.tags}
                 />
               ))}
             </div>
           ) : (
-            /* --- Empty State --- */
+            /* Empty State - กรณีอยู่ระหว่างการจัดการเนื้อหาใหม่ */
             <div className="group rounded-[4rem] border-4 border-dashed border-slate-100 bg-slate-50/50 py-32 text-center transition-all hover:border-blue-100">
               <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-[2rem] bg-white shadow-2xl shadow-slate-200/50 transition-transform group-hover:scale-110 group-hover:rotate-3">
                 <BookOpen className="h-12 w-12 text-slate-300" />
               </div>
               <h3 className="text-xl font-black tracking-[0.3em] text-slate-400 uppercase">
-                คลังวิชากำลังถูกอัปเดตเร็วๆ นี้
+                คลังข้อมูลกำลังได้รับการอัปเดต
               </h3>
               <p className="mt-4 text-lg font-medium text-slate-400">
-                ผมกำลังเตรียมเนื้อหาพรีเมียมไว้ให้พี่อยู่ครับ
-                ทักมาปรึกษาก่อนได้นะ
+                เนื้อหาเชิงเทคนิคชุดใหม่กำลังได้รับการเรียบเรียง
+                สามารถติดต่อสอบถามข้อมูลเบื้องต้นได้โดยตรง
               </p>
             </div>
           )}
         </section>
 
-        {/* --- Bottom Footer Section --- */}
+        {/* Bottom Footer Section - การยืนยันเป้าหมายและมาตรฐานการทำงาน */}
         <footer className="mt-40 border-t border-slate-100 pt-20">
           <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
             <div className="flex items-center gap-4 text-sm font-black tracking-[0.2em] text-slate-400 uppercase">
               <Globe className="h-5 w-5 text-blue-500" />
-              <span>มุ่งสร้าง Digital Asset ที่ยั่งยืนให้กับ SME ไทย</span>
+              <span>การสร้างสินทรัพย์ดิจิทัลที่ยั่งยืนสำหรับ SME</span>
             </div>
             <div className="flex items-center gap-6">
               <div className="hidden h-px w-20 bg-slate-100 lg:block" />
               <span className="text-xs font-bold tracking-widest text-slate-300 uppercase italic">
-                AEMDEVWEB Specialist Solutions
+                AEMDEVWEB Specialist Services
               </span>
             </div>
           </div>

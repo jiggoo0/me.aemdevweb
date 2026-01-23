@@ -11,8 +11,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 /**
- * 🏗️ ContactInfo Component - ฉบับพาร์ทเนอร์ดูแลระบบและ SEO Organic
+ * ContactInfo Component - Infrastructure Lead Version
  * แสดงช่องทางติดต่อหลักที่เน้นความน่าเชื่อถือ ความเป็นส่วนตัว และการตอบกลับที่รวดเร็ว
+ * ดำเนินการโดย นายอลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์)
  */
 export default function ContactInfo() {
   const contactMethods = [
@@ -33,7 +34,7 @@ export default function ContactInfo() {
       title: "Line Official",
       value: "@aemdevweb",
       href: "https://lin.ee/dDHISbG",
-      description: "ปรึกษาเทคนิค SEO & ระบบฟรี",
+      description: "ปรึกษาเทคนิค SEO และโครงสร้างระบบฟรี",
       color: "hover:border-[#00B900]/30 bg-green-50/5",
     },
     {
@@ -42,7 +43,7 @@ export default function ContactInfo() {
       ),
       title: "Location",
       value: "Bangkok / Kamphaeng Phet",
-      href: "#", // ปิดลิงก์ Map ไว้เพื่อความเป็นส่วนตัวของ Technical Office
+      href: "#", // ปิดลิงก์ Map ไว้เพื่อความเป็นส่วนตัวของที่ทำงานทางเทคนิค
       description: "พร้อมดูแล SME ทั่วประเทศไทย",
       color: "hover:border-slate-500/30 bg-slate-50/5",
     },
@@ -50,10 +51,10 @@ export default function ContactInfo() {
 
   return (
     <div className="my-16">
-      {/* ส่วนหัวแสดงความน่าเชื่อถือ */}
+      {/* ส่วนหัวแสดงความน่าเชื่อถือเชิงเทคนิค */}
       <div className="mb-10 flex items-center justify-center gap-2 text-xs font-black tracking-[0.3em] text-slate-400 uppercase md:justify-start">
         <ShieldCheck className="h-4 w-4 text-blue-600" />
-        <span>Secure & Direct Channels</span>
+        <span>Secure and Direct Channels</span>
       </div>
 
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -71,15 +72,15 @@ export default function ContactInfo() {
                 method.color
               )}
             >
-              {/* Visual Decor: ไอคอนลูกศรเฉียง */}
-              <div className="absolute top-6 right-6 opacity-0 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:opacity-100">
+              {/* Visual Decor: ไอคอนลูกศรเฉียงสำหรับการนำทาง */}
+              <div className="absolute top-6 right-6 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:opacity-100">
                 <ArrowUpRight className="h-5 w-5 text-slate-300" />
               </div>
 
               <CardContent className="flex h-full flex-col items-center p-10 text-center lg:p-12">
                 <div className="relative mb-2">
                   {method.icon}
-                  {/* แสงเรืองแสงด้านหลังไอคอนเมื่อ Hover */}
+                  {/* แสงเรืองแสงด้านหลังไอคอนเมื่อทำการ Hover */}
                   <div className="absolute inset-0 -z-10 h-full w-full scale-150 rounded-full bg-current opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-10" />
                 </div>
 

@@ -11,9 +11,9 @@ import { Menu, X, Rocket } from "lucide-react";
 import { useState, useEffect } from "react";
 
 /**
- * 🏗️ Header Component - ฉบับปรับปรุงความลื่นไหล (Premium Interaction)
+ * Header Component - Infrastructure Control Version
  * รองรับสถานะเมนูแบบไดนามิก และเอฟเฟกต์ Glassmorphism
- * ออกแบบมาเพื่อสร้าง Trust ให้กับธุรกิจ SME ตั้งแต่เสี้ยววินาทีแรก
+ * ออกแบบมาเพื่อสร้างความเชื่อมั่นให้ธุรกิจ SME ด้วยโครงสร้างระบบที่มั่นคง
  */
 export default function Header() {
   const pathname = usePathname();
@@ -70,7 +70,6 @@ export default function Header() {
         {/* --- Navigation Links (Desktop) --- */}
         <nav className="hidden items-center gap-10 lg:flex">
           {navLinks.map((link) => {
-            // เช็ค Active State ครอบคลุมถึงหน้าย่อย (Dynamic Routes)
             const isActive =
               pathname === link.href ||
               (link.href !== "/" && pathname.startsWith(link.href));
@@ -117,7 +116,7 @@ export default function Header() {
         </div>
       </Container>
 
-      {/* --- Mobile Navigation Menu (Slide Down) --- */}
+      {/* --- Mobile Navigation Menu --- */}
       <div
         className={cn(
           "absolute top-full left-0 w-full overflow-hidden bg-white/95 backdrop-blur-2xl transition-all duration-500 ease-in-out lg:hidden",
@@ -144,7 +143,7 @@ export default function Header() {
               asChild
               className="h-16 w-full rounded-[2rem] bg-blue-600 text-lg font-black shadow-2xl shadow-blue-600/30"
             >
-              <Link href="/contact">เริ่มต้นคุยงานกับนายเอ็ม</Link>
+              <Link href="/contact">ปรึกษาโครงสร้างระบบกับนายเอ็ม</Link>
             </Button>
           </div>
         </nav>

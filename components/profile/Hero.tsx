@@ -8,9 +8,9 @@ import Link from "next/link";
 import { Sparkles, ShieldCheck, Search, ArrowRight } from "lucide-react";
 
 /**
- * 🏗️ Hero Component - ฉบับพาร์ทเนอร์ดูแลระบบและ SEO Organic
- * นำเสนออัตลักษณ์ของ อลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์)
- * เน้นการสร้าง First Impression ที่ทรงพลังและน่าเชื่อถือที่สุด
+ * Hero Component - Infrastructure Lead Version
+ * นำเสนออัตลักษณ์ของ นายอลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์)
+ * เน้นการสร้างความน่าเชื่อถือผ่านผลงานเชิงประจักษ์และความเชี่ยวชาญทางเทคนิค
  */
 export default function Hero() {
   const profile = {
@@ -22,13 +22,13 @@ export default function Hero() {
 
   return (
     <section className="relative w-full overflow-hidden bg-white py-12 md:py-24 lg:py-32">
-      {/* 🌌 Atmospheric Background - มิติความพรีเมียม */}
+      {/* Background Decorations - เน้นมิติความพรีเมียมด้วย Glassmorphism */}
       <div className="absolute top-0 right-0 -z-10 h-[800px] w-[800px] translate-x-1/4 translate-y-[-20%] rounded-full bg-blue-50/60 opacity-70 blur-[120px]" />
       <div className="absolute bottom-0 left-0 -z-10 h-[400px] w-[400px] translate-x-[-20%] translate-y-[20%] rounded-full bg-slate-50/80 blur-[100px]" />
 
       <Container>
         <div className="flex flex-col items-center gap-16 lg:flex-row lg:gap-24">
-          {/* 📝 Text Content Section */}
+          {/* Text Content Section */}
           <div className="flex-1 space-y-10 text-center md:text-left">
             <div className="inline-flex items-center gap-3 rounded-full border border-blue-100/50 bg-blue-50 px-5 py-2 text-xs font-black tracking-[0.2em] text-blue-600 uppercase shadow-sm">
               <Sparkles className="h-4 w-4" /> {profile.title}
@@ -75,12 +75,12 @@ export default function Hero() {
                 size="lg"
                 className="h-16 rounded-full border-2 border-slate-200 px-12 text-xl font-black transition-all hover:border-blue-200 hover:bg-slate-50 active:scale-95"
               >
-                <Link href="/projects">ดูเคสที่สำเร็จ</Link>
+                <Link href="/projects">ตรวจสอบเคสที่สำเร็จ</Link>
               </Button>
             </div>
           </div>
 
-          {/* 🖼️ Profile Image Section - Optimized for LCP */}
+          {/* Profile Image Section - Optimized for LCP Performance */}
           <div className="relative aspect-square w-full max-w-[550px] flex-1">
             {/* Geometric Decor */}
             <div className="absolute inset-0 -z-10 rotate-6 rounded-[4rem] bg-blue-600/5 transition-transform duration-700 hover:rotate-12" />
@@ -92,18 +92,18 @@ export default function Hero() {
                 alt={`${profile.name} - ${profile.nickname}`}
                 fill
                 className="object-cover transition-transform duration-1000 hover:scale-110"
-                priority // สำคัญมากสำหรับ SEO Performance
+                priority
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
 
-            {/* 🏆 Authority Badge: Unlink-th Architect */}
+            {/* Authority Badge: Unlink-th Infrastructure Lead */}
             <div className="absolute -bottom-8 -left-8 hidden rounded-[2.5rem] border border-slate-100 bg-white p-8 shadow-2xl transition-all duration-500 hover:-translate-y-3 sm:block">
               <div className="mb-3 flex items-center gap-2 text-xs font-black tracking-[0.2em] text-blue-600 uppercase">
                 <ShieldCheck className="h-5 w-5" /> Success Case
               </div>
               <p className="text-xl font-black tracking-tight text-slate-900">
-                Unlink-th Architect
+                Unlink-th Lead
               </p>
               <div className="mt-3 flex items-center gap-2 text-xs font-bold text-slate-400">
                 <Search className="h-4 w-4 text-blue-400" />

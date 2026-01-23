@@ -116,7 +116,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/data/data/com.termux/files/home/store/me-aemdevweb",
+    "outputFileTracingRoot": "/data/data/com.termux/files/home/DEVSTORE/me-aemdevweb",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -315,11 +315,11 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
     "turbopack": {
-      "root": "/data/data/com.termux/files/home/store/me-aemdevweb"
+      "root": "/data/data/com.termux/files/home/DEVSTORE/me-aemdevweb"
     },
     "distDirRoot": ".next"
   },
-  "appDir": "/data/data/com.termux/files/home/store/me-aemdevweb",
+  "appDir": "/data/data/com.termux/files/home/DEVSTORE/me-aemdevweb",
   "relativeAppDir": "",
   "files": [
     ".next/routes-manifest.json",

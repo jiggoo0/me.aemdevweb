@@ -1,4 +1,4 @@
-// File: /data/data/com.termux/files/home/store/me-aemdevweb/app/blog/[slug]/page.tsx
+// File: /data/data/com.termux/files/home/DEVSTORE/me-aemdevweb/app/blog/[slug]/page.tsx
 import * as entry from '../../../../../app/blog/[slug]/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

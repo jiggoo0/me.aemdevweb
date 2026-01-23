@@ -2,13 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ExternalLink,
-  Github,
-  ArrowRight,
-  Star,
-  ShieldCheck,
-} from "lucide-react";
+import { ExternalLink, ArrowRight, Star, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Card,
@@ -24,14 +18,14 @@ interface ProjectCardProps {
   image: string;
   tags?: string[];
   link?: string;
-  github?: string;
   className?: string;
   isFeatured?: boolean;
 }
 
 /**
- * 🏗️ ProjectCard Component - ฉบับพาร์ทเนอร์ดูแลระบบ (Architect Style)
+ * ProjectCard Component - Infrastructure Lead Version
  * เน้นการนำเสนอ Case Study ให้ดูมีมูลค่าและน่าเชื่อถือในระดับสูงสุด
+ * ดำเนินการโดย นายอลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์)
  */
 export default function ProjectCard({
   title,
@@ -39,7 +33,6 @@ export default function ProjectCard({
   image,
   tags = [],
   link,
-  github,
   className,
   isFeatured = false,
 }: ProjectCardProps) {
@@ -53,7 +46,7 @@ export default function ProjectCard({
         className
       )}
     >
-      {/* 🖼️ Image Section - Performance Optimized */}
+      {/* Image Section - Performance Optimized for Specialist Portfolio */}
       <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100">
         <Image
           src={image || "/images/service/aemdevweb.webp"}
@@ -67,7 +60,7 @@ export default function ProjectCard({
         {/* Dynamic Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/10 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
 
-        {/* Status Badges */}
+        {/* Status Badges - ยืนยันความเชี่ยวชาญผ่านโปรเจกต์จริง */}
         <div className="absolute top-6 left-6 z-10 flex flex-col gap-3">
           {isFeatured && (
             <span className="inline-flex items-center gap-2 rounded-2xl bg-blue-600 px-5 py-2.5 text-[10px] font-black tracking-[0.2em] text-white uppercase shadow-2xl shadow-blue-600/40 transition-all group-hover:scale-105">
@@ -76,13 +69,14 @@ export default function ProjectCard({
           )}
           {title.includes("Unlink-th") && (
             <span className="inline-flex items-center gap-2 rounded-2xl border border-white/50 bg-white/90 px-4 py-2 text-[9px] font-black tracking-[0.15em] text-slate-900 uppercase backdrop-blur-md">
-              <ShieldCheck className="h-3 w-3 text-blue-600" /> System Architect
+              <ShieldCheck className="h-3 w-3 text-blue-600" /> System Structure
+              Lead
             </span>
           )}
         </div>
       </div>
 
-      {/* 📝 Content Header */}
+      {/* Content Header Section */}
       <CardHeader className="space-y-5 p-8 pb-4 lg:p-10">
         <div className="flex items-start justify-between gap-6">
           <CardTitle className="text-2xl leading-tight font-black text-slate-900 transition-colors group-hover:text-blue-600 lg:text-3xl">
@@ -109,14 +103,14 @@ export default function ProjectCard({
         )}
       </CardHeader>
 
-      {/* 📄 Description Body */}
+      {/* Description Body - มุ่งเน้นการสื่อสารผลลัพธ์ทางเทคนิค */}
       <CardContent className="flex-grow px-8 pb-10 lg:px-10">
         <p className="line-clamp-3 text-base leading-relaxed font-medium text-slate-500 transition-colors group-hover:text-slate-700 md:text-lg">
           {description}
         </p>
       </CardContent>
 
-      {/* 🔗 Interactive Footer */}
+      {/* Interactive Footer - ช่องทางตรวจสอบข้อมูลจริง */}
       <CardFooter className="flex items-center justify-between border-t border-slate-50 bg-slate-50/20 px-8 py-7 transition-colors group-hover:bg-blue-50/30 lg:px-10">
         <div className="flex items-center gap-8">
           {link && (
@@ -130,20 +124,9 @@ export default function ProjectCard({
               <span>Live Preview</span>
             </Link>
           )}
-          {github && (
-            <Link
-              href={github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.2em] text-slate-400 uppercase transition-all hover:text-slate-900"
-            >
-              <Github className="h-4 w-4" />
-              <span>Repository</span>
-            </Link>
-          )}
         </div>
 
-        {/* Subtle Indicator */}
+        {/* Technical Status Indicator */}
         <div className="h-1.5 w-1.5 rounded-full bg-slate-200 transition-all group-hover:w-8 group-hover:bg-blue-600" />
       </CardFooter>
     </Card>

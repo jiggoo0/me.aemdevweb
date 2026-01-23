@@ -12,8 +12,8 @@ import matter from "gray-matter";
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 
 /**
- * 📈 Metadata Generation (SEO Specialist Strategy)
- * ดึงข้อมูลจาก Frontmatter เพื่อสร้าง Meta Tags ที่ Google รัก
+ * Metadata Generation (Technical SEO Strategy)
+ * ดึงข้อมูลจาก Frontmatter เพื่อสร้าง Meta Tags สำหรับ Search Engine และ AI Crawlers
  */
 export async function generateMetadata({
   params,
@@ -29,14 +29,14 @@ export async function generateMetadata({
   const { data } = matter(fileContents);
 
   return {
-    title: `${data.title} | นายเอ็มซ่ามากส์ (AEMDEVWEB)`,
+    title: `${data.title} | นายอลงกรณ์ ยมเกิด (AEMDEVWEB)`,
     description: data.description,
     openGraph: {
       title: data.title,
       description: data.description,
       type: "article",
       publishedTime: data.date,
-      authors: [data.author || "Alongkorl Yomkerd"],
+      authors: [data.author || "นายอลงกรณ์ ยมเกิด"],
       images: [
         {
           url: data.image || "/images/blog/og-image.png",
@@ -56,7 +56,7 @@ export async function generateMetadata({
 }
 
 /**
- * 📄 BlogPostPage Component
+ * BlogPostPage Component - Infrastructure Lead Perspective
  */
 export default async function BlogPostPage({
   params,
@@ -70,17 +70,17 @@ export default async function BlogPostPage({
     notFound();
   }
 
-  // 1. ดึงข้อมูล Frontmatter
+  // 1. ดึงข้อมูล Frontmatter สำหรับจัดการความสอดคล้องของ Entity
   const fileContents = fs.readFileSync(filePath, "utf8");
   const { data } = matter(fileContents);
 
-  // 2. Dynamic Import ตัวเนื้อหา MDX (ต้องตรงกับ Path ในระบบไฟล์)
+  // 2. Dynamic Import เนื้อหา MDX ตามโครงสร้างระบบไฟล์
   const { default: PostContent } = await import(`@/content/blog/${slug}.mdx`);
 
   return (
     <article className="bg-white py-12 md:py-24">
       <Container className="max-w-4xl px-6">
-        {/* --- Breadcrumb Navigation --- */}
+        {/* Breadcrumb Navigation - เพิ่มการเข้าถึงข้อมูลแบบลำดับขั้น */}
         <nav className="mb-12 flex items-center gap-2 text-sm font-bold text-slate-400">
           <Link href="/blog" className="transition-colors hover:text-blue-600">
             คลังความรู้
@@ -89,7 +89,7 @@ export default async function BlogPostPage({
           <span className="truncate text-slate-300">{data.title}</span>
         </nav>
 
-        {/* --- Header Section --- */}
+        {/* Header Section - การแสดงผลอัตลักษณ์ผู้เขียนและวันที่เผยแพร่ */}
         <header className="mb-16 space-y-8 text-center md:text-left">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-5 py-2 text-xs font-black tracking-[0.2em] text-blue-600 uppercase shadow-sm">
             <Search className="h-3.5 w-3.5" /> Organic Strategy 2026
@@ -113,18 +113,18 @@ export default async function BlogPostPage({
             <div className="flex items-center gap-3">
               <User size={18} className="text-blue-500" />
               <span className="text-slate-600">
-                {data.author || "Alongkorl Yomkerd"}
+                {data.author || "นายอลงกรณ์ ยมเกิด"}
               </span>
             </div>
           </div>
         </header>
 
-        {/* --- Article Content (Render MDX) --- */}
+        {/* Article Content - Render เนื้อหาเชิงเทคนิคผ่าน MDX */}
         <section className="prose prose-slate lg:prose-xl prose-headings:scroll-m-20 prose-headings:font-black prose-headings:text-slate-900 prose-p:font-medium prose-p:leading-8 prose-p:text-slate-600 prose-a:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-blockquote:rounded-3xl prose-blockquote:border-l-8 prose-blockquote:border-blue-600 prose-blockquote:bg-blue-50/50 prose-blockquote:p-8 prose-img:rounded-[2.5rem] prose-img:border-4 prose-img:border-slate-50 max-w-none shadow-none">
           <PostContent />
         </section>
 
-        {/* --- Dynamic CTA Section --- */}
+        {/* Dynamic CTA Section - การนำเสนอความเชื่อมั่นเชิงเทคนิค */}
         <footer className="mt-28">
           <div className="relative overflow-hidden rounded-[4rem] border border-white/5 bg-slate-950 p-12 text-center shadow-2xl md:p-20">
             <div className="absolute -top-20 -right-20 h-80 w-80 rounded-full bg-blue-600/20 blur-[100px]" />
@@ -134,20 +134,20 @@ export default async function BlogPostPage({
               <h3 className="mb-8 text-3xl leading-tight font-black text-white italic md:text-5xl">
                 อยากเปลี่ยนเว็บไซต์ให้เป็น <br />
                 <span className="text-blue-400">
-                  "เครื่องจักรผลิตเงิน"
+                  "สินทรัพย์ดิจิทัลที่ยั่งยืน"
                 </span>{" "}
                 ไหมครับ?
               </h3>
               <p className="mx-auto mb-12 max-w-2xl text-lg font-medium text-slate-400">
-                ผมยินดีให้คำปรึกษาเรื่องการวางโครงสร้าง SEO และเทคโนโลยี Next.js
-                เพื่อให้ธุรกิจพี่เติบโตอย่างยั่งยืนบนหน้าแรก Google
+                ผมยินดีให้คำปรึกษาเรื่องการวางโครงสร้างระบบ SEO และเทคโนโลยี
+                Next.js เพื่อให้ธุรกิจท่านเติบโตอย่างมั่นคงบนหน้าแรก Google
               </p>
               <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
                 <Button
                   className="h-16 w-full rounded-full bg-blue-600 px-12 text-xl font-black shadow-xl shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 md:w-auto"
                   asChild
                 >
-                  <Link href="/contact">ปรึกษาเรื่อง SEO ฟรี</Link>
+                  <Link href="/contact">ปรึกษาการวางโครงสร้างระบบฟรี</Link>
                 </Button>
                 <Button
                   variant="ghost"
@@ -155,7 +155,7 @@ export default async function BlogPostPage({
                   asChild
                 >
                   <Link href="/blog">
-                    <ArrowLeft className="mr-2 h-5 w-5" /> อ่านบทความอื่น
+                    <ArrowLeft className="mr-2 h-5 w-5" /> อ่านเนื้อหาอื่น
                   </Link>
                 </Button>
               </div>
@@ -168,8 +168,8 @@ export default async function BlogPostPage({
 }
 
 /**
- * 🛠️ Static Generation
- * บังคับให้ Next.js สร้างหน้า Static ล่วงหน้าทั้งหมดเพื่อความเร็วสูงสุด
+ * Static Generation
+ * บังคับการสร้างหน้า Static เพื่อความเร็วสูงสุดและประสิทธิภาพด้าน SEO
  */
 export async function generateStaticParams() {
   if (!fs.existsSync(BLOG_DIR)) return [];

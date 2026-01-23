@@ -1,119 +1,133 @@
 ---
-title: "Project Structure Report"
-description: "Extended scan of project folders, configuration, content, MDX, Next.js config, and pre-deploy analysis"
-author: "Auto Generated Script"
+title: "Project Structure Report (Authority Domain)"
+description: "Architecture, MDX mapping, and pre-deploy status for personal branding network"
+author: "Alongkorl Yomkerd"
 site: "https://me.aemdevweb.com/"
-projectType: "Web Application"
+projectType: "Personal Brand & Knowledge Base (Authority)"
 environment: "pre-deploy"
-buildId: "1cfd7c8b"
+buildId: "6f58e89a"
+generatedAt: "2026-01-23T20:51:51Z"
 contentType: "documentation"
-generatedAt: "2026-01-21T04:19:22Z"
 tags:
   - project-structure
-  - nextjs
-  - mdx
-  - pre-deploy
-  - aem
-  - automation
+  - nextjs-16
+  - authority-domain
+  - eeat-strategy
 ---
 
-# 📁 Project Structure Report (Extended Scan)
+# Project Structure Report (Extended Scan)
+Generated: Sat Jan 24 03:51:51 +07 2026
 
-_Generated: Wed Jan 21 11:19:22 +07 2026_
+> Site: https://me.aemdevweb.com/
+> Identity: นายเอ็มซ่ามากส์ (Person Entity)
+> Purpose: Knowledge Base & Trust Foundation
+> Build ID: 6f58e89a
 
-## 🌳 Folder Structure
+## 1. Directory Architecture
 
-⚠️ Skipped (not found): config
+dir: config/
+config
+  |ai-context.core.md
+  |ai-system-role.md
+  |ai-context.dna.md
 
-📂 app
-📂 about
-📄 page.mdx
-📂 blog
-📂 [slug]
-📄 page.tsx
-📄 page.tsx
-📂 contact
-📄 page.mdx
-📄 favicon.ico
-📄 globals.css
-📄 layout.tsx
-📄 page.tsx
-📂 projects
-📄 page.mdx
-📄 robots.ts
-📂 services
-📂 aem-dev
-📄 page.mdx
-📄 page.mdx
-📂 unlink-th
-📄 page.mdx
-📄 sitemap.ts
+dir: app/
+app
+  |about
+     |page.mdx
+  |robots.ts
+  |contact
+     |page.mdx
+  |favicon.ico
+  |globals.css
+  |layout.tsx
+  |page.tsx
+  |services
+     |aem-dev
+        |page.mdx
+     |unlink-th
+        |page.mdx
+     |page.mdx
+  |sitemap.ts
+  |projects
+     |page.mdx
+  |blog
+     |page.tsx
+     |[slug]
+        |page.tsx
 
-📂 components
-📂 layout
-📄 Container.tsx
-📄 Footer.tsx
-📄 Header.tsx
-📂 profile
-📄 ContactInfo.tsx
-📄 Hero.tsx
-📄 Schema.tsx
-📂 shared
-📄 BlogCard.tsx
-📄 ProjectCard.tsx
-📄 ServiceCard.tsx
-📄 SocialLinks.tsx
-📂 ui
-📄 badge.tsx
-📄 button.tsx
-📄 card.tsx
-📄 input.tsx
+dir: components/
+components
+  |ui
+     |card.tsx
+     |button.tsx
+     |input.tsx
+     |badge.tsx
+  |shared
+     |SocialLinks.tsx
+     |ProjectCard.tsx
+     |ServiceCard.tsx
+     |BlogCard.tsx
+  |profile
+     |ContactInfo.tsx
+     |Hero.tsx
+     |Schema.tsx
+  |layout
+     |Header.tsx
+     |Footer.tsx
+     |Container.tsx
 
-📂 lib
-📄 blog.ts
-📄 projects.ts
-📄 utils.ts
+dir: lib/
+lib
+  |utils.ts
+  |blog.ts
+  |projects.ts
 
-⚠️ Skipped (not found): hooks
+[WARN] Directory not found: hooks
 
-⚠️ Skipped (not found): constants
+dir: constants/
+constants
+  |site-config.ts
 
-📂 content
-📂 blog
-📄 sme-family-business-seo.mdx
-📄 technical-seo-tips.mdx
-📄 what-is-seo-organic.mdx
-📄 why-need-website-vs-facebook.mdx
-📂 projects
+dir: content/
+content
+  |blog
+     |technical-seo-tips.mdx
+     |what-is-seo-organic.mdx
+     |why-need-website-vs-facebook.mdx
+     |sme-family-business-seo.mdx
+  |projects
 
-⚠️ Skipped (not found): types
+[WARN] Directory not found: types
 
-📂 public
-📄 file.svg
-📄 globe.svg
-📂 images
-📄 activity.webp
-📄 aemdevweb-hero.webp
-📂 blog
-📄 aemdevweb.webp
-📂 case
-📄 case100.webp
-📄 case99.webp
-📄 grid.svg
-📄 og-image.png
-📄 profile-photo.jpg
-📄 project-01.webp
-📂 service
-📄 Unlink-th.webp
-📄 aemdevweb.webp
-📄 next.svg
-📄 vercel.svg
-📄 window.svg
+dir: public/
+public
+  |file.svg
+  |globe.svg
+  |images
+     |activity.webp
+     |profile-photo.jpg
+     |aemdevweb-hero.webp
+     |og-image.png
+     |service
+        |aemdevweb.webp
+        |Unlink-th.webp
+     |project-01.webp
+     |case
+        |case100.webp
+        |case99.webp
+        |Unlike-th-destop99.webp
+        |Unlink-th-mobile94.webp
+     |grid.svg
+     |blog
+        |aemdevweb.webp
+  |next.svg
+  |vercel.svg
+  |window.svg
 
-⚠️ Skipped (not found): providers
+[WARN] Directory not found: providers
 
-## 📦 package.json Overview
-
+## 2. Dependencies and Scripts (package.json)
 ```json
 {
   "name": "alongkorl-yomkert",
@@ -131,6 +145,7 @@ _Generated: Wed Jan 21 11:19:22 +07 2026_
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "15.5.7",
     "@radix-ui/react-slot": "^1.1.0",
+    "@tailwindcss/typography": "^0.5.19",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.15.0",
@@ -162,33 +177,18 @@ _Generated: Wed Jan 21 11:19:22 +07 2026_
 }
 ```
 
-## 🧩 MDX Components Analysis
-
-### 📄 File: `mdx-components.tsx`
-
-#### 🔍 Purpose
-
-- Central MDX component mapping for content rendering
-- Controls headings, links, images, code blocks, and custom UI
-- Critical for SEO, Accessibility, and Headless CMS (AEM) compatibility
-
-#### 🧠 Structural Overview
-
-- React components exposed to MDX provider
-- Overrides default HTML tags (h1–h6, p, a, img, code, pre)
-- Used by Next.js App Router MDX pipeline
-
-#### 🧩 Source Code
-
+## 3. MDX Rendering Logic
+File found: mdx-components.tsx
 ```typescript
 /** @format */
 import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 // --- [Profile & Shared Components] ---
-import Hero from "@/components/profile/Hero"; // ✅ ลงทะเบียนให้ MDX ทุกหน้าเข้าถึงได้
+import Hero from "@/components/profile/Hero";
+import ContactInfo from "@/components/profile/ContactInfo";
 import ProjectCard from "@/components/shared/ProjectCard";
 
 // --- [UI Components] ---
@@ -202,9 +202,11 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 
-// --- [Lucide Icons] ---
+// --- [Lucide Icons Registry] ---
 import {
+  Heart,
   Layout,
   Rocket,
   ArrowRight,
@@ -233,7 +235,14 @@ import {
   MapPin,
   PiggyBank,
   Users,
-  PenTool, // ✅ เพิ่มไว้สำหรับหน้า About ที่พี่เพิ่งแก้
+  PenTool,
+  Terminal,
+  Mail,
+  MessageSquare,
+  Send,
+  Clock,
+  Phone,
+  Facebook,
 } from "lucide-react";
 
 interface MdxImageProps {
@@ -243,13 +252,13 @@ interface MdxImageProps {
 }
 
 /**
- * useMDXComponents - ฉบับพาร์ทเนอร์ดูแลระบบและ SEO Organic
- * จัดการเรื่อง Registry คอมโพเนนต์เพื่อให้ไฟล์ .mdx เรียกใช้ Tag ได้โดยไม่ต้อง Import ซ้ำ
+ * useMDXComponents - ฉบับการจัดการโครงสร้างระบบและ SEO Organic 2026
+ * แก้ไขปัญหา Prerender Error และจัดการการแสดงผลระดับสมรรถนะสูง
  */
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
-    // 1. Typography & Layout Standard
+    // 1. การจัดการหัวข้อ (Typography Standards)
     h1: ({ className, ...props }) => (
       <h1
         className={cn(
@@ -278,70 +287,47 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       />
     ),
 
-    // ✅ ป้องกัน Hydration Error ใน Next.js 15
+    // ✅ การจัดการ Tag ย่อยเพื่อป้องกัน Hydration Error
     p: ({ className, ...props }) => (
       <span
         className={cn(
-          "block text-lg font-medium leading-8 text-slate-600 [&:not(:first-child)]:mt-6",
+          "block text-lg leading-8 font-medium text-slate-600 [&:not(:first-child)]:mt-6",
           className
         )}
         {...props}
       />
     ),
 
-    ul: ({ className, ...props }) => (
-      <ul
-        className={cn(
-          "my-6 ml-6 list-disc font-medium space-y-3 text-slate-600",
-          className
-        )}
-        {...props}
-      />
-    ),
-    blockquote: ({ className, ...props }) => (
-      <div
-        className={cn(
-          "my-10 flex items-center gap-6 rounded-3xl bg-blue-50/50 p-8 border-l-8 border-blue-600 md:rounded-r-[2.5rem]",
-          className
-        )}
-      >
-        <Lightbulb className="hidden h-10 w-10 text-blue-600 shrink-0 md:block" />
-        <blockquote
-          className="text-lg font-bold italic text-blue-900"
-          {...props}
-        />
-      </div>
-    ),
-
-    // 2. Media Optimization
+    // 2. การจัดการสื่อ (Media Optimization for LCP)
     img: ({ alt, src, ...props }: MdxImageProps) => (
-      <span className="relative my-10 block aspect-video w-full overflow-hidden rounded-[2rem] border-2 border-slate-100 shadow-xl transition-transform hover:scale-[1.01]">
+      <span className="relative my-10 block aspect-video w-full overflow-hidden rounded-[2rem] border-2 border-slate-100 shadow-xl">
         <Image
           fill
           src={src || ""}
-          alt={alt || "AEM DEV WEB Content Image"}
+          alt={alt || "AEMDEVWEB Content Image"}
           className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 50vw"
+          sizes="(max-width: 768px) 100vw, 75vw"
           {...props}
         />
       </span>
     ),
 
-    // 3. Navigation
+    // 3. การนำทาง (Navigation Hub)
     Link,
     a: ({ href, className, ...props }) => (
       <Link
         href={href as string}
         className={cn(
-          "font-bold text-blue-600 underline underline-offset-4 transition-colors hover:text-blue-800",
+          "font-bold text-blue-600 underline underline-offset-4 hover:text-blue-800",
           className
         )}
         {...props}
       />
     ),
 
-    // 4. Custom Registry (พาร์ทสำคัญที่แก้ Error)
-    Hero, // ✅ ลงทะเบียนเรียบร้อย เรียกใช้ <Hero /> ใน MDX ได้เลย
+    // 4. การลงทะเบียนคอมโพเนนต์ (Custom Components)
+    Hero,
+    ContactInfo,
     ProjectCard,
     Card,
     CardHeader,
@@ -351,8 +337,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     CardFooter,
     Button,
     Badge,
+    Input,
 
-    // 5. Lucide Icons Registry
+    // 5. การลงทะเบียน Icon (Icon Registry)
+    Heart,
     Layout,
     Rocket,
     ArrowRight,
@@ -382,39 +370,19 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     PiggyBank,
     Users,
     PenTool,
+    Terminal,
+    Mail,
+    MessageSquare,
+    Send,
+    Clock,
+    Phone,
+    Facebook,
   };
 }
 ```
 
-#### ⚠️ Review Checklist
-
-- [ ] Heading hierarchy (h1–h6) is semantic
-- [ ] External links use rel="noopener noreferrer"
-- [ ] Images optimized (next/image preferred)
-- [ ] Code blocks support syntax highlighting
-- [ ] No inline scripts or unsafe HTML
-- [ ] Compatible with AEM / Headless rendering
-
-## ⚙️ Next.js Configuration Analysis
-
-### 📄 File: `next.config.ts`
-
-#### 🔍 Purpose
-
-- Core Next.js runtime and build configuration
-- Controls routing behavior, images, security headers, and optimizations
-- Critical for performance, SEO, and production deployment
-
-#### 🧠 Configuration Review Focus
-
-- App Router / experimental flags
-- Image domains and optimization
-- Headers (security, CSP, caching)
-- Output mode (standalone / export)
-- AEM / Headless compatibility
-
-#### ⚙️ Source Code
-
+## 4. Next.js Runtime and Edge Configuration
+Status: Core configuration detected (next.config.ts)
 ```typescript
 /** @format */
 import type { NextConfig } from "next";
@@ -435,8 +403,7 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 3600,
     remotePatterns: [
       { protocol: "https", hostname: "lin.ee" },
-      { protocol: "https", hostname: "**.supabase.co" },
-      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "me.aemdevweb.com" },
     ],
   },
 
@@ -448,9 +415,7 @@ const nextConfig: NextConfig = {
   },
 
   experimental: {
-    // ✅ ต้องปรับเป็น false เพื่อให้ remark-frontmatter ทำงานได้ครับ
-    mdxRs: false,
-
+    mdxRs: false, // จำเป็นเพื่อให้ remark-frontmatter ทำงาน
     webpackBuildWorker: true,
     optimizePackageImports: [
       "lucide-react",
@@ -465,7 +430,6 @@ const nextConfig: NextConfig = {
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    // ✅ ใส่ Plugins ที่นี่เพื่อให้ระบบตัด Frontmatter ออกจากการเรนเดอร์
     remarkPlugins: [remarkFrontmatter, remarkGfm],
     rehypePlugins: [],
   },
@@ -474,24 +438,36 @@ const withMDX = createMDX({
 export default withMDX(nextConfig);
 ```
 
-#### ⚠️ Review Checklist
-
-- [ ] output mode correctly set (standalone/export)
-- [ ] images.domains explicitly defined
-- [ ] security headers configured (CSP, X-Frame, etc.)
-- [ ] experimental flags reviewed
-- [ ] basePath / assetPrefix correct (if used)
-- [ ] Compatible with CDN / AEM Dispatcher
-
-## 📝 Pre-Deploy Analysis
+## 5. Pre-Deploy Integrity Analysis
+---
+Verdict: READY FOR DEPLOY
+### Production Route Map (From Report)
+```text
+```text
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /blog
+├ ● /blog/[slug]
+│ ├ /blog/sme-family-business-seo
+│ ├ /blog/technical-seo-tips
+│ ├ /blog/what-is-seo-organic
+│ └ /blog/why-need-website-vs-facebook
+├ ○ /contact
+├ ○ /projects
+├ ○ /robots.txt
+├ ○ /services
+├ ○ /services/aem-dev
+├ ○ /services/unlink-th
+└ ○ /sitemap.xml
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+```
+```
+### Critical Issues Highlight
+Status: No critical impediments detected in the latest audit.
 
 ---
-
-⚠️ pre-deploy-report.md not found
-Run pre-deploy-check.sh to generate the report
-
----
-
 Status: Scan completed successfully.
-Scope: Architecture • Content • MDX • Next.js Config • Pre-deploy
-Target: AEM / Headless / AI Context Ready
+Scope: Personal Authority Domain Architecture Audit

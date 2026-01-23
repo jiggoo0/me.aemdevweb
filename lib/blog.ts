@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-// 1. กำหนด Path ไปที่ content/blog โดยตรง
+// 1. กำหนดตำแหน่งที่ตั้งของเนื้อหาบทความโดยอ้างอิงจาก Root Directory
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 
 export interface BlogPost {
@@ -19,7 +19,8 @@ export interface BlogPost {
 }
 
 /**
- * getAllPosts - ดึงข้อมูลบทความทั้งหมดใน content/blog
+ * getAllPosts - ดำเนินการดึงข้อมูลบทความทั้งหมดจากระบบไฟล์
+ * จัดเรียงข้อมูลตามวันที่เพื่อรองรับการแสดงผลในหน้ารายการบทความ
  */
 export function getAllPosts(): BlogPost[] {
   if (!fs.existsSync(BLOG_DIR)) {
@@ -43,18 +44,19 @@ export function getAllPosts(): BlogPost[] {
         title: data.title || "Untitled Post",
         description: data.description || "",
         date: data.date || "",
-        author: data.author || "Alongkorl Yomkerd",
+        author: data.author || "นายอลงกรณ์ ยมเกิด",
         image: data.image || "/images/blog/og-image.png",
         tags: data.tags || [],
       } as BlogPost;
     });
 
+  // จัดเรียงบทความใหม่ล่าสุดขึ้นก่อน (Descending Order)
   return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 /**
- * getPostBySlug - ดึงข้อมูลบทความรายชิ้นตาม Slug
- * ✅ แก้ไข Lint Warning: 'error' is defined but never used
+ * getPostBySlug - ดึงข้อมูลบทความรายชิ้นโดยใช้ Slug เป็นตัวระบุ
+ * ดำเนินการจัดการข้อผิดพลาดโดยส่งค่า null เมื่อไม่พบไฟล์ที่กำหนด
  */
 export function getPostBySlug(slug: string): BlogPost | null {
   try {
@@ -70,12 +72,12 @@ export function getPostBySlug(slug: string): BlogPost | null {
       title: data.title,
       description: data.description,
       date: data.date,
-      author: data.author,
+      author: data.author || "นายอลงกรณ์ ยมเกิด",
       image: data.image,
       tags: data.tags,
     } as BlogPost;
   } catch {
-    // ✅ ลบ (error) ออก เพราะเราแค่ต้องการส่งค่า null กลับเมื่อเกิดปัญหา
+    // ส่งค่า null เมื่อเกิดปัญหาในกระบวนการดึงข้อมูลเพื่อความปลอดภัยของระบบ
     return null;
   }
 }

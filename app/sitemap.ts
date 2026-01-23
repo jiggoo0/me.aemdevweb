@@ -1,41 +1,50 @@
 /** @format */
+
 import { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
 
 /**
- * 🗺️ Sitemap Generator - DNA นายเอ็มซ่ามากส์
- * ออกแบบมาเพื่อเร่งการทำ Indexing ให้กับบริการรับทำ SEO และผลงาน Unlink-th
+ * Sitemap Generator - นายเอ็มซ่ามากส์ Infrastructure Edition
+ * ออกแบบมาเพื่อเร่งการจัดดัชนี (Indexing) สำหรับตัวตนผู้เชี่ยวชาญ
+ * ขีดจำกัดทางข้อมูล: นายอลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์)
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://me.aemdevweb.com";
   const blogDir = path.join(process.cwd(), "content/blog");
 
-  // 1. กำหนดเส้นทางหลัก (Static Routes)
+  // 1. Static Routes Configuration
+  // จัดลำดับความสำคัญตามกลยุทธ์การสร้าง Authority
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}`,
       lastModified: new Date(),
       changeFrequency: "daily",
-      priority: 1.0, // หน้าแรก: จุดรวมศูนย์ Trust และบริการรับทำ SEO
+      priority: 1.0, // หน้าหลักสำหรับยืนยันตัวตน
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9, // สำคัญมากสำหรับคะแนน E-E-A-T
     },
     {
       url: `${baseUrl}/services`,
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.9,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/services/aem-dev`,
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.9,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/services/unlink-th`,
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.9, // Exclusive Service: เน้นเป็นพิเศษ
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/projects`,
@@ -47,7 +56,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/blog`,
       lastModified: new Date(),
       changeFrequency: "daily",
-      priority: 0.8, // คลังความรู้: ท่อส่ง Traffic หลัก
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
@@ -57,7 +66,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // 2. ดึงบทความจากไฟล์จริง (Dynamic Blog Routes)
+  // 2. Dynamic Blog Routes Generation
+  // ดึงข้อมูลจาก Folder content/blog ตามโครงสร้างไฟล์จริง
   let blogRoutes: MetadataRoute.Sitemap = [];
   try {
     if (fs.existsSync(blogDir)) {

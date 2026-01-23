@@ -1,9 +1,12 @@
 /** @format */
 
+import React from "react";
+import { siteConfig } from "@/constants/site-config";
+
 /**
- * 🛠️ Schema Component (JSON-LD) - Personal Branding Strategy
- * วัตถุประสงค์: ยืนยันตัวตน "Alongkorl Yomkerd" ในฐานะ Expert บน Knowledge Graph ของ Google
- * เชื่อมโยงประวัติการทำงานจาก LinkedIn URL ใหม่ เพื่อเพิ่มความน่าเชื่อถือ (EEAT)
+ * Schema Component (JSON-LD) - 2026 Identity Authority
+ * Implementation: Cross-Domain Entity Mapping (Person <-> Organization)
+ * ยืนยันตัวตน นายอลงกรณ์ ยมเกิด ในฐานะ Infrastructure Lead ของ AEMDEVWEB
  */
 export default function Schema() {
   const personSchema = {
@@ -11,74 +14,64 @@ export default function Schema() {
     "@graph": [
       {
         "@type": "Person",
-        "@id": "https://me.aemdevweb.com/#person",
-        name: "Alongkorl Yomkerd",
+        "@id": `${siteConfig.url}/#person`,
+        name: siteConfig.fullName,
         alternateName: [
+          siteConfig.expert,
+          "Alongkorl Yomkerd",
           "อลงกรณ์ ยมเกิด",
-          "นายเอ็มซ่ามากส์",
-          "AEMDEVWEB",
-          "Unlink-th Architect",
+          "AEM",
         ],
-        url: "https://me.aemdevweb.com",
+        url: siteConfig.url,
         image: {
           "@type": "ImageObject",
-          url: "https://me.aemdevweb.com/images/profile-photo.jpg",
+          url: siteConfig.profilePhoto,
           width: "800",
           height: "800",
-          caption: "นายเอ็มซ่ามากส์ - ที่ปรึกษา SEO และนักพัฒนาเว็บ",
         },
-        jobTitle: "Technical SEO Consultant & Full-Stack Developer",
-        description:
-          "เปลี่ยนเว็บไซต์ให้เป็นสินทรัพย์ที่หาเงินเองได้ ผมคือ 'นายเอ็มซ่ามากส์' ที่ปรึกษาด้าน SEO และนักพัฒนาเว็บสาย Technical ผู้อยู่เบื้องหลังความปลอดภัยของ Unlink-th ผมมุ่งมั่นช่วย SME ไทยสร้างยอดขายจาก Organic Traffic ด้วยกลยุทธ์ที่ยั่งยืน",
-        gender: "https://schema.org/Male",
-        email: "me@aemdevweb.com",
-        nationality: {
-          "@type": "Country",
-          name: "Thailand",
-        },
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Bangkok",
-          addressRegion: "Thailand",
-          addressCountry: "TH",
-        },
-        // ✅ อัปเดต LinkedIn เป็น Custom URL ใหม่ (alongkorl-aemdevweb)
+        jobTitle: siteConfig.role,
+        worksFor: { "@id": `${siteConfig.commercialUrl}/#organization` },
+        knowsAbout: [
+          "Technical SEO",
+          "Next.js Infrastructure",
+          "Web Performance Optimization",
+          "Online Reputation Management",
+          "Search Engine Optimization",
+        ],
         sameAs: [
-          "https://www.aemdevweb.com",
-          "https://www.unlink-th.com",
-          "https://www.facebook.com/aemdevweb",
-          "https://www.linkedin.com/in/alongkorl-aemdevweb",
-          "https://lin.ee/dDHISbG",
+          siteConfig.commercialUrl,
+          siteConfig.contact.linkedin,
+          siteConfig.contact.facebook,
+          siteConfig.contact.x, // เพิ่มการเชื่อมโยงบัญชี X
           "https://github.com/jiggoo0",
         ],
-        worksFor: { "@id": "https://www.aemdevweb.com/#organization" },
-        knowsAbout: [
-          { "@type": "Thing", name: "Technical SEO Strategy" },
-          { "@type": "Thing", name: "Next.js Web Performance" },
-          { "@type": "Thing", name: "Online Reputation Management (ORM)" },
-          { "@type": "Thing", name: "Organic Traffic Growth for SME" },
-        ],
+        description: siteConfig.description,
+        mainEntityOfPage: { "@id": `${siteConfig.url}/#website` },
       },
       {
         "@type": "Organization",
-        "@id": "https://www.aemdevweb.com/#organization",
-        name: "AEMDEVWEB",
-        url: "https://www.aemdevweb.com",
+        "@id": `${siteConfig.commercialUrl}/#organization`,
+        name: siteConfig.companyName,
+        url: siteConfig.commercialUrl,
         logo: {
           "@type": "ImageObject",
-          url: "https://me.aemdevweb.com/images/service/aemdevweb.webp",
+          url: `${siteConfig.commercialUrl}/og-image.png`,
         },
-        founder: { "@id": "https://me.aemdevweb.com/#person" },
-        slogan:
-          "สร้างเว็บที่เปิดไวทันใจ เพื่อให้ธุรกิจของคุณนำหน้าคู่แข่งในทุกคลิก",
-        description:
-          "สตูดิโอพัฒนาเว็บไซต์และที่ปรึกษา SEO ครบวงจร เน้นความเร็ว ความปลอดภัย และผลลัพธ์ทางธุรกิจที่ยั่งยืนสำหรับ SME ไทย",
+        founder: { "@id": `${siteConfig.url}/#person` },
         contactPoint: {
           "@type": "ContactPoint",
           contactType: "Technical Support",
-          areaServed: "TH",
-          availableLanguage: ["Thai", "English"],
+          email: siteConfig.email, // แก้ไข Path ของ Email ให้ถูกต้อง
+          url: siteConfig.url,
         },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteConfig.url}/#website`,
+        url: siteConfig.url,
+        name: `Identity Hub of ${siteConfig.fullName}`,
+        publisher: { "@id": `${siteConfig.url}/#person` },
+        inLanguage: "th-TH",
       },
     ],
   };
@@ -87,6 +80,7 @@ export default function Schema() {
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      key="authority-entity-bridge"
     />
   );
 }
