@@ -5,57 +5,42 @@ import fs from "fs";
 import path from "path";
 
 /**
- * Sitemap Generator - นายเอ็มซ่ามากส์ Infrastructure Edition
- * ออกแบบมาเพื่อเร่งการจัดดัชนี (Indexing) สำหรับตัวตนผู้เชี่ยวชาญ
- * ขีดจำกัดทางข้อมูล: นายอลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์)
+ * Sitemap Generator - Identity Edition (me.aemdevweb.com)
+ * ปรับปรุงใหม่: ลบ Service Routes และเพิ่ม Auto-Project Generation
+ * เพื่อรองรับโครงสร้างเน้น Authority & Proof of Work
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://me.aemdevweb.com";
+  
+  // Path สำหรับดึงข้อมูล Content
   const blogDir = path.join(process.cwd(), "content/blog");
+  const projectDir = path.join(process.cwd(), "content/projects");
 
   // 1. Static Routes Configuration
-  // จัดลำดับความสำคัญตามกลยุทธ์การสร้าง Authority
+  // เน้นหน้าหลักที่สร้าง Trust และ E-E-A-T
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}`,
       lastModified: new Date(),
       changeFrequency: "daily",
-      priority: 1.0, // หน้าหลักสำหรับยืนยันตัวตน
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.9, // สำคัญมากสำหรับคะแนน E-E-A-T
+      priority: 0.9,
     },
     {
-      url: `${baseUrl}/services`,
+      url: `${baseUrl}/blog`,
       lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/aem-dev`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/unlink-th`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/projects`,
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "daily",
       priority: 0.8,
     },
     {
@@ -66,28 +51,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // 2. Dynamic Blog Routes Generation
-  // ดึงข้อมูลจาก Folder content/blog ตามโครงสร้างไฟล์จริง
-  let blogRoutes: MetadataRoute.Sitemap = [];
-  try {
-    if (fs.existsSync(blogDir)) {
-      const files = fs.readdirSync(blogDir);
-      blogRoutes = files
-        .filter((file) => file.endsWith(".mdx"))
-        .map((file) => {
-          const slug = file.replace(".mdx", "");
-          const stats = fs.statSync(path.join(blogDir, file));
-          return {
-            url: `${baseUrl}/blog/${slug}`,
-            lastModified: stats.mtime,
-            changeFrequency: "weekly",
-            priority: 0.6,
-          };
-        });
-    }
-  } catch (error) {
-    console.error("Sitemap Blog Generation Error:", error);
-  }
+  /**
+   * 2. Helper Function สำหรับสร้าง Routes จาก MDX
+   * รองรับทั้งโครงสร้างไฟล์เดี่ยว และโฟลเดอร์ที่มี page.mdx
+   */
+  const getRoutesFromDir = (dir: string, routePath: string, priority: number): MetadataRoute.Sitemap => {
+    if (!fs.existsSync(dir)) return [];
+    
+    const items = fs.readdirSync(dir);
+    
+    return items.map((item) => {
+      const isDirectory = fs.statSync(path.join(dir, item)).isDirectory();
+      const slug = isDirectory ? item : item.replace(".mdx", "");
+      const fullPath = isDirectory 
+        ? path.join(dir, item, "page.mdx") 
+        : path.join(dir, item);
 
-  return [...staticRoutes, ...blogRoutes];
+      if (!fs.existsSync(fullPath)) return null;
+
+      const stats = fs.statSync(fullPath);
+      return {
+        url: `${baseUrl}/${routePath}/${slug}`,
+        lastModified: stats.mtime,
+        changeFrequency: "weekly" as const,
+        priority: priority,
+      };
+    }).filter(Boolean) as MetadataRoute.Sitemap;
+  };
+
+  // ดึงข้อมูล Routes ทั้งหมด
+  const blogRoutes = getRoutesFromDir(blogDir, "blog", 0.7);
+  const projectRoutes = getRoutesFromDir(projectDir, "projects", 0.7);
+
+  return [...staticRoutes, ...blogRoutes, ...projectRoutes];
 }

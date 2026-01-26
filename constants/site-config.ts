@@ -1,37 +1,41 @@
 /** @format */
 
 /**
- * AEMDEVWEB Authority Identity Configuration (2026 Edition)
- * Project: me.aemdevweb.com (Identity Hub)
- * Lead: นายอลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์)
- * มาตรฐานการจัดการโครงสร้างระบบข้อมูลระดับสูง
+ * AEMDEVWEB Core Identity System (2026)
+ * Single Source of Truth สำหรับข้อมูลอัตลักษณ์และโครงสร้างพื้นฐานของเว็บไซต์
  */
 export const siteConfig = {
-  // Identity Spec - การระบุตัวตนผู้เชี่ยวชาญ
-  expert: "นายเอ็มซ่ามากส์",
+  // 1. Identity Verification (ข้อมูลยืนยันตัวตน)
   fullName: "นายอลงกรณ์ ยมเกิด",
-  role: "Technical SEO Consultant & Next.js Infrastructure Lead",
-  description:
-    "ศูนย์รวมความรู้ด้านเทคนิค SEO และการจัดการโครงสร้างระบบเว็บสมรรถนะสูง โดย นายอลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์)",
-
-  // URL Infrastructure - โครงสร้างการเชื่อมโยงข้อมูล
+  expertName: "นายเอ็มซ่ามากส์",
+  handle: "AEMDEVWEB",
+  role: "Technical SEO Consultant & Infrastructure Lead",
+  expert: "ผู้เชี่ยวชาญด้านการวางโครงสร้างระบบเว็บและกลยุทธ์ SEO เชิงเทคนิค",
+  
+  // 2. SEO Content Strategy (ข้อมูลสำหรับการทำดัชนี)
+  siteName: "AEMDEVWEB | Identity Hub",
+  description: "ศูนย์รวมความรู้ด้านเทคนิค SEO และการพัฒนา Next.js โครงสร้างสมรรถนะสูง โดย นายอลงกรณ์ ยมเกิด",
+  slogan: "High-Performance Infrastructure & Technical SEO Strategy",
+  
+  // 3. Domain & Assets (โครงสร้างที่อยู่และไฟล์หลัก)
   url: "https://me.aemdevweb.com",
   commercialUrl: "https://www.aemdevweb.com",
-  ogImage: "https://me.aemdevweb.com/images/og-image.png",
-  profilePhoto: "https://me.aemdevweb.com/images/profile-photo.jpg",
-
-  // Organization Context - ข้อมูลนิติบุคคล
+  ogImage: "/images/og-image.png",
+  profilePhoto: "/images/profile-photo.jpg",
+  
+  // 4. Business Context (ข้อมูลสำหรับการติดต่อเชิงธุรกิจ)
   companyName: "AEMDEVWEB Co., Ltd.",
-  slogan: "High-Performance System Structure and Technical SEO Strategy",
   email: "me@aemdevweb.com",
-
-  // Linkage Hub - ช่องทางเชื่อมต่ออัตลักษณ์ (Identity Linkage)
+  
+  // 5. Social Presence (เครือข่ายความเชื่อมโยงอัตลักษณ์)
   contact: {
     facebook: "https://facebook.com/aemdevweb",
     linkedin: "https://www.linkedin.com/in/alongkorl-aemdevweb",
-    x: "https://x.com/xemwep91696", // เชื่อมโยงเพื่อสร้าง Social Signals
+    x: "https://x.com/xemwep91696",
+    line: "https://lin.ee/pHpO7wF", // Line Official Account (หลัก)
+    linePersonal: "https://line.me/ti/p/PCE92r2xrB", // Line ส่วนตัว
+    github: "https://github.com/aemdevweb",
   },
-  links: {
-    line: "https://line.me/ti/p/@aemdevweb",
-  },
-};
+} as const;
+
+export type SiteConfig = typeof siteConfig;

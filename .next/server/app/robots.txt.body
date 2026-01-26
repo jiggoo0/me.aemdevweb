@@ -1,18 +1,18 @@
 User-Agent: *
 Allow: /
 Allow: /about
-Allow: /blog
-Allow: /services
-Allow: /projects
+Allow: /blog/
+Allow: /projects/
 Allow: /contact
-Disallow: /private/
-Disallow: /admin/
 Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
 Disallow: /*.json$
+Disallow: /services
 
 User-Agent: GPTBot
 User-Agent: CCBot
-User-Agent: ClaudeBot
+User-Agent: Claude-Web
 Disallow: /
 
 Sitemap: https://me.aemdevweb.com/sitemap.xml

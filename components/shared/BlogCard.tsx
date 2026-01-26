@@ -11,7 +11,7 @@ interface BlogCardProps {
   image: string;
   date: string;
   author?: string;
-  tags?: string[]; // รองรับ Tags เพื่อเพิ่มประสิทธิภาพการทำ Topic Cluster
+  tags?: string[];
   slug: string;
   className?: string;
 }
@@ -19,7 +19,6 @@ interface BlogCardProps {
 /**
  * BlogCard Component - Technical Specialist Edition
  * ออกแบบมาเพื่อสร้างลำดับความสำคัญของข้อมูลและการเข้าถึงเนื้อหา (SEO Optimization)
- * เน้นโครงสร้างที่สะอาดและเป็นระเบียบสำหรับผู้ที่มองหาข้อมูลเชิงลึก
  */
 export default function BlogCard({
   title,
@@ -31,6 +30,9 @@ export default function BlogCard({
   slug,
   className,
 }: BlogCardProps) {
+  // ตรวจสอบ fallback image สำหรับบทความ
+  const blogImage = image || "/images/blog/aemdevweb.webp";
+
   return (
     <Link
       href={`/blog/${slug}`}
@@ -40,10 +42,10 @@ export default function BlogCard({
         className
       )}
     >
-      {/* Media Section - มาตรฐาน 16:9 เพื่อความสวยงามและการโหลดที่รวดเร็ว */}
-      <div className="relative aspect-video w-full overflow-hidden bg-slate-100">
+      {/* Media Section */}
+      <div className="relative aspect-video w-full overflow-hidden bg-slate-50">
         <Image
-          src={image || "/images/service/aemdevweb.webp"}
+          src={blogImage}
           alt={`บทความ: ${title}`}
           fill
           className="object-cover transition-transform duration-1000 group-hover:scale-110"
@@ -51,8 +53,8 @@ export default function BlogCard({
         />
 
         {/* ข้อมูลวันที่แบบ Glassmorphism */}
-        <div className="absolute top-6 left-6 z-10">
-          <div className="flex items-center gap-2 rounded-2xl border border-white/40 bg-white/70 px-4 py-2.5 shadow-sm backdrop-blur-md">
+        <div className="absolute top-5 left-5 z-10">
+          <div className="flex items-center gap-2 rounded-2xl border border-white/40 bg-white/70 px-4 py-2 shadow-sm backdrop-blur-md">
             <Calendar className="h-3.5 w-3.5 text-blue-600" />
             <span className="text-[10px] font-black tracking-widest text-slate-900 uppercase">
               {date}
@@ -60,17 +62,15 @@ export default function BlogCard({
           </div>
         </div>
 
-        {/* Overlay สำหรับการเน้นความลึกของรูปภาพ */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
       </div>
 
       {/* Content Section */}
-      <div className="flex flex-1 flex-col p-8 lg:p-10">
-        {/* ข้อมูลผู้เขียนและหมวดหมู่เนื้อหาหลัก */}
-        <div className="mb-6 flex items-center justify-between">
+      <div className="flex flex-1 flex-col p-8 lg:p-9">
+        <div className="mb-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-7 w-7 items-center justify-center rounded-full border border-blue-100 bg-blue-50 text-blue-600">
-              <User size={14} />
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-50 text-blue-600 border border-blue-100">
+              <User size={13} />
             </div>
             <span className="text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase">
               {author}
@@ -78,29 +78,29 @@ export default function BlogCard({
           </div>
 
           {tags.length > 0 && (
-            <div className="flex items-center gap-1.5 text-[9px] font-black tracking-widest text-blue-500 uppercase">
+            <div className="flex items-center gap-1 text-[9px] font-black tracking-widest text-blue-500 uppercase">
               <Hash size={10} />
               <span>{tags[0]}</span>
             </div>
           )}
         </div>
 
-        <h3 className="mb-4 line-clamp-2 text-xl leading-tight font-black text-slate-900 transition-colors group-hover:text-blue-600 lg:text-2xl">
+        <h3 className="mb-4 line-clamp-2 text-xl leading-snug font-black text-slate-900 transition-colors group-hover:text-blue-600 lg:text-2xl">
           {title}
         </h3>
 
-        <p className="mb-10 line-clamp-3 text-base leading-relaxed font-medium text-slate-500 transition-colors group-hover:text-slate-600">
+        <p className="mb-8 line-clamp-3 text-sm leading-relaxed font-medium text-slate-500 transition-colors group-hover:text-slate-600 md:text-base">
           {description}
         </p>
 
-        {/* ปุ่มนำทางไปยังเนื้อหาเจาะลึก */}
-        <div className="mt-auto flex items-center gap-4 text-[11px] font-black tracking-[0.2em] text-blue-600 uppercase">
+        {/* Action Bar */}
+        <div className="mt-auto flex items-center gap-3 text-[10px] font-black tracking-[0.2em] text-blue-600 uppercase">
           <span className="transition-all group-hover:tracking-[0.3em]">
             อ่านเนื้อหาเจาะลึก
           </span>
-          <div className="h-[2px] w-12 bg-blue-100 transition-all duration-500 group-hover:w-16 group-hover:bg-blue-600" />
+          <div className="h-[2px] w-8 bg-blue-100 transition-all duration-500 group-hover:w-12 group-hover:bg-blue-600" />
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50 transition-colors group-hover:bg-blue-600 group-hover:text-white">
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </div>
         </div>
       </div>

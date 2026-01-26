@@ -1,86 +1,52 @@
 /** @format */
 
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-
-// 1. กำหนด Path ไปที่ content/projects
-const PROJECTS_DIR = path.join(process.cwd(), "content/projects");
-
-export interface ProjectPost {
-  slug: string;
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
-  link?: string;
-  github?: string;
-  isFeatured: boolean;
-  content: string;
+/**
+ * โครงสร้างข้อมูลโปรเจกต์ (Project Interface)
+ * ออกแบบมาให้รองรับทั้งการทำ Card UI และการเชื่อมโยงไปหน้า TSX
+ */
+export interface Project {
+  slug: string;        // ต้องตรงกับชื่อ Folder ใน app/projects/
+  title: string;       // หัวข้อที่จะโชว์บน Card
+  description: string; // คำอธิบายสั้นๆ (Meta Description)
+  image: string;       // Path รูปภาพหน้าปก
+  tags: string[];      // หมวดหมู่เทคนิค
+  link?: string;       // ลิงก์ไปหน้าเว็บไซต์จริง (ถ้ามี)
 }
 
 /**
- * getAllProjects - ดึงข้อมูลผลงานทั้งหมด
+ * ฐานข้อมูลโปรเจกต์แบบ Static
+ * ทำหน้าที่เป็น Single Source of Truth สำหรับการแสดงผล Card ทั้งเว็บ
  */
-export function getAllProjects(): ProjectPost[] {
-  if (!fs.existsSync(PROJECTS_DIR)) {
-    return [];
-  }
+export const projects: Project[] = [
+  {
+    slug: "unlink-th",
+    title: "Unlink-th Platform",
+    description: "การวางรากฐาน Technical SEO และโครงสร้างพื้นฐานระดับประเทศ เพื่อความเร็วและความแม่นยำของข้อมูล",
+    image: "/images/case/case100.webp",
+    tags: ["Infrastructure", "Technical SEO", "Next.js"],
+    link: "https://www.unlink-th.com",
+  },
+  {
+    slug: "aem-dev",
+    title: "AEM-DEV Identity Hub",
+    description: "ระบบยืนยันตัวตนผู้เชี่ยวชาญที่ออกแบบมาเพื่อ Google Entity โดยเฉพาะ ด้วยโครงสร้าง Web Architecture ระดับสูง",
+    image: "/images/service/aemdevweb.webp",
+    tags: ["SEO Architecture", "Next.js 16", "Web Performance"],
+  },
+];
 
-  const fileNames = fs.readdirSync(PROJECTS_DIR);
-
-  const allProjectsData = fileNames
-    .filter((fileName) => fileName.endsWith(".mdx"))
-    .map((fileName) => {
-      const slug = fileName.replace(/\.mdx$/, "");
-      const filePath = path.join(PROJECTS_DIR, fileName);
-      const fileContents = fs.readFileSync(filePath, "utf8");
-
-      const { data, content } = matter(fileContents);
-
-      return {
-        slug,
-        content,
-        title: data.title || "Untitled Project",
-        description: data.description || "",
-        image: data.image || "/images/service/aemdevweb.webp",
-        tags: data.tags || [],
-        link: data.link || "",
-        github: data.github || "",
-        isFeatured: data.isFeatured || false,
-      } as ProjectPost;
-    });
-
-  return allProjectsData.sort((a, b) =>
-    a.isFeatured === b.isFeatured ? 0 : a.isFeatured ? -1 : 1
-  );
+/**
+ * ดึงข้อมูลโปรเจกต์ทั้งหมด
+ * ใช้ในหน้า app/page.tsx (Home) และ app/projects/page.tsx (Listing)
+ */
+export async function getAllProjects(): Promise<Project[]> {
+  // ในอนาคตถ้ามีเยอะ สามารถใส่ Logic การจัดลำดับ (Sort) ตรงนี้ได้เลย
+  return projects;
 }
 
 /**
- * getProjectBySlug - ดึงข้อมูลผลงานรายชิ้นตาม Slug
- * ✅ แก้ไข Lint Warning: 'error' is defined but never used
+ * ดึงข้อมูลโปรเจกต์รายชิ้นตาม Slug (เผื่อใช้ในส่วนของ Navigation)
  */
-export function getProjectBySlug(slug: string): ProjectPost | null {
-  try {
-    const filePath = path.join(PROJECTS_DIR, `${slug}.mdx`);
-    if (!fs.existsSync(filePath)) return null;
-
-    const fileContents = fs.readFileSync(filePath, "utf8");
-    const { data, content } = matter(fileContents);
-
-    return {
-      slug,
-      content,
-      title: data.title,
-      description: data.description,
-      image: data.image,
-      tags: data.tags,
-      link: data.link,
-      github: data.github,
-      isFeatured: data.isFeatured,
-    } as ProjectPost;
-  } catch {
-    // ✅ ตัด (error) ออกเพื่อให้ ESLint ผ่านฉลุยสไตล์ Next.js 15
-    return null;
-  }
+export async function getProjectBySlug(slug: string): Promise<Project | undefined> {
+  return projects.find((p) => p.slug === slug);
 }

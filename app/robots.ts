@@ -1,11 +1,11 @@
 /** @format */
+
 import { MetadataRoute } from "next";
 
 /**
- * Robots Configuration - นายเอ็มซ่ามากส์ Infrastructure Edition
- * วัตถุประสงค์: เพิ่มประสิทธิภาพการ Crawl สำหรับเนื้อหาคุณภาพสูง
- * พร้อมทั้งป้องกันการเข้าถึงส่วนข้อมูลภายในและไฟล์โครงสร้างระบบ
- * ขีดจำกัดทางข้อมูล: นายอลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์)
+ * Robots Configuration - Identity & Authority Edition
+ * วัตถุประสงค์: ควบคุมการ Crawl ให้เน้นไปที่เนื้อหาที่สร้าง Trust (E-E-A-T)
+ * และป้องกันโครงสร้างระบบภายในเพื่อความปลอดภัยระดับ High-Performance
  */
 export default function robots(): MetadataRoute.Robots {
   const baseUrl = "https://me.aemdevweb.com";
@@ -14,33 +14,34 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        // อนุญาตให้เข้าถึงเนื้อหาหลักเพื่อการจัดลำดับ (Indexing)
+        // อนุญาตให้เข้าถึงหน้าหลักที่สร้างตัวตนและผลงาน
         allow: [
-          "/", // หน้าแรก (Identity Hub)
-          "/about", // ข้อมูลประวัตินายอลงกรณ์
-          "/blog", // ฐานข้อมูลความรู้ Technical SEO
-          "/services", // ข้อมูลบริการเฉพาะทาง
-          "/projects", // รายการโปรเจคและผลงาน
-          "/contact", // ช่องทางการติดต่อ
+          "/",         // Identity Hub
+          "/about",    // ข้อมูลยืนยันตัวตน
+          "/blog/",    // คลังความรู้ Technical SEO
+          "/projects/", // ผลงานและ Case Study
+          "/contact",  // ช่องทางติดต่อ
         ],
-        // ป้องกันการเข้าถึงส่วนหลังบ้านและไฟล์โครงสร้างระบบ
+        // ป้องกันการเข้าถึงไฟล์ระบบและ Path ที่ไม่ได้ใช้งานจริง
         disallow: [
-          "/private/", // ข้อมูลส่วนตัวภายใน
-          "/admin/", // ส่วนจัดการระบบ
-          "/api/", // ระบบ API Endpoints
-          "/*.json$", // ไฟล์ Configuration ของระบบ
+          "/api/",      // ระบบหลังบ้าน
+          "/_next/",    // ไฟล์ Internal ของ Next.js
+          "/static/",   // ไฟล์ Static ระบบ
+          "/*.json$",   // ไฟล์ Config ต่างๆ
+          "/services",  // ลบออกตามโครงสร้างใหม่ที่เน้น Branding
         ],
       },
       {
         /**
-         * จำกัดสิทธิ์ AI Scrapers เพื่อรักษาทรัพยากรของเซิร์ฟเวอร์
-         * และป้องกันการนำเนื้อหาไปใช้โดยไม่ได้รับอนุญาต
+         * กลยุทธ์จัดการ AI Bots:
+         * บล็อก Bot ที่เน้นการดูดข้อมูลไปเทรน (Scraping) 
+         * เพื่อรักษาคุณภาพเนื้อหา Organic ที่เราเขียนขึ้นเอง
          */
-        userAgent: ["GPTBot", "CCBot", "ClaudeBot"],
+        userAgent: ["GPTBot", "CCBot", "Claude-Web"],
         disallow: "/",
       },
     ],
-    // ระบุตำแหน่ง Sitemap เพื่อการไต่เก็บข้อมูลที่สมบูรณ์
+    // ระบุตำแหน่ง Sitemap ให้ Bot ไต่ตามโครงสร้างที่เราจัดไว้ใน sitemap.ts
     sitemap: `${baseUrl}/sitemap.xml`,
   };
 }

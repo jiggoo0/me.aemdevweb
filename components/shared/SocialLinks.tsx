@@ -5,6 +5,7 @@
 import Link from "next/link";
 import { Facebook, MessageCircle, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { siteConfig } from "@/constants/site-config";
 
 interface SocialLinksProps {
   className?: string;
@@ -14,33 +15,32 @@ interface SocialLinksProps {
 
 /**
  * SocialLinks Component (v2.4 - Identity Focus)
- * ออกแบบมาเพื่อสร้างการเชื่อมต่อระหว่างผู้เชี่ยวชาญกับพาร์ทเนอร์ธุรกิจ
- * ปรับปรุง LinkedIn URL เป็นภาษาอังกฤษเพื่อประสิทธิภาพสูงสุดด้านการค้นหาชื่อจริง
+ * แยกชุดข้อมูลตามแบรนด์ที่ต้องการนำเสนอ เพื่อความแม่นยำในการเชื่อมต่อธุรกิจ
  */
 export default function SocialLinks({
   className,
   variant = "aemdevweb",
   showLabel = true,
 }: SocialLinksProps) {
-  // ชุดข้อมูลลิงก์ที่ได้รับการตรวจสอบความถูกต้อง (ถอด GitHub ออกเพื่อเน้นช่องทางธุรกิจ)
+  // รวมศูนย์ข้อมูลลิงก์เพื่อการบำรุงรักษาง่าย
   const links =
     variant === "aemdevweb"
       ? [
           {
             name: "LinkedIn",
-            href: "https://www.linkedin.com/in/alongkorl-aemdevweb",
+            href: siteConfig.contact.linkedin,
             icon: <Linkedin className="h-4 w-4 md:h-5 md:w-5" />,
             color: "group-hover:text-[#0A66C2] group-hover:bg-blue-50/50",
           },
           {
             name: "Line Official",
-            href: "https://lin.ee/dDHISbG",
+            href: siteConfig.contact.line,
             icon: <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />,
             color: "group-hover:text-[#00B900] group-hover:bg-green-50",
           },
           {
             name: "AEMDEVWEB Page",
-            href: "https://www.facebook.com/aemdevweb",
+            href: siteConfig.contact.facebook,
             icon: <Facebook className="h-4 w-4 md:h-5 md:w-5" />,
             color: "group-hover:text-[#1877F2] group-hover:bg-blue-50",
           },
@@ -48,7 +48,7 @@ export default function SocialLinks({
       : [
           {
             name: "LinkedIn",
-            href: "https://www.linkedin.com/in/alongkorl-aemdevweb",
+            href: siteConfig.contact.linkedin,
             icon: <Linkedin className="h-4 w-4 md:h-5 md:w-5" />,
             color: "group-hover:text-[#0A66C2] group-hover:bg-blue-50/50",
           },
@@ -76,17 +76,17 @@ export default function SocialLinks({
           rel="noopener noreferrer"
           className={cn(
             "group flex items-center gap-3 rounded-2xl border border-slate-100 px-5 py-3 transition-all duration-500",
-            "bg-white/50 text-slate-500 backdrop-blur-sm",
-            "hover:-translate-y-1.5 hover:border-transparent hover:shadow-xl hover:shadow-slate-200/50",
+            "bg-white text-slate-500 shadow-sm",
+            "hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-900/5",
             link.color
           )}
           aria-label={link.name}
         >
-          <span className="transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12">
+          <span className="transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
             {link.icon}
           </span>
           {showLabel && (
-            <span className="text-[11px] font-black tracking-[0.15em] uppercase transition-colors">
+            <span className="text-[11px] font-black tracking-widest uppercase transition-colors">
               {link.name}
             </span>
           )}

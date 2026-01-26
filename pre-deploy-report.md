@@ -1,5 +1,5 @@
 # Pre-deployment Inspection Report
-Generated: 2026-01-24 03:48:33
+Generated: 2026-01-26 07:30:30
 Branch: main
 
 ## 1. Environment Configuration
@@ -24,16 +24,15 @@ Route (app)
 ├ ○ /about
 ├ ○ /blog
 ├ ● /blog/[slug]
+│ ├ /blog/seo-google-love-technical-guide
 │ ├ /blog/sme-family-business-seo
 │ ├ /blog/technical-seo-tips
-│ ├ /blog/what-is-seo-organic
-│ └ /blog/why-need-website-vs-facebook
+│ └ [+2 more paths]
 ├ ○ /contact
 ├ ○ /projects
+├ ○ /projects/aem-dev
+├ ○ /projects/unlink-th
 ├ ○ /robots.txt
-├ ○ /services
-├ ○ /services/aem-dev
-├ ○ /services/unlink-th
 └ ○ /sitemap.xml
 
 

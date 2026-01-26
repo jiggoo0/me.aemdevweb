@@ -80,28 +80,22 @@
       "namedRegex": "^/projects(?:/)?$"
     },
     {
+      "page": "/projects/aem-dev",
+      "regex": "^/projects/aem\\-dev(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/projects/aem\\-dev(?:/)?$"
+    },
+    {
+      "page": "/projects/unlink-th",
+      "regex": "^/projects/unlink\\-th(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/projects/unlink\\-th(?:/)?$"
+    },
+    {
       "page": "/robots.txt",
       "regex": "^/robots\\.txt(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/robots\\.txt(?:/)?$"
-    },
-    {
-      "page": "/services",
-      "regex": "^/services(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/services(?:/)?$"
-    },
-    {
-      "page": "/services/aem-dev",
-      "regex": "^/services/aem\\-dev(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/services/aem\\-dev(?:/)?$"
-    },
-    {
-      "page": "/services/unlink-th",
-      "regex": "^/services/unlink\\-th(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/services/unlink\\-th(?:/)?$"
     },
     {
       "page": "/sitemap.xml",

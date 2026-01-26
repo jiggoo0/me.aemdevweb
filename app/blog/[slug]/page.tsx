@@ -1,182 +1,120 @@
 /** @format */
 
-import fs from "fs";
-import path from "path";
+import { getPostBySlug, getAllPosts } from "@/lib/blog";
 import { notFound } from "next/navigation";
 import Container from "@/components/layout/Container";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, User, Search, ChevronRight } from "lucide-react";
+import { MDXRemote } from "next-mdx-remote/rsc";
+// ลบ import useMDXComponents ออก เพราะ RSC ไม่ต้องการ Hook นี้
+import Image from "next/image";
 import Link from "next/link";
-import matter from "gray-matter";
+import { ArrowLeft, Calendar, Tag, Share2 } from "lucide-react";
 
-const BLOG_DIR = path.join(process.cwd(), "content/blog");
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
-/**
- * Metadata Generation (Technical SEO Strategy)
- * ดึงข้อมูลจาก Frontmatter เพื่อสร้าง Meta Tags สำหรับ Search Engine และ AI Crawlers
- */
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
-
-  if (!fs.existsSync(filePath)) return { title: "Post Not Found" };
-
-  const fileContents = fs.readFileSync(filePath, "utf8");
-  const { data } = matter(fileContents);
+  const post = await getPostBySlug(slug);
+  if (!post) return {};
 
   return {
-    title: `${data.title} | นายอลงกรณ์ ยมเกิด (AEMDEVWEB)`,
-    description: data.description,
-    openGraph: {
-      title: data.title,
-      description: data.description,
-      type: "article",
-      publishedTime: data.date,
-      authors: [data.author || "นายอลงกรณ์ ยมเกิด"],
-      images: [
-        {
-          url: data.image || "/images/blog/og-image.png",
-          width: 1200,
-          height: 630,
-          alt: data.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: data.title,
-      description: data.description,
-      images: [data.image || "/images/blog/og-image.png"],
+    title: `${post.title} | Insights by Alongkorl`,
+    description: post.description,
+    alternates: {
+      canonical: `https://me.aemdevweb.com/blog/${slug}`,
     },
   };
 }
 
-/**
- * BlogPostPage Component - Infrastructure Lead Perspective
- */
-export default async function BlogPostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
+  const post = await getPostBySlug(slug);
 
-  if (!fs.existsSync(filePath)) {
-    notFound();
-  }
+  if (!post) notFound();
 
-  // 1. ดึงข้อมูล Frontmatter สำหรับจัดการความสอดคล้องของ Entity
-  const fileContents = fs.readFileSync(filePath, "utf8");
-  const { data } = matter(fileContents);
-
-  // 2. Dynamic Import เนื้อหา MDX ตามโครงสร้างระบบไฟล์
-  const { default: PostContent } = await import(`@/content/blog/${slug}.mdx`);
+  // ลบ const components = useMDXComponents({}); ออก
 
   return (
-    <article className="bg-white py-12 md:py-24">
-      <Container className="max-w-4xl px-6">
-        {/* Breadcrumb Navigation - เพิ่มการเข้าถึงข้อมูลแบบลำดับขั้น */}
-        <nav className="mb-12 flex items-center gap-2 text-sm font-bold text-slate-400">
-          <Link href="/blog" className="transition-colors hover:text-blue-600">
-            คลังความรู้
+    <article className="min-h-screen bg-white pb-32">
+      <header className="bg-slate-50 border-b border-slate-100 py-24">
+        <Container>
+          <Link 
+            href="/blog" 
+            className="group mb-12 inline-flex items-center gap-2 text-[10px] font-black tracking-[0.3em] text-slate-400 uppercase transition-colors hover:text-blue-600"
+          >
+            <ArrowLeft className="h-3 w-3 transition-transform group-hover:-translate-x-1" />
+            Back to Insights
           </Link>
-          <ChevronRight size={14} />
-          <span className="truncate text-slate-300">{data.title}</span>
-        </nav>
-
-        {/* Header Section - การแสดงผลอัตลักษณ์ผู้เขียนและวันที่เผยแพร่ */}
-        <header className="mb-16 space-y-8 text-center md:text-left">
-          <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-5 py-2 text-xs font-black tracking-[0.2em] text-blue-600 uppercase shadow-sm">
-            <Search className="h-3.5 w-3.5" /> Organic Strategy 2026
-          </div>
-
-          <h1 className="text-4xl leading-[1.15] font-black text-slate-900 md:text-6xl">
-            {data.title}
-          </h1>
-
-          <div className="flex flex-wrap items-center justify-center gap-8 border-t border-slate-50 pt-8 text-sm font-black tracking-widest text-slate-400 uppercase md:justify-start">
-            <div className="flex items-center gap-3">
-              <Calendar size={18} className="text-blue-500" />
-              <span className="text-slate-600">
-                {new Date(data.date).toLocaleDateString("th-TH", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </span>
-            </div>
-            <div className="flex items-center gap-3">
-              <User size={18} className="text-blue-500" />
-              <span className="text-slate-600">
-                {data.author || "นายอลงกรณ์ ยมเกิด"}
-              </span>
-            </div>
-          </div>
-        </header>
-
-        {/* Article Content - Render เนื้อหาเชิงเทคนิคผ่าน MDX */}
-        <section className="prose prose-slate lg:prose-xl prose-headings:scroll-m-20 prose-headings:font-black prose-headings:text-slate-900 prose-p:font-medium prose-p:leading-8 prose-p:text-slate-600 prose-a:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-blockquote:rounded-3xl prose-blockquote:border-l-8 prose-blockquote:border-blue-600 prose-blockquote:bg-blue-50/50 prose-blockquote:p-8 prose-img:rounded-[2.5rem] prose-img:border-4 prose-img:border-slate-50 max-w-none shadow-none">
-          <PostContent />
-        </section>
-
-        {/* Dynamic CTA Section - การนำเสนอความเชื่อมั่นเชิงเทคนิค */}
-        <footer className="mt-28">
-          <div className="relative overflow-hidden rounded-[4rem] border border-white/5 bg-slate-950 p-12 text-center shadow-2xl md:p-20">
-            <div className="absolute -top-20 -right-20 h-80 w-80 rounded-full bg-blue-600/20 blur-[100px]" />
-            <div className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-indigo-600/10 blur-[100px]" />
-
-            <div className="relative z-10">
-              <h3 className="mb-8 text-3xl leading-tight font-black text-white italic md:text-5xl">
-                อยากเปลี่ยนเว็บไซต์ให้เป็น <br />
-                <span className="text-blue-400">
-                  "สินทรัพย์ดิจิทัลที่ยั่งยืน"
-                </span>{" "}
-                ไหมครับ?
-              </h3>
-              <p className="mx-auto mb-12 max-w-2xl text-lg font-medium text-slate-400">
-                ผมยินดีให้คำปรึกษาเรื่องการวางโครงสร้างระบบ SEO และเทคโนโลยี
-                Next.js เพื่อให้ธุรกิจท่านเติบโตอย่างมั่นคงบนหน้าแรก Google
-              </p>
-              <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
-                <Button
-                  className="h-16 w-full rounded-full bg-blue-600 px-12 text-xl font-black shadow-xl shadow-blue-600/30 transition-all hover:scale-105 active:scale-95 md:w-auto"
-                  asChild
-                >
-                  <Link href="/contact">ปรึกษาการวางโครงสร้างระบบฟรี</Link>
-                </Button>
-                <Button
-                  variant="ghost"
-                  className="h-16 w-full rounded-full text-xl font-black text-white hover:bg-white/10 md:w-auto"
-                  asChild
-                >
-                  <Link href="/blog">
-                    <ArrowLeft className="mr-2 h-5 w-5" /> อ่านเนื้อหาอื่น
-                  </Link>
-                </Button>
+          
+          <div className="max-w-4xl space-y-8">
+            <h1 className="text-4xl font-black tracking-tighter text-slate-900 md:text-7xl leading-[0.95]">
+              {post.title}
+            </h1>
+            
+            <div className="flex flex-wrap items-center gap-8 text-[11px] font-black tracking-widest text-slate-400 uppercase">
+              <div className="flex items-center gap-2">
+                <Calendar size={14} className="text-blue-600" />
+                {post.date}
+              </div>
+              <div className="flex items-center gap-2">
+                <Tag size={14} className="text-blue-600" />
+                {post.tags.join(", ")}
               </div>
             </div>
           </div>
-        </footer>
+        </Container>
+      </header>
+
+      <Container className="pt-20">
+        <div className="grid grid-cols-1 gap-20 lg:grid-cols-12">
+          <main className="lg:col-span-8">
+            <div className="relative mb-16 aspect-[16/9] overflow-hidden rounded-[3.5rem] bg-slate-100 shadow-2xl">
+              <Image 
+                src={post.image} 
+                alt={post.title} 
+                fill 
+                className="object-cover"
+                priority 
+              />
+            </div>
+            
+            <div className="mdx-content">
+              {/* ส่งแค่ source เข้าไป MDX จะจัดการ Components ตามที่เราลงทะเบียนไว้ใน mdx-components.tsx เอง */}
+              <MDXRemote source={post.content} />
+            </div>
+          </main>
+
+          <aside className="lg:col-span-4">
+            <div className="sticky top-32 space-y-8">
+              <div className="rounded-[3rem] bg-slate-950 p-12 text-white shadow-2xl border border-white/5">
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600">
+                  <Share2 className="h-6 w-6" />
+                </div>
+                <h3 className="mb-4 text-2xl font-black tracking-tight leading-tight">Technical SEO <br /> Consulting</h3>
+                <p className="mb-8 text-sm font-medium leading-relaxed text-slate-400">
+                  หากคุณต้องการเปลี่ยนเว็บไซต์ให้กลายเป็นสินทรัพย์ดิจิทัลที่สร้างผลลัพธ์จริง ปรึกษาผมเพื่อวางโครงสร้างที่ถูกต้องได้ทันที
+                </p>
+                <Link 
+                  href="/contact" 
+                  className="inline-flex h-14 w-full items-center justify-center rounded-2xl bg-blue-600 text-[11px] font-black tracking-[0.2em] uppercase transition-all hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  เริ่มโปรเจกต์ของคุณ
+                </Link>
+              </div>
+
+              <div className="rounded-[3rem] border border-slate-100 p-10 text-center bg-slate-50/50">
+                <p className="text-[10px] font-black tracking-[0.3em] text-slate-300 uppercase">
+                  Specialist Identity Hub
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
       </Container>
     </article>
   );
-}
-
-/**
- * Static Generation
- * บังคับการสร้างหน้า Static เพื่อความเร็วสูงสุดและประสิทธิภาพด้าน SEO
- */
-export async function generateStaticParams() {
-  if (!fs.existsSync(BLOG_DIR)) return [];
-  const files = fs.readdirSync(BLOG_DIR);
-  return files
-    .filter((file) => file.endsWith(".mdx"))
-    .map((file) => ({
-      slug: file.replace(".mdx", ""),
-    }));
 }

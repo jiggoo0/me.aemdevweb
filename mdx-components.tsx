@@ -1,199 +1,101 @@
 /** @format */
+
 import type { MDXComponents } from "mdx/types";
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-
-// --- [Profile & Shared Components] ---
-import Hero from "@/components/profile/Hero";
-import ContactInfo from "@/components/profile/ContactInfo";
-import ProjectCard from "@/components/shared/ProjectCard";
-
-// --- [UI Components] ---
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-
-// --- [Lucide Icons Registry] ---
-import {
-  Heart,
-  Layout,
-  Rocket,
-  ArrowRight,
-  Search,
-  ShieldCheck,
-  Sparkles,
-  MousePointer2,
-  Zap,
-  CheckCircle2,
-  Star,
-  EyeOff,
-  UserCheck,
-  Lock,
-  TrendingUp,
-  HeartHandshake,
-  Layers,
-  XCircle,
-  Info,
-  AlertCircle,
-  Lightbulb,
-  Target,
-  BarChart3,
-  Globe,
-  LayoutGrid,
-  Store,
-  MapPin,
-  PiggyBank,
-  Users,
-  PenTool,
-  Terminal,
-  Mail,
-  MessageSquare,
-  Send,
-  Clock,
-  Phone,
-  Facebook,
-} from "lucide-react";
-
-interface MdxImageProps {
-  src?: string;
-  alt?: string;
-  [key: string]: unknown;
-}
 
 /**
- * useMDXComponents - ฉบับการจัดการโครงสร้างระบบและ SEO Organic 2026
- * แก้ไขปัญหา Prerender Error และจัดการการแสดงผลระดับสมรรถนะสูง
+ * MDX Components Configuration
+ * กำหนดการแสดงผลของ HTML Tags ภายในไฟล์ MDX
+ * เน้นความสะอาด (Clean UI) และโครงสร้าง SEO ที่ถูกต้อง
  */
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    ...components,
-    // 1. การจัดการหัวข้อ (Typography Standards)
-    h1: ({ className, ...props }) => (
-      <h1
-        className={cn(
-          "mt-4 scroll-m-20 text-4xl font-black tracking-tight text-slate-900 lg:text-5xl",
-          className
-        )}
-        {...props}
-      />
+    // 🏷️ Typography: จัดลำดับความสำคัญของหัวข้อ
+    h1: ({ children }) => (
+      <h1 className="mb-8 text-4xl font-black tracking-tighter text-slate-900 md:text-5xl">
+        {children}
+      </h1>
     ),
-    h2: ({ className, ...props }) => (
-      <h2
-        className={cn(
-          "mt-12 scroll-m-20 border-b pb-3 text-3xl font-bold tracking-tight text-slate-800 transition-colors first:mt-0",
-          className
-        )}
-        {...props}
-      />
+    h2: ({ children }) => (
+      <h2 className="mt-12 mb-6 text-2xl font-black tracking-tight text-slate-800 md:text-3xl">
+        {children}
+      </h2>
     ),
-    h3: ({ className, ...props }) => (
-      <h3
-        className={cn(
-          "mt-8 scroll-m-20 text-2xl font-bold tracking-tight text-slate-800",
-          className
-        )}
-        {...props}
-      />
+    h3: ({ children }) => (
+      <h3 className="mt-8 mb-4 text-xl font-bold tracking-tight text-slate-800">
+        {children}
+      </h3>
+    ),
+    p: ({ children }) => (
+      <p className="mb-6 text-lg leading-relaxed text-slate-600">
+        {children}
+      </p>
     ),
 
-    // ✅ การจัดการ Tag ย่อยเพื่อป้องกัน Hydration Error
-    p: ({ className, ...props }) => (
-      <span
-        className={cn(
-          "block text-lg leading-8 font-medium text-slate-600 [&:not(:first-child)]:mt-6",
-          className
-        )}
-        {...props}
-      />
-    ),
+    // 🔗 Links & Navigation
+    a: ({ href, children, ...props }) => {
+      const isInternal = href?.startsWith("/");
+      if (isInternal) {
+        return (
+          <Link 
+            href={href as string} 
+            className="font-bold text-blue-600 underline decoration-blue-200 decoration-2 underline-offset-4 transition-colors hover:text-blue-700 hover:decoration-blue-400"
+            {...props}
+          >
+            {children}
+          </Link>
+        );
+      }
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-bold text-blue-600 underline decoration-blue-200 decoration-2 underline-offset-4 transition-colors hover:text-blue-700 hover:decoration-blue-400"
+          {...props}
+        >
+          {children}
+        </a>
+      );
+    },
 
-    // 2. การจัดการสื่อ (Media Optimization for LCP)
-    img: ({ alt, src, ...props }: MdxImageProps) => (
-      <span className="relative my-10 block aspect-video w-full overflow-hidden rounded-[2rem] border-2 border-slate-100 shadow-xl">
+    // 🖼️ Media: จัดการรูปภาพให้เป็น Responsive
+    img: (props) => (
+      <div className="relative my-10 aspect-video w-full overflow-hidden rounded-[2.5rem] border-8 border-slate-50 shadow-xl">
         <Image
           fill
-          src={src || ""}
-          alt={alt || "AEMDEVWEB Content Image"}
           className="object-cover"
-          sizes="(max-width: 768px) 100vw, 75vw"
-          {...props}
+          {...(props as ImageProps)}
+          alt={props.alt || "AEMDEVWEB Blog Content"}
         />
-      </span>
+      </div>
     ),
 
-    // 3. การนำทาง (Navigation Hub)
-    Link,
-    a: ({ href, className, ...props }) => (
-      <Link
-        href={href as string}
-        className={cn(
-          "font-bold text-blue-600 underline underline-offset-4 hover:text-blue-800",
-          className
-        )}
-        {...props}
-      />
+    // 📋 Lists
+    ul: ({ children }) => (
+      <ul className="mb-8 ml-6 list-disc space-y-3 text-lg text-slate-600">
+        {children}
+      </ul>
+    ),
+    ol: ({ children }) => (
+      <ol className="mb-8 ml-6 list-decimal space-y-3 text-lg text-slate-600">
+        {children}
+      </ol>
     ),
 
-    // 4. การลงทะเบียนคอมโพเนนต์ (Custom Components)
-    Hero,
-    ContactInfo,
-    ProjectCard,
-    Card,
-    CardHeader,
-    CardTitle,
-    CardDescription,
-    CardContent,
-    CardFooter,
-    Button,
-    Badge,
-    Input,
+    // 💻 Code Blocks
+    code: ({ children }) => (
+      <code className="rounded-lg bg-slate-100 px-1.5 py-0.5 font-mono text-sm font-bold text-blue-600">
+        {children}
+      </code>
+    ),
+    pre: ({ children }) => (
+      <pre className="mb-8 overflow-x-auto rounded-[2rem] bg-slate-900 p-8 font-mono text-sm leading-relaxed text-slate-100 shadow-2xl">
+        {children}
+      </pre>
+    ),
 
-    // 5. การลงทะเบียน Icon (Icon Registry)
-    Heart,
-    Layout,
-    Rocket,
-    ArrowRight,
-    Search,
-    ShieldCheck,
-    Sparkles,
-    MousePointer2,
-    Zap,
-    CheckCircle2,
-    Star,
-    EyeOff,
-    UserCheck,
-    Lock,
-    TrendingUp,
-    HeartHandshake,
-    Layers,
-    XCircle,
-    Info,
-    AlertCircle,
-    Lightbulb,
-    Target,
-    BarChart3,
-    Globe,
-    LayoutGrid,
-    Store,
-    MapPin,
-    PiggyBank,
-    Users,
-    PenTool,
-    Terminal,
-    Mail,
-    MessageSquare,
-    Send,
-    Clock,
-    Phone,
-    Facebook,
+    ...components,
   };
 }
