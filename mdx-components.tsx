@@ -28,9 +28,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </h3>
     ),
     p: ({ children }) => (
-      <p className="mb-6 text-lg leading-relaxed text-slate-600">
-        {children}
-      </p>
+      <p className="mb-6 text-lg leading-relaxed text-slate-600">{children}</p>
     ),
 
     // 🔗 Links & Navigation
@@ -38,8 +36,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       const isInternal = href?.startsWith("/");
       if (isInternal) {
         return (
-          <Link 
-            href={href as string} 
+          <Link
+            href={href as string}
             className="font-bold text-blue-600 underline decoration-blue-200 decoration-2 underline-offset-4 transition-colors hover:text-blue-700 hover:decoration-blue-400"
             {...props}
           >

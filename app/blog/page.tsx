@@ -32,15 +32,16 @@ export default async function BlogPage() {
               Technical Knowledge Base
             </span>
           </div>
-          
+
           <div className="max-w-4xl space-y-6">
-            <h1 className="text-6xl font-black tracking-tighter text-slate-900 md:text-8xl leading-[0.9]">
+            <h1 className="text-6xl leading-[0.9] font-black tracking-tighter text-slate-900 md:text-8xl">
               Identity <br />
               <span className="text-blue-600 italic">Insights.</span>
             </h1>
-            <p className="max-w-2xl text-xl font-medium leading-relaxed text-slate-500 md:text-2xl">
-              การตกผลึกทางความคิดเกี่ยวกับการวางโครงสร้างระบบ (Web Structure) 
-              และกลยุทธ์การทำ SEO ที่เปลี่ยนเว็บไซต์ให้เป็นสินทรัพย์ดิจิทัลที่มีมูลค่าจริง
+            <p className="max-w-2xl text-xl leading-relaxed font-medium text-slate-500 md:text-2xl">
+              การตกผลึกทางความคิดเกี่ยวกับการวางโครงสร้างระบบ (Web Structure)
+              และกลยุทธ์การทำ SEO
+              ที่เปลี่ยนเว็บไซต์ให้เป็นสินทรัพย์ดิจิทัลที่มีมูลค่าจริง
             </p>
           </div>
         </header>
@@ -62,11 +63,11 @@ export default async function BlogPage() {
           </div>
         ) : (
           /* Professional Empty State */
-          <div className="flex flex-col items-center justify-center rounded-[4rem] bg-slate-50 py-32 text-center border border-slate-100">
+          <div className="flex flex-col items-center justify-center rounded-[4rem] border border-slate-100 bg-slate-50 py-32 text-center">
             <div className="relative mb-8 h-1 w-24 overflow-hidden rounded-full bg-slate-200">
               <div className="absolute inset-0 h-full w-1/2 animate-[shimmer_2s_infinite] bg-blue-600" />
             </div>
-            <p className="text-[10px] font-black tracking-[0.4em] text-slate-400 uppercase mb-3">
+            <p className="mb-3 text-[10px] font-black tracking-[0.4em] text-slate-400 uppercase">
               Content Pipeline
             </p>
             <h3 className="text-2xl font-black text-slate-900">

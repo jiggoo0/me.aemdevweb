@@ -16,6 +16,7 @@ tags:
 ---
 
 # Project Structure Report (Extended Scan)
+
 Generated: Sat Jan 24 03:51:51 +07 2026
 
 > Site: https://me.aemdevweb.com/
@@ -27,107 +28,108 @@ Generated: Sat Jan 24 03:51:51 +07 2026
 
 dir: config/
 config
-  |ai-context.core.md
-  |ai-system-role.md
-  |ai-context.dna.md
+|ai-context.core.md
+|ai-system-role.md
+|ai-context.dna.md
 
 dir: app/
 app
-  |about
-     |page.mdx
-  |robots.ts
-  |contact
-     |page.mdx
-  |favicon.ico
-  |globals.css
-  |layout.tsx
-  |page.tsx
-  |services
-     |aem-dev
-        |page.mdx
-     |unlink-th
-        |page.mdx
-     |page.mdx
-  |sitemap.ts
-  |projects
-     |page.mdx
-  |blog
-     |page.tsx
-     |[slug]
-        |page.tsx
+|about
+|page.mdx
+|robots.ts
+|contact
+|page.mdx
+|favicon.ico
+|globals.css
+|layout.tsx
+|page.tsx
+|services
+|aem-dev
+|page.mdx
+|unlink-th
+|page.mdx
+|page.mdx
+|sitemap.ts
+|projects
+|page.mdx
+|blog
+|page.tsx
+|[slug]
+|page.tsx
 
 dir: components/
 components
-  |ui
-     |card.tsx
-     |button.tsx
-     |input.tsx
-     |badge.tsx
-  |shared
-     |SocialLinks.tsx
-     |ProjectCard.tsx
-     |ServiceCard.tsx
-     |BlogCard.tsx
-  |profile
-     |ContactInfo.tsx
-     |Hero.tsx
-     |Schema.tsx
-  |layout
-     |Header.tsx
-     |Footer.tsx
-     |Container.tsx
+|ui
+|card.tsx
+|button.tsx
+|input.tsx
+|badge.tsx
+|shared
+|SocialLinks.tsx
+|ProjectCard.tsx
+|ServiceCard.tsx
+|BlogCard.tsx
+|profile
+|ContactInfo.tsx
+|Hero.tsx
+|Schema.tsx
+|layout
+|Header.tsx
+|Footer.tsx
+|Container.tsx
 
 dir: lib/
 lib
-  |utils.ts
-  |blog.ts
-  |projects.ts
+|utils.ts
+|blog.ts
+|projects.ts
 
 [WARN] Directory not found: hooks
 
 dir: constants/
 constants
-  |site-config.ts
+|site-config.ts
 
 dir: content/
 content
-  |blog
-     |technical-seo-tips.mdx
-     |what-is-seo-organic.mdx
-     |why-need-website-vs-facebook.mdx
-     |sme-family-business-seo.mdx
-  |projects
+|blog
+|technical-seo-tips.mdx
+|what-is-seo-organic.mdx
+|why-need-website-vs-facebook.mdx
+|sme-family-business-seo.mdx
+|projects
 
 [WARN] Directory not found: types
 
 dir: public/
 public
-  |file.svg
-  |globe.svg
-  |images
-     |activity.webp
-     |profile-photo.jpg
-     |aemdevweb-hero.webp
-     |og-image.png
-     |service
-        |aemdevweb.webp
-        |Unlink-th.webp
-     |project-01.webp
-     |case
-        |case100.webp
-        |case99.webp
-        |Unlike-th-destop99.webp
-        |Unlink-th-mobile94.webp
-     |grid.svg
-     |blog
-        |aemdevweb.webp
-  |next.svg
-  |vercel.svg
-  |window.svg
+|file.svg
+|globe.svg
+|images
+|activity.webp
+|profile-photo.jpg
+|aemdevweb-hero.webp
+|og-image.png
+|service
+|aemdevweb.webp
+|Unlink-th.webp
+|project-01.webp
+|case
+|case100.webp
+|case99.webp
+|Unlike-th-destop99.webp
+|Unlink-th-mobile94.webp
+|grid.svg
+|blog
+|aemdevweb.webp
+|next.svg
+|vercel.svg
+|window.svg
 
 [WARN] Directory not found: providers
 
 ## 2. Dependencies and Scripts (package.json)
+
 ```json
 {
   "name": "alongkorl-yomkert",
@@ -178,7 +180,9 @@ public
 ```
 
 ## 3. MDX Rendering Logic
+
 File found: mdx-components.tsx
+
 ```typescript
 /** @format */
 import type { MDXComponents } from "mdx/types";
@@ -382,7 +386,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 ```
 
 ## 4. Next.js Runtime and Edge Configuration
+
 Status: Core configuration detected (next.config.ts)
+
 ```typescript
 /** @format */
 import type { NextConfig } from "next";
@@ -439,10 +445,14 @@ export default withMDX(nextConfig);
 ```
 
 ## 5. Pre-Deploy Integrity Analysis
+
 ---
+
 Verdict: READY FOR DEPLOY
+
 ### Production Route Map (From Report)
-```text
+
+````text
 ```text
 Route (app)
 ┌ ○ /
@@ -463,7 +473,8 @@ Route (app)
 └ ○ /sitemap.xml
 ○  (Static)  prerendered as static content
 ●  (SSG)     prerendered as static HTML (uses generateStaticParams)
-```
+````
+
 ```
 ### Critical Issues Highlight
 Status: No critical impediments detected in the latest audit.
@@ -471,3 +482,4 @@ Status: No critical impediments detected in the latest audit.
 ---
 Status: Scan completed successfully.
 Scope: Personal Authority Domain Architecture Audit
+```

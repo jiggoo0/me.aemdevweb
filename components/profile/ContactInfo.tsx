@@ -12,8 +12,10 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/constants/site-config";
 
 /**
- * ContactInfo Component - Infrastructure Lead Version
- * แสดงช่องทางติดต่อที่เน้นความน่าเชื่อถือและการตอบกลับที่รวดเร็ว
+ * ContactInfo Component - Specialist Identity
+ * -------------------------------------------------------------------------
+ * พัฒนาและดูแลโดย: นายเอ็มซ่ามากส์
+ * เน้นการแสดงผลที่ชัดเจน ทันสมัย และตอบสนองต่อผู้ใช้งานได้อย่างรวดเร็ว
  */
 export default function ContactInfo() {
   const contactMethods = [
@@ -24,7 +26,7 @@ export default function ContactInfo() {
       title: "Email Contact",
       value: siteConfig.email,
       href: `mailto:${siteConfig.email}`,
-      description: "ตอบกลับเบื้องต้นภายใน 24 ชม.",
+      description: "พร้อมตอบกลับข้อมูลภายใน 24 ชม.",
       color: "hover:border-blue-500/30 bg-blue-50/5",
     },
     {
@@ -34,7 +36,7 @@ export default function ContactInfo() {
       title: "Line Official",
       value: "@aemdevweb",
       href: siteConfig.contact.line,
-      description: "ปรึกษาเทคนิค SEO และโครงสร้างระบบฟรี",
+      description: "พูดคุยเรื่องเทคนิค SEO และโครงสร้างเว็บฟรี",
       color: "hover:border-[#00B900]/30 bg-green-50/5",
     },
     {
@@ -42,19 +44,19 @@ export default function ContactInfo() {
         <MapPin className="mb-5 h-12 w-12 text-slate-400 transition-transform duration-500 group-hover:scale-110" />
       ),
       title: "Location",
-      value: "Bangkok / Kamphaeng Phet",
-      href: "#", 
-      description: "พร้อมดูแล SME ทั่วประเทศไทย",
+      value: "Bangkok / Thailand",
+      href: "#",
+      description: "รองรับการดูแลธุรกิจทั่วประเทศ",
       color: "hover:border-slate-500/30 bg-slate-50/5",
     },
   ];
 
   return (
     <div className="my-16">
-      {/* ส่วนหัวแสดงความน่าเชื่อถือ */}
+      {/* ส่วนยืนยันความปลอดภัยและความน่าเชื่อถือ */}
       <div className="mb-10 flex items-center justify-center gap-2 text-[10px] font-black tracking-[0.3em] text-slate-400 uppercase md:justify-start">
         <ShieldCheck className="h-4 w-4 text-blue-600" />
-        <span>Secure and Direct Channels</span>
+        <span>Secure and Direct Communication</span>
       </div>
 
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

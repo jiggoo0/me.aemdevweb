@@ -14,15 +14,18 @@ interface SocialLinksProps {
 }
 
 /**
- * SocialLinks Component (v2.4 - Identity Focus)
- * แยกชุดข้อมูลตามแบรนด์ที่ต้องการนำเสนอ เพื่อความแม่นยำในการเชื่อมต่อธุรกิจ
+ * SocialLinks Component - Professional Liaison Version
+ * -------------------------------------------------------------------------
+ * ระบบเชื่อมต่อช่องทางสื่อสารที่แยกตามเป้าหมายทางธุรกิจ
+ * พัฒนาและควบคุมคุณภาพโดย: นายเอ็มซ่ามากส์
+ * ยุทธศาสตร์: การสร้างความน่าเชื่อถือผ่านการเชื่อมโยงข้อมูลที่ถูกต้อง
  */
 export default function SocialLinks({
   className,
   variant = "aemdevweb",
   showLabel = true,
 }: SocialLinksProps) {
-  // รวมศูนย์ข้อมูลลิงก์เพื่อการบำรุงรักษาง่าย
+  // จัดกลุ่มข้อมูลช่องทางติดต่อเพื่อการเรียกใช้งานที่รวดเร็ว
   const links =
     variant === "aemdevweb"
       ? [
@@ -39,7 +42,7 @@ export default function SocialLinks({
             color: "group-hover:text-[#00B900] group-hover:bg-green-50",
           },
           {
-            name: "AEMDEVWEB Page",
+            name: "Facebook Page",
             href: siteConfig.contact.facebook,
             icon: <Facebook className="h-4 w-4 md:h-5 md:w-5" />,
             color: "group-hover:text-[#1877F2] group-hover:bg-blue-50",
@@ -53,13 +56,13 @@ export default function SocialLinks({
             color: "group-hover:text-[#0A66C2] group-hover:bg-blue-50/50",
           },
           {
-            name: "Unlink-th Line",
+            name: "Unlink Line",
             href: "https://lin.ee/EkHkRvI",
             icon: <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />,
             color: "group-hover:text-[#00B900] group-hover:bg-green-50",
           },
           {
-            name: "Unlink-th Official",
+            name: "Unlink Page",
             href: "https://www.facebook.com/profile.php?id=61586111353518",
             icon: <Facebook className="h-4 w-4 md:h-5 md:w-5" />,
             color: "group-hover:text-[#1877F2] group-hover:bg-blue-50",
@@ -95,3 +98,7 @@ export default function SocialLinks({
     </div>
   );
 }
+
+/**
+ * ออกแบบระบบการเชื่อมต่อโดย: นายเอ็มซ่ามากส์
+ */

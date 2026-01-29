@@ -26,7 +26,8 @@ export default function Container<T extends React.ElementType = "div">({
   id,
   as,
   ...props
-}: ContainerProps<T> & Omit<React.ComponentPropsWithoutRef<T>, keyof ContainerProps<T>>) {
+}: ContainerProps<T> &
+  Omit<React.ComponentPropsWithoutRef<T>, keyof ContainerProps<T>>) {
   const Component = as || "div";
 
   return (
@@ -34,7 +35,7 @@ export default function Container<T extends React.ElementType = "div">({
       id={id}
       className={cn(
         "mx-auto w-full max-w-7xl", // ควบคุมความกว้างสูงสุด 1280px
-        "px-5 sm:px-8 lg:px-12",     // ระยะขอบกันขอบจอแต่ละ Device
+        "px-5 sm:px-8 lg:px-12", // ระยะขอบกันขอบจอแต่ละ Device
         className
       )}
       {...props}

@@ -5,10 +5,17 @@ import Container from "@/components/layout/Container";
 import Hero from "@/components/profile/Hero";
 import Schema from "@/components/profile/Schema";
 
+/**
+ * AEMDEVWEB | About Page Protocol
+ * -------------------------------------------------------------------------
+ * จัดการและดูแลระบบโดย: นายเอ็มซ่ามากส์
+ * เป้าหมาย: นำเสนอตัวตนและแนวคิดการทำระบบเว็บไซต์ที่เน้นผลลัพธ์จริง
+ */
+
 export const metadata: Metadata = {
-  title: "เกี่ยวกับผม | Alongkorl Yomkerd (AEMDEVWEB)",
+  title: "ข้อมูลส่วนตัว | อลงกรณ์ ยมเกิด (นายเอ็มซ่ามากส์)",
   description:
-    "รู้จักกับ อลงกรณ์ ยมเกิด นักพัฒนาเว็บไซต์ที่เชี่ยวชาญด้าน Technical SEO และ Web Structure เน้นประสิทธิภาพและการเติบโตอย่างยั่งยืน",
+    "ทำความรู้จัก อลงกรณ์ ยมเกิด ผู้เชี่ยวชาญด้านการวางโครงสร้างเว็บไซต์และ Technical SEO ที่เน้นความเร็วและเสถียรภาพเพื่อให้ธุรกิจเติบโตอย่างมั่นคง",
   alternates: {
     canonical: "https://me.aemdevweb.com/about",
   },
@@ -16,58 +23,61 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="flex-grow">
-      {/* 1. Identity Verification: ยืนยันตัวตนกับ Search Engine ผ่าน Schema */}
+    <main className="flex-grow selection:bg-blue-500/10">
+      {/* 1. Identity Verification: ยืนยันข้อมูลตัวตนกับระบบค้นหาอย่างแม่นยำ */}
       <Schema />
 
-      {/* 2. Brand Identity: ส่วนแนะนำตัวหลักที่ดึงค่าจากระบบจัดการข้อมูล */}
+      {/* 2. Brand Hero: ส่วนแนะนำตัวที่สะท้อนตัวตน นายเอ็มซ่ามากส์ */}
       <Hero />
 
-      {/* 3. Content Section: ข้อมูลรายละเอียดแนวทางการทำงาน */}
-      <Container className="py-16">
-        <article className="grid grid-cols-1 gap-12 md:grid-cols-12 lg:gap-20">
-          {/* ส่วนเนื้อหาหลัก */}
+      {/* 3. Content Section: เจาะลึกแนวคิดและการทำงาน */}
+      <Container className="py-20">
+        <article className="grid grid-cols-1 gap-16 md:grid-cols-12">
+          {/* ส่วนเนื้อหาหลัก: แนวคิดและปรัชญาการทำงาน */}
           <div className="md:col-span-8">
-            <div className="space-y-12">
+            <div className="space-y-16">
               <section>
-                <h2 className="mb-6 text-3xl font-black tracking-tighter text-slate-900">
-                  แนวทางการทำงาน
+                <h2 className="font-heading mb-8 text-4xl font-black tracking-tighter text-slate-950 uppercase italic">
+                  แนวคิดการทำงาน
                 </h2>
-                <div className="space-y-4 text-lg leading-relaxed font-medium text-slate-600">
+                <div className="space-y-6 text-xl leading-relaxed font-bold text-slate-600">
                   <p>
                     ผมชื่อ{" "}
-                    <span className="text-slate-900 font-bold">
+                    <span className="text-slate-950 underline decoration-blue-500/30 underline-offset-8">
                       อลงกรณ์ ยมเกิด
-                    </span>{" "}
+                    </span>
                     หรือที่รู้จักในชื่อ{" "}
-                    <span className="text-blue-600 font-bold">AEMDEVWEB</span>
+                    <span className="text-blue-600">นายเอ็มซ่ามากส์</span>{" "}
+                    ผู้ดูแลโปรเจกต์ AEMDEVWEB
                   </p>
                   <p>
-                    ผมให้ความสำคัญกับการสร้างเว็บไซต์ที่มีประสิทธิภาพสูง
-                    ไม่ใช่เพียงแค่ความสวยงามภายนอก
-                    แต่ต้องมีโครงสร้างระบบที่แข็งแรงเพื่อให้ Search Engine
-                    เข้าถึงและเข้าใจเนื้อหาได้ดีที่สุด
+                    เป้าหมายของผมคือการสร้างเว็บไซต์ที่ตอบโจทย์ธุรกิจด้วยความเร็วและโครงสร้างที่ถูกต้อง
+                    ผมไม่ได้มองแค่ความสวยงาม แต่เน้นการสร้างระบบที่ Search
+                    Engine เข้าใจได้ง่ายที่สุด
+                    เพื่อให้เว็บไซต์เป็นเครื่องมือที่ช่วยสร้างรายได้และขยายฐานลูกค้าได้อย่างแท้จริง
                   </p>
                 </div>
               </section>
 
-              <section>
-                <h3 className="mb-6 text-xl font-black tracking-tight text-slate-900">
-                  ความเชี่ยวชาญหลัก
+              <section className="rounded-[3rem] bg-slate-50 p-10">
+                <h3 className="font-heading mb-8 text-2xl font-black tracking-tight text-slate-950 uppercase italic">
+                  ทักษะและความเชี่ยวชาญ
                 </h3>
-                <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   {[
-                    "วางโครงสร้างเว็บไซต์ตามหลัก SEO",
-                    "พัฒนาด้วย Next.js และ React ประสิทธิภาพสูง",
-                    "ปรับแต่ง Core Web Vitals และ Performance",
-                    "Technical SEO สำหรับธุรกิจ SME",
+                    "วางระบบโครงสร้างเว็บไซต์ตามหลัก SEO",
+                    "พัฒนา Next.js และ React ประสิทธิภาพสูง",
+                    "เพิ่มความเร็วและเสถียรภาพ (Web Vitals)",
+                    "กลยุทธ์ Technical SEO สำหรับธุรกิจ SME",
                   ].map((item, index) => (
                     <li
                       key={index}
-                      className="flex items-start gap-3 rounded-2xl border border-slate-100 p-4 text-slate-600 font-medium transition-colors hover:bg-slate-50"
+                      className="flex items-center gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition-all hover:border-blue-500/20"
                     >
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600" />
-                      {item}
+                      <div className="h-2 w-2 shrink-0 rounded-full bg-blue-600" />
+                      <span className="text-base font-black text-slate-700">
+                        {item}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -75,28 +85,29 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* ส่วนข้อมูลเสริมด้านข้าง (Sidebar) */}
+          {/* ส่วนข้อมูลเสริมด้านข้าง: โปรเจกต์ที่ภาคภูมิใจ */}
           <aside className="md:col-span-4">
-            <div className="sticky top-28 rounded-[2.5rem] border border-slate-100 bg-slate-50/50 p-8 lg:p-10">
-              <h3 className="mb-6 text-sm font-black tracking-[0.2em] text-slate-900 uppercase">
-                Project Highlights
+            <div className="sticky top-32 rounded-[3rem] border border-slate-100 bg-white p-10 text-center shadow-2xl shadow-slate-200/50">
+              <h3 className="font-heading mb-8 text-xs font-black tracking-[0.3em] text-slate-400 uppercase italic">
+                โปรเจกต์สำคัญ
               </h3>
-              <p className="mb-8 text-xs font-bold leading-relaxed text-slate-500">
-                ผลงานที่สะท้อนทักษะด้านการจัดการ Technical และ Performance
-                ระดับสูง
-              </p>
 
-              <ul className="space-y-4">
+              <div className="space-y-6">
                 {["Unlink-th", "AEMDEVWEB"].map((project) => (
-                  <li
-                    key={project}
-                    className="flex items-center gap-3 text-base font-black text-slate-900"
-                  >
-                    <div className="h-1.5 w-4 rounded-full bg-blue-600" />
-                    {project}
-                  </li>
+                  <div key={project} className="group">
+                    <p className="font-heading text-2xl font-black text-slate-950 uppercase italic transition-colors group-hover:text-blue-600">
+                      {project}
+                    </p>
+                    <div className="mx-auto mt-2 h-0.5 w-8 bg-slate-100 transition-all group-hover:w-16 group-hover:bg-blue-600" />
+                  </div>
                 ))}
-              </ul>
+              </div>
+
+              <div className="mt-12 border-t border-slate-50 pt-8">
+                <p className="font-heading text-[10px] font-black tracking-[0.4em] text-slate-300 uppercase italic">
+                  Developed by นายเอ็มซ่ามากส์
+                </p>
+              </div>
             </div>
           </aside>
         </article>

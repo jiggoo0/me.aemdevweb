@@ -36,7 +36,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       .map((file) => {
         const filePath = path.join(BLOG_DIR, file);
         const fileContent = fs.readFileSync(filePath, "utf-8");
-        
+
         // ใช้ gray-matter แยกส่วนที่เป็น Config (data) และเนื้อหา (content)
         const { data, content } = matter(fileContent);
 
@@ -70,7 +70,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
     const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
-    
+
     // ทักตรงๆ: ถ้าหาไฟล์ไม่เจอให้ส่งค่า null เพื่อไปแสดงหน้า 404
     if (!fs.existsSync(filePath)) return null;
 

@@ -1,5 +1,6 @@
 /** @format */
 
+import { Metadata } from "next";
 import Hero from "@/components/profile/Hero";
 import Schema from "@/components/profile/Schema";
 import Container from "@/components/layout/Container";
@@ -16,69 +17,77 @@ import {
 } from "lucide-react";
 import { getAllProjects } from "@/lib/projects";
 import { getAllPosts } from "@/lib/blog";
+import { siteConfig } from "@/constants/site-config";
 
 /**
- * HomePage - Identity Hub: Alongkorl Yomkerd (AEMDEVWEB)
- * ศูนย์กลางการนำเสนอทักษะด้านการวางโครงสร้างระบบและ Technical SEO
+ * 1. Technical SEO Metadata
+ * ตอกย้ำความน่าเชื่อถือระดับผู้เชี่ยวชาญ (Authority) ในหน้าแรกของ Identity Hub
+ */
+export const metadata: Metadata = {
+  title: siteConfig.title,
+  description: siteConfig.description,
+  alternates: {
+    canonical: "./",
+  },
+};
+
+/**
+ * HomePage - Identity Hub: Alongkorl Yomkerd (นายเอ็มซ่ามากส์)
+ * ศูนย์กลางการนำเสนอด้านการวางโครงสร้างระบบและกลยุทธ์ Technical SEO
  */
 export default async function HomePage() {
-  // ดึงข้อมูลโปรเจกต์และบทความแบบ Parallel เพื่อความเร็วในการโหลดหน้าเว็บ
+  // ดึงข้อมูลโปรเจกต์และบทความพร้อมกันแบบ Parallel เพื่อประสิทธิภาพความเร็วสูงสุด
   const [allProjects, allPosts] = await Promise.all([
     getAllProjects(),
     getAllPosts(),
   ]);
 
+  // คัดเลือก Node ข้อมูลมาแสดงผลในส่วนแนะนำ
   const featuredProjects = allProjects.slice(0, 2);
   const latestPosts = allPosts.slice(0, 3);
 
   return (
     <>
-      {/* ยืนยันตัวตน Entity ต่อ Search Engine ผ่าน JSON-LD */}
+      {/* ยืนยันพิกัดตัวตนต่อระบบการค้นหาผ่าน JSON-LD */}
       <Schema />
 
       <div className="flex flex-col gap-28 pb-32">
+        {/* ส่วนแนะนำตัวหลัก (Brand Hero) */}
         <Hero />
 
-        {/* 1. Selected Works: ส่วนแสดงเคสงานที่ภาคภูมิใจ */}
+        {/* 1. Selected Works: แสดงเคสงานที่เน้นประสิทธิภาพและผลลัพธ์จริง */}
         <Container as="section" id="projects" className="scroll-m-20">
           <header className="mb-20 flex flex-col items-center space-y-6 text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-5 py-2 text-[10px] font-black tracking-[0.2em] text-blue-600 uppercase shadow-sm">
               <TrendingUp size={14} /> Performance & SEO Control
             </div>
-            <h2 className="text-5xl font-black tracking-tighter text-slate-900 md:text-7xl leading-[0.95]">
-              สร้างระบบที่แข็งแกร่ง <br className="hidden sm:block" /> เพื่อผลลัพธ์ที่ยั่งยืน
+            <h2 className="text-5xl leading-[0.95] font-black tracking-tighter text-slate-950 md:text-7xl">
+              สร้างระบบที่แข็งแรง <br className="hidden sm:block" />{" "}
+              เพื่อผลลัพธ์ที่ยั่งยืน
             </h2>
-            <p className="max-w-2xl text-lg font-medium leading-relaxed text-slate-500 md:text-xl">
-              คัดสรรผลงานที่เน้นความเร็วระดับสูงสุดและโครงสร้างที่ถูกต้อง 
-              เพื่อให้เว็บไซต์ทำงานได้เต็มศักยภาพบนโลกออนไลน์
+            <p className="max-w-2xl text-lg leading-relaxed font-bold text-slate-500 md:text-xl">
+              คัดสรรผลงานที่ให้ความสำคัญกับการตอบสนองที่รวดเร็วและโครงสร้างข้อมูลที่ถูกต้อง
+              เพื่อให้เว็บไซต์ทำงานได้เต็มสมรรถนะในทุกแพลตฟอร์ม
             </p>
           </header>
 
           <div className="grid grid-cols-1 gap-14 md:grid-cols-2 lg:gap-20">
             {featuredProjects.map((project) => (
-              <ProjectCard
-                key={project.slug}
-                slug={project.slug}
-                title={project.title}
-                description={project.description}
-                image={project.image}
-                tags={project.tags}
-                link={project.link}
-                isFeatured={true}
-              />
+              <ProjectCard key={project.slug} {...project} isFeatured={true} />
             ))}
           </div>
         </Container>
 
-        {/* 2. Insights & Knowledge: คลังความรู้เชิงเทคนิค */}
+        {/* 2. Insights & Knowledge: คลังความรู้สำหรับการพัฒนาที่ถูกต้อง */}
         <Container as="section" className="border-t border-slate-100 pt-28">
           <header className="mb-16 flex flex-col items-end justify-between gap-8 md:flex-row">
             <div className="space-y-4 text-left">
               <div className="flex items-center gap-3 text-[10px] font-black tracking-[0.3em] text-blue-600 uppercase">
                 <Globe size={18} /> Technical Knowledge Hub
               </div>
-              <h2 className="text-4xl font-black tracking-tighter text-slate-900 md:text-6xl leading-none">
-                บทความและการ <span className="italic text-blue-600">อัปเดต</span>
+              <h2 className="text-4xl leading-none font-black tracking-tighter text-slate-950 md:text-6xl">
+                บทความและการ{" "}
+                <span className="text-blue-600 italic">อัปเดต</span>
               </h2>
             </div>
             <Button
@@ -95,23 +104,15 @@ export default async function HomePage() {
 
           <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
             {latestPosts.map((post) => (
-              <BlogCard
-                key={post.slug}
-                slug={post.slug}
-                title={post.title}
-                description={post.description}
-                date={post.date}
-                image={post.image}
-                tags={post.tags}
-              />
+              <BlogCard key={post.slug} {...post} />
             ))}
           </div>
         </Container>
 
-        {/* 3. Authority CTA: จุดปิดการนำเสนอที่หนักแน่น */}
+        {/* 3. Call-To-Action: การเชื่อมโยงโครงการใหม่ */}
         <Container as="section">
           <div className="relative overflow-hidden rounded-[4rem] bg-slate-950 px-10 py-28 text-center text-white shadow-2xl shadow-blue-900/10">
-            {/* พื้นหลังตาราง Grid แบบ Minimalist */}
+            {/* พื้นหลังตาราง Grid ที่สื่อถึงความละเอียดของระบบ */}
             <div
               className="pointer-events-none absolute inset-0 opacity-[0.02]"
               style={{
@@ -126,11 +127,11 @@ export default async function HomePage() {
                   <Layout size={32} strokeWidth={2.5} />
                 </div>
               </div>
-              
-              <h2 className="text-5xl font-black tracking-tighter italic md:text-8xl leading-[0.9]">
+
+              <h2 className="text-5xl leading-[0.9] font-black tracking-tighter italic md:text-8xl">
                 Precision Code. <br /> Predictable Results.
               </h2>
-              
+
               <div className="flex flex-col items-center gap-8">
                 <Button
                   size="lg"
@@ -139,10 +140,11 @@ export default async function HomePage() {
                 >
                   <Link href="/contact">เริ่มปรึกษาโครงการของคุณ</Link>
                 </Button>
-                
+
                 <div className="flex flex-wrap items-center justify-center gap-8 text-[10px] font-black tracking-[0.4em] text-slate-500 uppercase">
                   <span className="flex items-center gap-3">
-                    <ShieldCheck size={16} className="text-blue-500" /> Specialist Verified
+                    <ShieldCheck size={16} className="text-blue-500" />{" "}
+                    Specialist Verified
                   </span>
                   <span className="hidden h-1.5 w-1.5 rounded-full bg-slate-800 md:block" />
                   <span>Next.js Infrastructure Lead</span>
@@ -155,3 +157,7 @@ export default async function HomePage() {
     </>
   );
 }
+
+/**
+ * ออกแบบระบบและดูแลความเนี้ยบโดย: นายเอ็มซ่ามากส์
+ */

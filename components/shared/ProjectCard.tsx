@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Star, Eye } from "lucide-react"; // ลบ ArrowRight และ ShieldCheck ออก
+import { ExternalLink, Star, Eye } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,19 +14,21 @@ import {
 } from "@/components/ui/card";
 
 interface ProjectCardProps {
-  slug: string; // คีย์สำหรับทำ Internal Link
+  slug: string; // คีย์หลักสำหรับทำ Internal Link ภายในระบบ
   title: string;
   description: string;
   image: string;
   tags?: string[];
-  link?: string; // ลิงก์ภายนอกไปยังเว็บไซต์จริง
+  link?: string; // ลิงก์ตรงไปยังเว็บไซต์จริงที่ออนไลน์อยู่
   className?: string;
   isFeatured?: boolean;
 }
 
 /**
- * ProjectCard - Selected Case Showcase
- * นำเสนอโครงการด้วยการเน้นภาพลักษณ์ความสำเร็จเชิงเทคนิค
+ * ProjectCard - ส่วนแสดงเคสความสำเร็จที่คัดสรรมาแล้ว
+ * -------------------------------------------------------------------------
+ * ยุทธศาสตร์: นำเสนอความสำเร็จของระบบผ่านภาพลักษณ์ที่ดูพรีเมียมและน่าเชื่อถือ
+ * ออกแบบและดูแลมาตรฐานโดย: นายเอ็มซ่ามากส์
  */
 export default function ProjectCard({
   slug,
@@ -45,35 +47,37 @@ export default function ProjectCard({
       className={cn(
         "group flex h-full flex-col overflow-hidden transition-all duration-700",
         "border-slate-100 bg-white shadow-sm hover:-translate-y-3 hover:shadow-[0_30px_60px_-15px_rgba(30,58,138,0.12)]",
-        isFeatured && "border-blue-100 ring-1 ring-blue-600/10 shadow-blue-50/50",
+        isFeatured &&
+          "border-blue-100 ring-1 shadow-blue-50/50 ring-blue-600/10",
         className
       )}
     >
-      {/* 1. Image & Badge Overlay */}
+      {/* 1. Visual Node: ส่วนแสดงภาพตัวอย่างโครงการ */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
         <Image
           src={displayImage}
-          alt={`Project Case: ${title}`}
+          alt={`ผลงาน: ${title}`}
           fill
           className="object-cover transition-transform duration-1000 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority={isFeatured}
         />
-        {/* Gradient Overlay สำหรับดึงระยะชัดลึกตอน Hover */}
+
+        {/* Layer ตกแต่งเพื่อความนุ่มนวลของภาพตอนแสดงผล */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/10 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
-        
+
         <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
           {isFeatured && (
             <span className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-1.5 text-[10px] font-black tracking-widest text-white uppercase shadow-xl">
-              <Star className="h-3 w-3 fill-white" /> Featured Case
+              <Star className="h-3 w-3 fill-white" /> ผลงานเด่น
             </span>
           )}
         </div>
       </div>
 
-      {/* 2. Header & Tags */}
+      {/* 2. Identity Hub: ส่วนแสดงชื่อและหมวดหมู่ของงาน */}
       <CardHeader className="space-y-4 p-6 lg:p-8">
-        <CardTitle className="text-xl leading-tight font-black text-slate-900 transition-colors group-hover:text-blue-600 lg:text-2xl">
+        <CardTitle className="text-xl leading-tight font-black text-slate-950 transition-colors group-hover:text-blue-600 lg:text-2xl">
           {title}
         </CardTitle>
 
@@ -91,39 +95,39 @@ export default function ProjectCard({
         )}
       </CardHeader>
 
-      {/* 3. Narrative Description */}
+      {/* 3. Logic Detail: คำอธิบายแนวคิดและการแก้ปัญหาในโปรเจกต์ */}
       <CardContent className="flex-grow px-6 pb-6 lg:px-8">
-        <p className="line-clamp-3 text-sm leading-relaxed font-medium text-slate-500 transition-colors group-hover:text-slate-700">
+        <p className="line-clamp-3 text-sm leading-relaxed font-bold text-slate-500 transition-colors group-hover:text-slate-700">
           {description}
         </p>
       </CardContent>
 
-      {/* 4. Functional Actions (Internal vs External) */}
+      {/* 4. Connection Hub: จุดเชื่อมต่อเพื่อดูข้อมูลเชิงลึก */}
       <CardFooter className="grid grid-cols-2 gap-3 border-t border-slate-50 bg-slate-50/20 px-6 py-5 lg:px-8">
         <Button
           asChild
           variant="outline"
-          className="h-11 rounded-xl border-slate-200 text-[11px] font-black tracking-widest uppercase transition-all hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200"
+          className="h-11 rounded-xl border-slate-200 text-[11px] font-black tracking-widest uppercase transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-blue-600"
         >
           <Link href={`/projects/${slug}`}>
             <Eye className="mr-2 h-3.5 w-3.5" />
-            ชมผลงาน
+            ดูรายละเอียด
           </Link>
         </Button>
 
         {link ? (
           <Button
             asChild
-            className="h-11 rounded-xl bg-slate-900 text-[11px] font-black tracking-widest uppercase shadow-lg shadow-slate-900/10 transition-all hover:bg-blue-600"
+            className="h-11 rounded-xl bg-slate-950 text-[11px] font-black tracking-widest uppercase shadow-lg shadow-slate-950/10 transition-all hover:bg-blue-600"
           >
             <a href={link} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="mr-2 h-3.5 w-3.5" />
-              เว็บไซต์
+              เยี่ยมชมเว็บ
             </a>
           </Button>
         ) : (
-          <div className="flex items-center justify-center text-[9px] font-black text-slate-400 uppercase tracking-[0.2em]">
-            Infrastructure
+          <div className="flex items-center justify-center text-[9px] font-black tracking-[0.2em] text-slate-400 uppercase">
+            System Setup
           </div>
         )}
       </CardFooter>
